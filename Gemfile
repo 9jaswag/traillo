@@ -65,3 +65,7 @@ gem "figaro"
 gem "pry"
 # For react
 gem "react-rails"
+# Bootstrap
+gem 'bootstrap', '~> 4.0.0'
+# jQuery
+gem 'jquery-rails'
