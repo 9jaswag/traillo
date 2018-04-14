@@ -38,6 +38,12 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # RSpec for testing
+  gem 'rspec-rails', '~> 3.7'
+  # For fixtures replacement
+  gem "factory_bot_rails", "~> 4.0"
+  # For matching during tests
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 group :development do
@@ -51,3 +57,11 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# For JSON web tokens
+gem 'jwt'
+# For env variables
+gem "figaro"
+# Pry for debugging
+gem "pry"
+# For react
+gem "react-rails"
