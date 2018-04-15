@@ -17,6 +17,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: <%= ENV['TRAILLO_DATABASE_USER'] %>
+  password: <%= ENV['TRAILLO_DATABASE_PASSWORD'] %>
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -80,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: traillo_production
-  username: traillo
-  password: <%= ENV['TRAILLO_DATABASE_PASSWORD'] %>
+  database: <%= ENV['TRAILLO_PROD_DATABASE'] %>
