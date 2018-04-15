@@ -69,3 +69,5 @@ gem "react-rails"
 gem 'bootstrap', '~> 4.0.0'
 # jQuery
 gem 'jquery-rails'
+# For image upload
+gem "paperclip", "~> 6.0.0"
