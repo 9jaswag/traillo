@@ -16,3 +16,13 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+
+ body {
+   height: 100vh;
+   overflow: hidden;
+ }
+
+ button.navbar-toggler {
+   outline: none;
+   cursor: pointer;
+ }
