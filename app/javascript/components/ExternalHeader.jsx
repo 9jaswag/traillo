@@ -12,8 +12,8 @@ export default () => (
       </button>
       <div className="collapse navbar-collapse" id="mobile-menu">
         <div className="navbar-nav ml-md-auto d-md-flex">
-          <button className="btn btn-dark" type="button">Login</button>
-          <button className="btn btn-success ml-3" type="button">Sign Up</button>
+          <button className="btn btn-dark button__external button__external-primary" type="button">Login</button>
+          <button className="btn btn-success ml-3 button__external" type="button">Sign Up</button>
         </div>
       </div>
     </nav>
