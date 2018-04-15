@@ -9,7 +9,7 @@ export default () => (
       <hr className="my-4" />
       <p>You're one click away from organizing and prioritizing your project.</p>
       <p className="lead">
-        <a className="btn btn-success btn-lg" href="#" role="button">Sign Up - It's Free</a>
+        <a className="btn btn-success btn-lg button__external" href="#" role="button">Sign Up - It's Free</a>
       </p>
       <p>Already use Traillo? <a href="" className="home-hero-link">Log in</a>.</p>
     </div>
