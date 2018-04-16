@@ -71,3 +71,5 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 # For image upload
 gem "paperclip", "~> 6.0.0"
+# For sending email using Sendgrid
+gem 'sendgrid-ruby'
