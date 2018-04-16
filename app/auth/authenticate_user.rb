@@ -9,6 +9,7 @@ class AuthenticateUser
   end
 
   private
+
   def user
     user ||= User.find_by(email: email)
     raise(ExceptionHandler::AuthenticationError, 'Account not activated') unless user.activated
