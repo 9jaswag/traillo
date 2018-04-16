@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/activate/:token', to: 'users#edit', as: 'activate'
+  get '/login', to: 'users#index'
+  post '/login', to: 'users#login'
 
   get 'users/show'
 
-  get 'users/login'
 
   root 'index#index'
 
