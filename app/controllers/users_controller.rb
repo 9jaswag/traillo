@@ -6,9 +6,15 @@ class UsersController < ApplicationController
   def create
     user = User.create!(user_params)
     raise(ActiveRecord::RecordInvalid) unless user.save
+    user.send_activation_email
   end
 
   def show; end
+
+  def edit
+    @user = User.find_by!(email: params[:email])
+    @user.activate_user(params[:token])
+  end
 
   def login; end
 
