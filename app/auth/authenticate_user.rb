@@ -1,3 +1,5 @@
+require 'json_web_token'
+
 class AuthenticateUser
   def initialize(email, password)
     @email = email
@@ -9,12 +11,13 @@ class AuthenticateUser
   end
 
   private
+  attr_reader :email, :password
 
   def user
     user ||= User.find_by(email: email)
-    raise(ExceptionHandler::AuthenticationError, 'Account not activated') unless user.activated
-    return user if user && user.authenticate(password)
+    raise(ExceptionHandler::AuthenticationError, 'Account not activated') if user && !user.activated
+    raise(ExceptionHandler::AuthenticationError, 'Invalid credentials') if user.nil?
 
-    raise(ExceptionHandler::AuthenticationError, 'Invalid credentials')
+    return user if user && user.authenticate(password)
   end
 end

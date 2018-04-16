@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  def index; end
+
   def new
     @user = User.new
   end
@@ -16,11 +18,18 @@ class UsersController < ApplicationController
     @user.activate_user(params[:token])
   end
 
-  def login; end
+  def login
+    @user = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
+    render json: @user
+  end
 
   private
 
   def user_params
     params.permit(:username, :email, :password, :first_name, :last_name)
+  end
+
+  def auth_params
+    params.permit(:email, :password)
   end
 end

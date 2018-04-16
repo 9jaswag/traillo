@@ -1,0 +1,14 @@
+<%= form_with url: login_path, local: true do |f| %>
+  <div class="col-md-6 form-group">
+    <%= f.text_field :email, class: "form-control", placeholder: "email" %>
+  </div>
+  <div class="col-md-6">
+    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+    <small id="passwordHelpBlock" class="form-text text-muted">
+      Your password must be at least 6 characters long.
+    </small>
+  </div>
+  <div class="col-md-6 margin-top">
+    <%= f.submit 'Register', class: 'btn btn-primary' %>
+  </div>
+<% end %>
