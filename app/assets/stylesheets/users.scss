@@ -1,3 +1,19 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.wrapper__external {
+  padding: 4em 1em;
+}
+
+.signup-container {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.signup-form-container {
+  //
+}
+
+.button__auth {
+  font-size: 1.2rem !important;
+}
