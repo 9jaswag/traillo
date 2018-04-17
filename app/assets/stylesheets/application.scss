@@ -16,8 +16,10 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+ @import url('https://fonts.googleapis.com/css?family=Muli');
 
  body {
+  font-family: 'Muli', sans-serif;
    height: 100vh;
    overflow: hidden;
  }
