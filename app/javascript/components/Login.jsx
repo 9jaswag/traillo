@@ -1,6 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
+import TextInput from './TextInput';
+import Button from './Button';
+
 class Login extends React.Component {
   render() {
     return (
@@ -14,18 +17,31 @@ class Login extends React.Component {
               </span>
               <div className="signup-form-container">
                 <form action="" className="mt-4">
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" className="form-control form-control-lg" id="email" placeholder="e.g., janedoe@example.com" autoComplete="off" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control form-control-lg" id="password" aria-describedby="passwordHelp" placeholder="e.g., ******" autoComplete="off" />
-                    <small id="passwordHelp" className="form-text text-muted">6 characters or more.</small>
-                  </div>
-                  <button type="submit" className="btn btn-success button__external btn-block button__auth">
-                    Log In
-                  </button>
+                  <TextInput
+                    type="email"
+                    name="email"
+                    value=""
+                    label="Email"
+                    placeholder="e.g., janedoe@example.com"
+                    error=""
+                    required="required"
+                  />
+                  <TextInput
+                    type="password"
+                    name="password"
+                    value=""
+                    label="Password"
+                    placeholder="e.g., ******"
+                    error=""
+                    required="required"
+                    helpId="passwordHelp"
+                    helpText="6 characters or more."
+                  />
+                  <Button
+                    type="submit"
+                    className="btn btn-success button__external btn-block button__auth"
+                    text="Log In"
+                  />
                   <span className="mt-3 d-inline-block">
                     <Link to="/signup" className="auth-link">Forgot your password?</Link>
                   </span>

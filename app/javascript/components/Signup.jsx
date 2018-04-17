@@ -1,6 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
+import TextInput from './TextInput';
+import Button from './Button';
+
 class Signup extends React.Component {
   constructor(props) {
     super(props)
@@ -26,27 +29,51 @@ class Signup extends React.Component {
               </span>
               <div className="signup-form-container">
                 <form action="" className="mt-4">
-                  <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" className="form-control form-control-lg" id="name" placeholder="e.g., Jane Doe" autoComplete="off" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" className="form-control form-control-lg" id="username" aria-describedby="usernameHelp" placeholder="e.g., janedoe" autoComplete="off" />
-                    <small id="usernameHelp" className="form-text text-muted">15 characters or less.</small>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" className="form-control form-control-lg" id="email" placeholder="e.g., janedoe@example.com" autoComplete="off" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control form-control-lg" id="password" aria-describedby="passwordHelp" placeholder="e.g., ******" autoComplete="off" />
-                    <small id="passwordHelp" className="form-text text-muted">6 characters or more.</small>
-                  </div>
-                  <button type="submit" className="btn btn-success button__external btn-block button__auth">
-                    Create New Account
-                  </button>
+                  <TextInput
+                    type="text"
+                    name="name"
+                    value=""
+                    label="Name"
+                    placeholder="e.g., Jane Doe"
+                    error=""
+                    required="true"
+                  />
+                  <TextInput
+                    type="text"
+                    name="username"
+                    value=""
+                    label="Username"
+                    placeholder="e.g., janedoe"
+                    error=""
+                    required="true"
+                    helpId="usernameHelp"
+                    helpText="15 characters or less."
+                  />
+                  <TextInput
+                    type="email"
+                    name="email"
+                    value=""
+                    label="Email"
+                    placeholder="e.g., janedoe@example.com"
+                    error=""
+                    required="true"
+                  />
+                  <TextInput
+                    type="password"
+                    name="password"
+                    value=""
+                    label="Password"
+                    placeholder="e.g., ******"
+                    error=""
+                    required="true"
+                    helpId="passwordHelp"
+                    helpText="6 characters or more."
+                  />
+                  <Button
+                    type="submit"
+                    className="btn btn-success button__external btn-block button__auth"
+                    text="Create New Account"
+                  />
                   <small className="mt-3 d-inline-block">
                     By creating an account, you agree to our non-existent Terms of Service and Privacy Policy.
                   </small>
