@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Link } from 'react-router-dom';
 
 export default () => (
   <header>
@@ -12,8 +13,18 @@ export default () => (
       </button>
       <div className="collapse navbar-collapse" id="mobile-menu">
         <div className="navbar-nav ml-md-auto d-md-flex">
-          <button className="btn btn-dark button__external button__external-primary" type="button">Login</button>
-          <button className="btn btn-success ml-3 button__external" type="button">Sign Up</button>
+          <Link
+            to="/login"
+            className="btn btn-dark button__external button__external-primary"
+          >
+            Login
+          </Link>
+          <Link
+            to="/signup"
+            className="btn btn-success ml-3 button__external"
+          >
+            Sign Up
+          </Link>
         </div>
       </div>
     </nav>
