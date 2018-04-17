@@ -21,8 +21,8 @@ class Signup extends React.Component {
           <div className="container">
             <div className="signup-container">
               <h1 className="">Create a Traillo Account</h1>
-              <span>
-                <Link to="/login">or sign into your account</Link>
+              <span> <span>or </span>
+                <Link to="/login" className="auth-link"> sign into your account</Link>
               </span>
               <div className="signup-form-container">
                 <form action="" className="mt-4">
@@ -41,12 +41,15 @@ class Signup extends React.Component {
                   </div>
                   <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control form-control-lg" id="password" aria-describedby="passwordHelp" placeholder="Password" autoComplete="off" />
+                    <input type="password" className="form-control form-control-lg" id="password" aria-describedby="passwordHelp" placeholder="e.g., ******" autoComplete="off" />
                     <small id="passwordHelp" className="form-text text-muted">6 characters or more.</small>
                   </div>
                   <button type="submit" className="btn btn-success button__external btn-block button__auth">
                     Create New Account
                   </button>
+                  <small className="mt-3 d-inline-block">
+                    By creating an account, you agree to our non-existent Terms of Service and Privacy Policy.
+                  </small>
                 </form>
               </div>
             </div>

@@ -14,7 +14,7 @@ export default () => (
           Sign Up - It's Free
         </Link>
       </p>
-      <p>Already use Traillo? <a href="" className="home-hero-link">Log in</a>.</p>
+      <p>Already use Traillo? <Link to="/login" className="home-hero-link">Log in</Link>.</p>
     </div>
   </div>
 );

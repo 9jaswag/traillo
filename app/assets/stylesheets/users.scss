@@ -17,3 +17,12 @@
 .button__auth {
   font-size: 1.2rem !important;
 }
+
+.auth-link {
+  text-decoration: underline;
+  color: #298fca;
+}
+
+.auth-link:hover, .auth-link:active {
+  color: #0c3953;
+}

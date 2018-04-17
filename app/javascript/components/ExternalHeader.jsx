@@ -12,7 +12,8 @@ export default () => (
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="mobile-menu">
-        <div className="navbar-nav ml-md-auto d-md-flex">
+        <ul className="navbar-nav mr-auto"></ul>
+        <div className="">
           <Link
             to="/login"
             className="btn btn-dark button__external button__external-primary"
