@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
+import { Consumer } from '../components/TrailloContext';
 
 export default () => (
   <div className="jumbotron jumbotron-fluid mb-0 bg-transparent home-hero">
@@ -16,6 +17,14 @@ export default () => (
       </p>
       <p>Already use Traillo? <Link to="/login" className="home-hero-link">Log in</Link>.</p>
     </div>
+    <Consumer>
+      {(context) => (
+        <React.Fragment>
+          <p>{context.state.value}</p>
+          <button onClick={context.actions.doStuff}>Change text</button>
+        </React.Fragment>
+      )}
+    </Consumer>
   </div>
 );
 
