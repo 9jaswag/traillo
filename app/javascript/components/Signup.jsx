@@ -6,18 +6,55 @@ import Button from './Button';
 
 class Signup extends React.Component {
   constructor(props) {
-    super(props)
-    this.onClick = this.onClick.bind(this);
+    super(props);
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
+    this.state = {
+      username: '',
+      email: '',
+      password: '',
+      name: '',
+      errors: ''
+    }
   }
 
-  onClick(event) {
-    window.history.pushState({}, 'login', '/login')
+  onSubmit(event) {
+    // window.history.pushState({}, 'login', '/login')
+    event.preventDefault();
+    const { username, email, password, name } = this.state;
+    if (!username || !email || !password || !name) {
+      return this.setState({
+        errors: 'Please fill all fields!'
+      })
+    }
+
+    if (username.length > 15 || password.length < 6) {
+      return this.setState({
+        errors: 'Keep username and password within specified lengths'
+      })
+    }
+
+    console.log({
+      username,
+      email,
+      password,
+      name
+    })
+  }
+
+  onChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+      errors: ''
+    })
   }
 
   render() {
-    const history = window.history;
-    console.log(history)
-    console.log(history.pushState)
+    // const history = window.history;
+    // console.log(history)
+    // console.log(history.pushState)
     return (
       <React.Fragment>
         <section className="container wrapper__external">
@@ -28,44 +65,48 @@ class Signup extends React.Component {
                 <Link to="/login" className="auth-link"> sign into your account</Link>
               </span>
               <div className="signup-form-container">
-                <form action="" className="mt-4">
+                <form action="" className="mt-4" onSubmit={this.onSubmit}>
                   <TextInput
                     type="text"
                     name="name"
-                    value=""
+                    value={this.state.name}
                     label="Name"
                     placeholder="e.g., Jane Doe"
-                    error=""
+                    error={this.state.errors}
                     required="true"
+                    onChange={this.onChange}
                   />
                   <TextInput
                     type="text"
                     name="username"
-                    value=""
+                    value={this.state.username}
                     label="Username"
                     placeholder="e.g., janedoe"
-                    error=""
+                    error={this.state.errors}
                     required="true"
+                    onChange={this.onChange}
                     helpId="usernameHelp"
                     helpText="15 characters or less."
                   />
                   <TextInput
                     type="email"
                     name="email"
-                    value=""
+                    value={this.state.email}
                     label="Email"
                     placeholder="e.g., janedoe@example.com"
-                    error=""
+                    error={this.state.errors}
                     required="true"
+                    onChange={this.onChange}
                   />
                   <TextInput
                     type="password"
                     name="password"
-                    value=""
+                    value={this.state.password}
                     label="Password"
                     placeholder="e.g., ******"
-                    error=""
+                    error={this.state.errors}
                     required="true"
+                    onChange={this.onChange}
                     helpId="passwordHelp"
                     helpText="6 characters or more."
                   />

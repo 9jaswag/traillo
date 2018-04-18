@@ -22,6 +22,7 @@ export default ({ type, name, value, label, placeholder,
         type={type}
         className="form-control form-control-lg"
         id={name}
+        name={name}
         value={value}
         placeholder={placeholder}
         onChange={onChange}
@@ -31,5 +32,6 @@ export default ({ type, name, value, label, placeholder,
         required={required}
       />
       <small id={helpId} className="form-text text-muted">{helpText}</small>
+      <small id={helpId} className="form-text text-muted">{error}</small>
     </div>
   );
