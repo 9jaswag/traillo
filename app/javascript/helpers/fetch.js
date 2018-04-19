@@ -3,7 +3,7 @@ export default (endpoint, method, params) => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
   const makeRequest = () => {
-    return fetch(`${hostUrl}/${endpoint}`, {
+    return fetch(`${hostUrl}${endpoint}`, {
       body: JSON.stringify(params),
       credentials: 'same-origin',
       headers: {
@@ -15,9 +15,7 @@ export default (endpoint, method, params) => {
       method: method
     })
       .then(response => response.json())
-      .then((responseData) => {
-        return responseData;
-      })
+    // .then((responseData) => responseData);
   };
 
   return makeRequest();

@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
-    render json: @user
+    user = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
+    render json: {token: user, message: 'Login successful'}
   end
 
   private

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import TextInput from './TextInput';
 import Button from './Button';
 import loginAction from '../actions/login.action';
+import NotificationToast from '../components/NotificationToast'
 
 class Login extends React.Component {
   constructor(props) {
@@ -11,13 +12,17 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errors: ''
+      errors: '',
+      showNotification: false,
+      responseMessage: ''
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.clearErrors = this.clearErrors.bind(this);
   }
 
   onChange(event) {
+    this.clearErrors()
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -25,6 +30,7 @@ class Login extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
+    this.clearErrors()
     const { email, password } = this.state;
 
     if (!email || !password || password.length < 6) {
@@ -33,20 +39,27 @@ class Login extends React.Component {
       })
     }
 
-    const apiResponse = loginAction({
-      email,
-      password
-    })
-    apiResponse.then(res => {
-      console.log('----')
-      console.log(res)
-      console.log('----')
+    loginAction({ email, password })
+      .then(response => {
+        this.setState({
+          showNotification: true,
+          responseMessage: response
+        });
+      });
+  }
+
+  clearErrors() {
+    this.setState({
+      showNotification: false,
+      errors: ''
     });
   }
 
   render() {
+    const notification = <NotificationToast message={this.state.responseMessage.message} />
     return (
       <React.Fragment>
+        {this.state.showNotification && notification}
         <section className="container wrapper__external">
           <div className="container">
             <div className="signup-container">
