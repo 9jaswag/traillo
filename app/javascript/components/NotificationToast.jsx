@@ -12,9 +12,11 @@ class NotificationToast extends React.Component {
   }
 
   render() {
+    const type = this.props.type;
+    const color = this.props.type == 'error' ? '#cd4242' : '#218838';
     return (
       <React.Fragment>
-        <section id="snackbar" style={{ backgroundColor: '#315989' }}>{this.props.message}</section>
+        <section id="snackbar" style={{ backgroundColor: color }}>{this.props.message}</section>
       </React.Fragment>
     );
   }

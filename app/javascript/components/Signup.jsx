@@ -5,7 +5,7 @@ import TextInput from './TextInput';
 import Button from './Button';
 import { Consumer } from '../components/TrailloContext';
 import NotificationToast from '../components/NotificationToast'
-import signupAction from '../actions/signup.action';
+import signupAction from '../actions/auth.action';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -22,7 +22,8 @@ class Signup extends React.Component {
       name: '',
       errors: '',
       showNotification: false,
-      responseMessage: ''
+      responseMessage: '',
+      responseStatus: 'error'
     }
   }
 
@@ -49,9 +50,14 @@ class Signup extends React.Component {
       name
     })
       .then(response => {
+        if (Number(response.status) < 300) {
+          this.setState({
+            responseStatus: 'success'
+          })
+        }
         this.setState({
           showNotification: true,
-          responseMessage: response
+          responseMessage: response.data
         });
       });
   }
@@ -72,7 +78,7 @@ class Signup extends React.Component {
   }
 
   render() {
-    const notification = <NotificationToast message={this.state.responseMessage.message} />
+    const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />
     return (
       <React.Fragment>
         {this.state.showNotification && notification}
