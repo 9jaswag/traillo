@@ -5,6 +5,7 @@ import Home from '../components/Home';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
 import TrailloContext from '../components/TrailloContext';
+import NotificationToast from '../components/NotificationToast'
 
 export default (
   <Switch>

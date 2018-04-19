@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import TextInput from './TextInput';
 import Button from './Button';
 import { Consumer } from '../components/TrailloContext';
+import NotificationToast from '../components/NotificationToast'
 import signupAction from '../actions/signup.action';
 
 class Signup extends React.Component {
@@ -12,18 +13,22 @@ class Signup extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.clearErrors = this.clearErrors.bind(this);
 
     this.state = {
       username: '',
       email: '',
       password: '',
       name: '',
-      errors: ''
+      errors: '',
+      showNotification: false,
+      responseMessage: ''
     }
   }
 
   onSubmit(event) {
     event.preventDefault();
+    this.clearErrors()
     const { username, email, password, name } = this.state;
     if (!username || !email || !password || !name) {
       return this.setState({
@@ -37,29 +42,40 @@ class Signup extends React.Component {
       })
     }
 
-    const apiResponse = signupAction({
+    signupAction({
       username,
       email,
       password,
       name
-    });
-    apiResponse.then(res => {
-      console.log('----')
-      console.log(res)
-      console.log('----')
-    });
+    })
+      .then(response => {
+        this.setState({
+          showNotification: true,
+          responseMessage: response
+        });
+      });
   }
 
   onChange(event) {
+    this.clearErrors()
     this.setState({
       [event.target.name]: event.target.value,
       errors: ''
     })
   }
 
+  clearErrors() {
+    this.setState({
+      showNotification: false,
+      errors: ''
+    });
+  }
+
   render() {
+    const notification = <NotificationToast message={this.state.responseMessage.message} />
     return (
       <React.Fragment>
+        {this.state.showNotification && notification}
         <section className="container wrapper__external">
           <div className="container">
             <div className="signup-container">
