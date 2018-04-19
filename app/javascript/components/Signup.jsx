@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
 import TextInput from './TextInput';
 import Button from './Button';
+import { Consumer } from '../components/TrailloContext';
+import signupAction from '../actions/signup.action';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -21,7 +23,6 @@ class Signup extends React.Component {
   }
 
   onSubmit(event) {
-    // window.history.pushState({}, 'login', '/login')
     event.preventDefault();
     const { username, email, password, name } = this.state;
     if (!username || !email || !password || !name) {
@@ -36,12 +37,17 @@ class Signup extends React.Component {
       })
     }
 
-    console.log({
+    const apiResponse = signupAction({
       username,
       email,
       password,
       name
-    })
+    });
+    apiResponse.then(res => {
+      console.log('----')
+      console.log(res)
+      console.log('----')
+    });
   }
 
   onChange(event) {
@@ -52,9 +58,6 @@ class Signup extends React.Component {
   }
 
   render() {
-    // const history = window.history;
-    // console.log(history)
-    // console.log(history.pushState)
     return (
       <React.Fragment>
         <section className="container wrapper__external">

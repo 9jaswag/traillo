@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     user = User.create!(user_params)
     raise(ActiveRecord::RecordInvalid) unless user.save
     user.send_activation_email
+    render json: { message: 'Account created. Please check email for activation link' }, status: :created
   end
 
   def show; end

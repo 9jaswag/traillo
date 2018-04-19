@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
 import TextInput from './TextInput';
 import Button from './Button';
+import loginAction from '../actions/login.action';
 
 class Login extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errors: {}
+      errors: ''
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -24,12 +25,23 @@ class Login extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    // window.history.pushState({}, 'login', '/login')
     const { email, password } = this.state;
-    console.log({
+
+    if (!email || !password || password.length < 6) {
+      return this.setState({
+        errors: 'Please fill all fields properly!'
+      })
+    }
+
+    const apiResponse = loginAction({
       email,
       password
     })
+    apiResponse.then(res => {
+      console.log('----')
+      console.log(res)
+      console.log('----')
+    });
   }
 
   render() {
@@ -50,7 +62,7 @@ class Login extends React.Component {
                     value={this.state.email}
                     label="Email"
                     placeholder="e.g., janedoe@example.com"
-                    error=""
+                    error={this.state.errors}
                     required="required"
                     onChange={this.onChange}
                   />
@@ -60,7 +72,7 @@ class Login extends React.Component {
                     value={this.state.password}
                     label="Password"
                     placeholder="e.g., ******"
-                    error=""
+                    error={this.state.errors}
                     required="required"
                     helpId="passwordHelp"
                     helpText="6 characters or more."

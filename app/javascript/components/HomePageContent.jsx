@@ -20,8 +20,6 @@ export default () => (
     <Consumer>
       {(context) => (
         <React.Fragment>
-          <p>{context.state.value}</p>
-          <button onClick={context.actions.doStuff}>Change text</button>
         </React.Fragment>
       )}
     </Consumer>
