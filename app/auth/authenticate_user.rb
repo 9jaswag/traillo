@@ -16,7 +16,7 @@ class AuthenticateUser
   def user
     user ||= User.find_by(email: email)
     raise(ExceptionHandler::AuthenticationError, 'Account not activated') if user && !user.activated
-    raise(ExceptionHandler::AuthenticationError, 'Invalid credentials') if user.nil?
+    raise(ExceptionHandler::AuthenticationError, 'Invalid login credentials') if user.nil?
 
     return user if user && user.authenticate(password)
   end
