@@ -6,6 +6,7 @@ import Signup from '../components/Signup';
 import Login from '../components/Login';
 import TrailloContext from '../components/TrailloContext';
 import NotificationToast from '../components/NotificationToast'
+import AccountActivation from '../components/AccountActivation'
 
 export default (
   <Switch>
@@ -13,6 +14,7 @@ export default (
       <Route path="/" exact component={Home} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
+      <Route path="/activate/:token" exact component={AccountActivation} />
     </TrailloContext>
   </Switch>
 );

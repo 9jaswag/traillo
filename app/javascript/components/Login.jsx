@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
 import TextInput from './TextInput';
 import Button from './Button';
-import loginAction from '../actions/login.action';
+import { loginAction } from '../actions/auth.action';
 import NotificationToast from '../components/NotificationToast'
 
 class Login extends React.Component {
@@ -14,7 +14,8 @@ class Login extends React.Component {
       password: '',
       errors: '',
       showNotification: false,
-      responseMessage: ''
+      responseMessage: '',
+      responseStatus: 'error'
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -41,9 +42,14 @@ class Login extends React.Component {
 
     loginAction({ email, password })
       .then(response => {
+        if (Number(response.status) < 300) {
+          this.setState({
+            responseStatus: 'success'
+          })
+        }
         this.setState({
           showNotification: true,
-          responseMessage: response
+          responseMessage: response.data
         });
       });
   }
@@ -56,7 +62,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const notification = <NotificationToast message={this.state.responseMessage.message} />
+    const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />
     return (
       <React.Fragment>
         {this.state.showNotification && notification}

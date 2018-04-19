@@ -1,0 +1,85 @@
+import React from "react"
+import PropTypes from "prop-types"
+import { Link } from 'react-router-dom';
+import NotificationToast from "../components/NotificationToast";
+import { accountActivateAction } from '../actions/auth.action';
+
+class AccountActivation extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.clearErrors = this.clearErrors.bind(this);
+
+    this.state = {
+      showNotification: false,
+      responseMessage: '',
+      validUrl: false,
+      showNotification: false,
+      responseMessage: '',
+      responseStatus: 'error'
+    }
+  }
+
+  componentWillMount() {
+    const token = location.pathname.split('/')[2];
+    const email = location.search.split('=')[1];
+    if (token && email && token.length > 1 && email.length > 1 && token != undefined && email != undefined) {
+      return this.setState({
+        validUrl: true
+      })
+    }
+  }
+
+  componentDidMount() {
+    if (this.state.validUrl) {
+      const token = location.pathname.split('/')[2];
+      const email = location.search.split('=')[1];
+
+      accountActivateAction({ token, email })
+        .then(response => {
+          if (Number(response.status) < 300) {
+            this.setState({
+              responseStatus: 'success'
+            })
+          }
+          this.setState({
+            showNotification: true,
+            responseMessage: response.data
+          });
+        });
+    }
+  }
+
+  clearErrors() {
+    this.setState({
+      showNotification: false,
+      errors: ''
+    });
+  }
+
+  render() {
+    const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />
+    const invalidState = <div className="text-center">
+      <i className="far fa-frown fa-spin fa-10x"></i>
+      <h1 className="mt-3">We're sorry you ended up here. Something is wrong!</h1>
+      <h3>Check the link in your activation mail and try again.</h3>
+    </div>;
+    const validState = <div className="text-center">
+      <i className="far fa-smile fa-spin fa-10x"></i>
+      <h1 className="mt-3">Thanks for activating your account!</h1>
+      {this.state.responseStatus == 'success' && <h3>You can now <Link to='/login'>log in.</Link></h3>}
+    </div>;
+    const displayState = this.state.validUrl ? validState : invalidState;
+    return (
+      <React.Fragment>
+        {this.state.showNotification && notification}
+        <section className="container-fluid activation-page">
+          <div className="container wrapper__external"></div>
+          {displayState}
+        </section>
+      </React.Fragment>
+    );
+  }
+}
+
+export default AccountActivation
