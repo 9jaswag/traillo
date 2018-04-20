@@ -15,12 +15,12 @@ import PropTypes from "prop-types"
 // };
 
 export default ({ type, name, value, label, placeholder,
-  onChange, helpId, helpText, required, error, onBlur, onFocus }) => (
+  onChange, helpId, helpText, required, error, onBlur, extraClass, onFocus }) => (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
       <input
         type={type}
-        className="form-control form-control-lg"
+        className={'form-control form-control-lg ' + extraClass}
         id={name}
         name={name}
         value={value}
