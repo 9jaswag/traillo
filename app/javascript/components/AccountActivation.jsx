@@ -11,7 +11,6 @@ class AccountActivation extends React.Component {
     this.clearErrors = this.clearErrors.bind(this);
 
     this.state = {
-      showNotification: false,
       responseMessage: '',
       validUrl: false,
       showNotification: false,

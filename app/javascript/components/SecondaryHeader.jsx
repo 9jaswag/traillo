@@ -6,7 +6,7 @@ export default () => (
   <header>
     <nav className="navbar navbar-light sticky-top">
       <Link
-        to="/login"
+        to="/"
         className="btn btn-dark btn-outline-secondary"
       >
         Home

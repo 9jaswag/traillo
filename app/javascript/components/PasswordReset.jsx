@@ -5,14 +5,17 @@ import TextInput from './TextInput';
 import Button from './Button';
 import NotificationToast from '../components/NotificationToast'
 import SecondaryHeader from "./SecondaryHeader";
-import { passwordResetRequest } from "../actions/auth.action";
+import { passwordReset } from "../actions/auth.action";
 
 class PasswordReset extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      email: '',
+      password: '',
+      password_confirmation: '',
+      responseMessage: '',
+      validUrl: false,
       showNotification: false,
       responseMessage: '',
       responseStatus: 'error'
@@ -21,6 +24,16 @@ class PasswordReset extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.clearErrors = this.clearErrors.bind(this);
+  }
+
+  componentWillMount() {
+    const token = location.pathname.split('/')[2];
+    const email = location.search.split('=')[1];
+    if (token && email && token.length > 1 && email.length > 1 && token != undefined && email != undefined) {
+      return this.setState({
+        validUrl: true
+      })
+    }
   }
 
   onChange(event) {
@@ -33,21 +46,27 @@ class PasswordReset extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     this.clearErrors();
-    const { email } = this.state;
-    if (!email || email.length < 1) {
-      return this.setState({
-        showNotification: true,
-        responseMessage: { message: 'Please enter a valid email!' }
-      })
-    }
+    const { password, password_confirmation } = this.state;
+    const token = location.pathname.split('/')[2];
+    const email = location.search.split('=')[1];
+    if (this.state.validUrl) {
+      if (!password || password.length < 6 || !password_confirmation || password_confirmation.length < 6 || password != password_confirmation) {
+        return this.setState({
+          showNotification: true,
+          responseMessage: { message: 'Please enter a password. Both passwords should match!' }
+        })
+      };
+    };
 
-    passwordResetRequest({ email: this.state.email })
+    passwordReset({ password, password_confirmation, token, email })
       .then(response => {
         let responseStatus = Number(response.status) < 300 ? "success" : 'error';
         this.setState({
           showNotification: true,
           responseMessage: response.data,
-          responseStatus
+          responseStatus,
+          password: '',
+          password_confirmation: ''
         });
       });
   }
@@ -61,39 +80,54 @@ class PasswordReset extends React.Component {
   }
 
   render() {
-    const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />
+    const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />;
+    const invalidState = <div className="password-reset-container">
+      <div className="text-center">
+        <i className="far fa-frown fa-spin fa-10x"></i>
+        <h1 className="mt-3">We're sorry you ended up here. Something is wrong!</h1>
+        <h3>Check the link in your password reset mail and try again.</h3>
+      </div>
+    </div>;
+    const validState = <div className="password-reset-container">
+      <h1 className="mb-4">Reset Your Traillo Password</h1>
+      <h5>Use a password that will be easy for you to remember but difficult for others to guess.</h5>
+      <div className="signup-form-container">
+        <form action="" className="mt-4" onSubmit={this.onSubmit}>
+          <TextInput
+            type="password"
+            name="password"
+            value={this.state.password}
+            label="Password"
+            placeholder=""
+            required="required"
+            onChange={this.onChange}
+            extraClass="col-12 col-sm-8"
+          />
+          <TextInput
+            type="password"
+            name="password_confirmation"
+            value={this.state.password_confirmation}
+            label="Confirm Password"
+            placeholder=""
+            required="required"
+            onChange={this.onChange}
+            extraClass="col-12 col-sm-8"
+          />
+          <Button
+            type="submit"
+            className="btn btn-success button__external button__auth"
+            text="Submit"
+          />
+        </form>
+      </div>
+    </div>;
+    const displayState = this.state.validUrl ? validState : invalidState;
     return (
       <React.Fragment>
         {this.state.showNotification && notification}
         <SecondaryHeader />
         <section className="container wrapper__external">
-          <div className="password-reset-container">
-            <h1 className="mb-4">Reset Your Traillo Password</h1>
-            <h5>Submit your email address and we’ll send you a link to reset your password.</h5>
-            <div className="signup-form-container">
-              <form action="" className="mt-4" onSubmit={this.onSubmit}>
-                <TextInput
-                  type="email"
-                  name="email"
-                  value={this.state.email}
-                  label="Email"
-                  placeholder=""
-                  required="required"
-                  onChange={this.onChange}
-                  extraClass="col-12 col-sm-8"
-                />
-                <Button
-                  type="submit"
-                  className="btn btn-success button__external button__auth"
-                  text="Submit"
-                />
-                <span className="mt-3 d-block text-muted">
-                  Psst … If it's any help, Traillo requires that passwords be at least 6 characters long and does not require you to include numbers or uppercase letters.
-                  If that jogs your memory, you can <Link to="/login" className="auth-link">try logging in again.</Link>
-                </span>
-              </form>
-            </div>
-          </div>
+          {displayState}
         </section>
       </React.Fragment>
     );
