@@ -1,55 +1,46 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
-import TextInput from './TextInput';
-import Button from './Button';
-import { Consumer } from '../components/TrailloContext';
-import NotificationToast from '../components/NotificationToast'
-import signupAction from '../actions/auth.action';
+import TextInput from '../common/TextInput';
+import Button from '../common/Button';
+import { loginAction } from '../../actions/auth.action';
+import NotificationToast from '../common/NotificationToast';
 
-class Signup extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.clearErrors = this.clearErrors.bind(this);
-
     this.state = {
-      username: '',
       email: '',
       password: '',
-      name: '',
       showNotification: false,
       responseMessage: '',
       responseStatus: 'error'
     }
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.clearErrors = this.clearErrors.bind(this);
+  }
+
+  onChange(event) {
+    this.clearErrors()
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   onSubmit(event) {
     event.preventDefault();
     this.clearErrors()
-    const { username, email, password, name } = this.state;
-    if (!username || !email || !password || !name) {
+    const { email, password } = this.state;
+
+    if (!email || !password || password.length < 6) {
       return this.setState({
         showNotification: true,
-        responseMessage: 'Please fill all fields properly!'
+        responseMessage: { message: 'Please fill all fields properly!' }
       })
     }
 
-    if (username.length > 15 || password.length < 6) {
-      return this.setState({
-        showNotification: true,
-        responseMessage: { message: 'Keep username and password within specified lengths!' }
-      });
-    }
-
-    signupAction({
-      username,
-      email,
-      password,
-      name
-    })
+    loginAction({ email, password })
       .then(response => {
         let responseStatus = Number(response.status) < 300 ? "success" : 'error';
         this.setState({
@@ -58,14 +49,7 @@ class Signup extends React.Component {
           responseStatus
         });
       });
-    this.clearErrors()
-  }
-
-  onChange(event) {
     this.clearErrors();
-    this.setState({
-      [event.target.name]: event.target.value,
-    })
   }
 
   clearErrors() {
@@ -84,39 +68,19 @@ class Signup extends React.Component {
         <section className="container wrapper__external">
           <div className="container">
             <div className="signup-container">
-              <h1 className="">Create a Traillo Account</h1>
+              <h1 className="">Log in to Traillo</h1>
               <span> <span>or </span>
-                <Link to="/login" className="auth-link"> sign into your account</Link>
+                <Link to="/signup" className="auth-link">create an account</Link>
               </span>
               <div className="signup-form-container">
                 <form action="" className="mt-4" onSubmit={this.onSubmit}>
-                  <TextInput
-                    type="text"
-                    name="name"
-                    value={this.state.name}
-                    label="Name"
-                    placeholder="e.g., Jane Doe"
-                    required="true"
-                    onChange={this.onChange}
-                  />
-                  <TextInput
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    label="Username"
-                    placeholder="e.g., janedoe"
-                    required="true"
-                    onChange={this.onChange}
-                    helpId="usernameHelp"
-                    helpText="15 characters or less."
-                  />
                   <TextInput
                     type="email"
                     name="email"
                     value={this.state.email}
                     label="Email"
                     placeholder="e.g., janedoe@example.com"
-                    required="true"
+                    required="required"
                     onChange={this.onChange}
                   />
                   <TextInput
@@ -125,19 +89,19 @@ class Signup extends React.Component {
                     value={this.state.password}
                     label="Password"
                     placeholder="e.g., ******"
-                    required="true"
-                    onChange={this.onChange}
+                    required="required"
                     helpId="passwordHelp"
                     helpText="6 characters or more."
+                    onChange={this.onChange}
                   />
                   <Button
                     type="submit"
                     className="btn btn-success button__external btn-block button__auth"
-                    text="Create New Account"
+                    text="Log In"
                   />
-                  <small className="mt-3 d-inline-block">
-                    By creating an account, you agree to our non-existent Terms of Service and Privacy Policy.
-                  </small>
+                  <span className="mt-3 d-inline-block">
+                    <Link to="/password-reset" className="auth-link">Forgot your password?</Link>
+                  </span>
                 </form>
               </div>
             </div>
@@ -148,4 +112,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup
+export default Login

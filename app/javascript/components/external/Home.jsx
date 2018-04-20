@@ -1,8 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
-import ExternalHeader from './ExternalHeader'
-import ExternalFooter from './ExternalFooter'
-import HomePageContent from './HomePageContent'
+import React from "react";
+import PropTypes from "prop-types";
+import ExternalHeader from './ExternalHeader';
+import ExternalFooter from './ExternalFooter';
+import HomePageContent from './HomePageContent';
+
 class Home extends React.Component {
   render() {
     return (

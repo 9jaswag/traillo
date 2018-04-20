@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Home from '../components/Home';
-import Signup from '../components/Signup';
-import Login from '../components/Login';
+import Home from '../components/external/Home';
+import Signup from '../components/external/Signup';
+import Login from '../components/external/Login';
 import TrailloContext from '../components/TrailloContext';
-import NotificationToast from '../components/NotificationToast';
-import AccountActivation from '../components/AccountActivation';
-import PasswordResetRequest from '../components/PasswordResetRequest';
-import PasswordReset from '../components/PasswordReset';
+import NotificationToast from '../components/common/NotificationToast';
+import AccountActivation from '../components/external/AccountActivation';
+import PasswordResetRequest from '../components/external/PasswordResetRequest';
+import PasswordReset from '../components/external/PasswordReset';
 
 export default (
   <Switch>

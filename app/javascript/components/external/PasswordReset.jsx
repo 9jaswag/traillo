@@ -1,11 +1,11 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
-import TextInput from './TextInput';
-import Button from './Button';
-import NotificationToast from '../components/NotificationToast'
+import TextInput from '../common/TextInput';
+import Button from '../common/Button';
+import NotificationToast from '../common/NotificationToast';
 import SecondaryHeader from "./SecondaryHeader";
-import { passwordReset } from "../actions/auth.action";
+import { passwordReset } from "../../actions/auth.action";
 
 class PasswordReset extends React.Component {
   constructor(props) {
