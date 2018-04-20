@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
-import NotificationToast from "../components/NotificationToast";
-import { accountActivateAction } from '../actions/auth.action';
+import NotificationToast from "../common/NotificationToast";
+import { accountActivateAction } from '../../actions/auth.action';
 
 class AccountActivation extends React.Component {
   constructor(props) {

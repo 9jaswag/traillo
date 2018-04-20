@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
-import { Consumer } from '../components/TrailloContext';
+import { Consumer } from '../TrailloContext';
 
 export default () => (
   <div className="jumbotron jumbotron-fluid mb-0 bg-transparent home-hero">
