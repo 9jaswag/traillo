@@ -21,7 +21,12 @@ class UsersController < ApplicationController
     render json: {message: 'Account activation complete. Please login!'}
   end
 
-  def update; end
+  def update
+    user = User.find_by!(email: params[:email])
+    user.password_reset_expired?
+    user.update!(reset_digest: nil, reset_time: nil) if user.update!(password_reset_params)
+    render json: {message: 'Password reset successful. Please login!'}
+  end
 
   def login
     user = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
@@ -43,5 +48,9 @@ class UsersController < ApplicationController
 
   def auth_params
     params.permit(:email, :password)
+  end
+
+  def password_reset_params
+    params.permit(:password, :password_confirmation)
   end
 end

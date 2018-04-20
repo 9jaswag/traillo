@@ -38,3 +38,12 @@ export const passwordResetRequest = (userData) => {
       return response
     });
 }
+
+export const passwordReset = (userData) => {
+  return axios.patch(`/api/reset/${userData.token}?email=${userData.email}`, userData)
+    .then((response) => {
+      return response
+    }, ({ response }) => {
+      return response
+    });
+}

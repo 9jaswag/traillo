@@ -67,6 +67,14 @@ class User < ApplicationRecord
     return true
   end
 
+  def password_reset_expired?
+    if reset_time && reset_time > 2.hours.ago
+      return true
+    else
+      raise(ExceptionHandler::ExpiredSignature, 'Reset token is expired')
+    end
+  end
+
   private
   def create_activation_digest
     self.activation_token = User.new_token
