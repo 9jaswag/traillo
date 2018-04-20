@@ -12,7 +12,6 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errors: '',
       showNotification: false,
       responseMessage: '',
       responseStatus: 'error'
@@ -36,28 +35,28 @@ class Login extends React.Component {
 
     if (!email || !password || password.length < 6) {
       return this.setState({
-        errors: 'Please fill all fields properly!'
+        showNotification: true,
+        responseMessage: { message: 'Please fill all fields properly!' }
       })
     }
 
     loginAction({ email, password })
       .then(response => {
-        if (Number(response.status) < 300) {
-          this.setState({
-            responseStatus: 'success'
-          })
-        }
+        let responseStatus = Number(response.status) < 300 ? "success" : 'error';
         this.setState({
           showNotification: true,
-          responseMessage: response.data
+          responseMessage: response.data,
+          responseStatus
         });
       });
+    this.clearErrors();
   }
 
   clearErrors() {
     this.setState({
       showNotification: false,
-      errors: ''
+      responseMessage: '',
+      responseStatus: 'error'
     });
   }
 
@@ -81,7 +80,6 @@ class Login extends React.Component {
                     value={this.state.email}
                     label="Email"
                     placeholder="e.g., janedoe@example.com"
-                    error={this.state.errors}
                     required="required"
                     onChange={this.onChange}
                   />
@@ -91,7 +89,6 @@ class Login extends React.Component {
                     value={this.state.password}
                     label="Password"
                     placeholder="e.g., ******"
-                    error={this.state.errors}
                     required="required"
                     helpId="passwordHelp"
                     helpText="6 characters or more."

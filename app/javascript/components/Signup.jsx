@@ -20,7 +20,6 @@ class Signup extends React.Component {
       email: '',
       password: '',
       name: '',
-      errors: '',
       showNotification: false,
       responseMessage: '',
       responseStatus: 'error'
@@ -33,14 +32,16 @@ class Signup extends React.Component {
     const { username, email, password, name } = this.state;
     if (!username || !email || !password || !name) {
       return this.setState({
-        errors: 'Please fill all fields!'
+        showNotification: true,
+        responseMessage: 'Please fill all fields properly!'
       })
     }
 
     if (username.length > 15 || password.length < 6) {
       return this.setState({
-        errors: 'Keep username and password within specified lengths'
-      })
+        showNotification: true,
+        responseMessage: { message: 'Keep username and password within specified lengths!' }
+      });
     }
 
     signupAction({
@@ -50,30 +51,28 @@ class Signup extends React.Component {
       name
     })
       .then(response => {
-        if (Number(response.status) < 300) {
-          this.setState({
-            responseStatus: 'success'
-          })
-        }
+        let responseStatus = Number(response.status) < 300 ? "success" : 'error';
         this.setState({
           showNotification: true,
-          responseMessage: response.data
+          responseMessage: response.data,
+          responseStatus
         });
       });
+    this.clearErrors()
   }
 
   onChange(event) {
-    this.clearErrors()
+    this.clearErrors();
     this.setState({
       [event.target.name]: event.target.value,
-      errors: ''
     })
   }
 
   clearErrors() {
     this.setState({
       showNotification: false,
-      errors: ''
+      responseMessage: '',
+      responseStatus: 'error'
     });
   }
 
@@ -97,7 +96,6 @@ class Signup extends React.Component {
                     value={this.state.name}
                     label="Name"
                     placeholder="e.g., Jane Doe"
-                    error={this.state.errors}
                     required="true"
                     onChange={this.onChange}
                   />
@@ -107,7 +105,6 @@ class Signup extends React.Component {
                     value={this.state.username}
                     label="Username"
                     placeholder="e.g., janedoe"
-                    error={this.state.errors}
                     required="true"
                     onChange={this.onChange}
                     helpId="usernameHelp"
@@ -119,7 +116,6 @@ class Signup extends React.Component {
                     value={this.state.email}
                     label="Email"
                     placeholder="e.g., janedoe@example.com"
-                    error={this.state.errors}
                     required="true"
                     onChange={this.onChange}
                   />
@@ -129,7 +125,6 @@ class Signup extends React.Component {
                     value={this.state.password}
                     label="Password"
                     placeholder="e.g., ******"
-                    error={this.state.errors}
                     required="true"
                     onChange={this.onChange}
                     helpId="passwordHelp"

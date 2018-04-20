@@ -1,4 +1,5 @@
 import axios from 'axios';
+import setAuthToken from '../helpers/setAuthToken'
 
 export default (userData) => {
   return axios.post('/api/signup', userData)
@@ -12,8 +13,10 @@ export default (userData) => {
 export const loginAction = (userData) => {
   return axios.post('/api/login', userData)
     .then((response) => {
+      setAuthToken(response.data.token);
       return response
     }, ({ response }) => {
+      setAuthToken(response.data.token);
       return response
     });
 }
