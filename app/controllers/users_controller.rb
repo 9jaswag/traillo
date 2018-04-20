@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize_request, only: %i[create login edit update]
+  skip_before_action :authorize_request, only: %i[create login edit update reset]
   def index; end
 
   def new
@@ -26,6 +26,13 @@ class UsersController < ApplicationController
   def login
     user = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
     render json: {token: user, message: 'Login successful'}
+  end
+
+  def reset
+    user = User.find_by!(email: params[:email])
+    user.create_reset_digest
+    user.send_password_reset_email
+    render json: {message: 'Password reset instructions have been sent!'}
   end
 
   private
