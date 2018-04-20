@@ -5,16 +5,59 @@ import TextInput from './TextInput';
 import Button from './Button';
 import NotificationToast from '../components/NotificationToast'
 import SecondaryHeader from "./SecondaryHeader";
+import { passwordResetRequest } from "../actions/auth.action";
 
 class PasswordReset extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       email: '',
       showNotification: false,
       responseMessage: '',
       responseStatus: 'error'
     }
+
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.clearErrors = this.clearErrors.bind(this);
+  }
+
+  onChange(event) {
+    this.clearErrors()
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    this.clearErrors();
+    const { email } = this.state;
+    if (!email || email.length < 1) {
+      return this.setState({
+        showNotification: true,
+        responseMessage: { message: 'Please enter a valid email!' }
+      })
+    }
+
+    passwordResetRequest({ email: this.state.email })
+      .then(response => {
+        let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+        this.setState({
+          showNotification: true,
+          responseMessage: response.data,
+          responseStatus
+        });
+      });
+  }
+
+  clearErrors() {
+    this.setState({
+      showNotification: false,
+      responseMessage: '',
+      responseStatus: 'error'
+    });
   }
 
   render() {

@@ -29,3 +29,12 @@ export const accountActivateAction = (userData) => {
       return response
     });
 }
+
+export const passwordResetRequest = (userData) => {
+  return axios.post('/api/password-reset', userData)
+    .then((response) => {
+      return response
+    }, ({ response }) => {
+      return response
+    });
+}

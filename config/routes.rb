@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get '/activate/:token', to: 'users#edit', as: 'activate'
     get '/login', to: 'users#index'
     post '/login', to: 'users#login'
+    post '/password-reset', to: 'users#reset', as: 'password_reset'
+    patch '/reset/:token', to: 'users#update', as: 'reset'
   end
 
   get 'users/show'
