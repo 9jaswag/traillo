@@ -37,14 +37,11 @@ class AccountActivation extends React.Component {
 
       accountActivateAction({ token, email })
         .then(response => {
-          if (Number(response.status) < 300) {
-            this.setState({
-              responseStatus: 'success'
-            })
-          }
+          let responseStatus = Number(response.status) < 300 ? "success" : 'error';
           this.setState({
             showNotification: true,
-            responseMessage: response.data
+            responseMessage: response.data,
+            responseStatus
           });
         });
     }
@@ -53,7 +50,8 @@ class AccountActivation extends React.Component {
   clearErrors() {
     this.setState({
       showNotification: false,
-      errors: ''
+      responseMessage: '',
+      responseStatus: 'error'
     });
   }
 
@@ -66,7 +64,7 @@ class AccountActivation extends React.Component {
     </div>;
     const validState = <div className="text-center">
       <i className="far fa-smile fa-spin fa-10x"></i>
-      <h1 className="mt-3">Thanks for activating your account!</h1>
+      <h1 className="mt-3">Activating your account!</h1>
       {this.state.responseStatus == 'success' && <h3>You can now <Link to='/login'>log in.</Link></h3>}
     </div>;
     const displayState = this.state.validUrl ? validState : invalidState;
