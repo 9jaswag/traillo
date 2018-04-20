@@ -100,7 +100,7 @@ class Login extends React.Component {
                     text="Log In"
                   />
                   <span className="mt-3 d-inline-block">
-                    <Link to="/signup" className="auth-link">Forgot your password?</Link>
+                    <Link to="/password-reset" className="auth-link">Forgot your password?</Link>
                   </span>
                 </form>
               </div>
