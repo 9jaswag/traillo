@@ -130,3 +130,36 @@ input[type=text].header-search-input:focus {
   background-color: #edeff0;
   color: #000;
 }
+
+.dashboard-wrapper {
+  padding: 20px 16px 0;
+}
+
+.dashboard-header {
+  font-weight: 900;
+}
+
+.project-name {
+  display: inline-block;
+  overflow: hidden;
+  max-height: 40px;
+}
+
+.project-board {
+  display: inline-block;
+  background: rgb(0, 121, 191);
+  min-height: 6rem !important;
+  border-radius: 3px;
+  color: #fff;
+  background-size: cover;
+  background-position: 50%;
+  line-height: 20px;
+  text-decoration: none;
+  padding: 8px;
+  // margin: 0 8px 8px 0;
+}
+
+.project-board:hover {
+  text-decoration: none;
+  color: #FFF;
+}
