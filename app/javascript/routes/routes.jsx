@@ -9,6 +9,7 @@ import NotificationToast from '../components/common/NotificationToast';
 import AccountActivation from '../components/external/AccountActivation';
 import PasswordResetRequest from '../components/external/PasswordResetRequest';
 import PasswordReset from '../components/external/PasswordReset';
+import Dashboard from '../components/dashboard/Dashboard';
 
 export default (
   <Switch>
@@ -19,6 +20,7 @@ export default (
       <Route path="/activate/:token" exact component={AccountActivation} />
       <Route path="/password-reset" exact component={PasswordResetRequest} />
       <Route path="/reset/:token" exact component={PasswordReset} />
+      <Route path="/dashboard" exact component={Dashboard} />
     </TrailloContext>
   </Switch>
 );
