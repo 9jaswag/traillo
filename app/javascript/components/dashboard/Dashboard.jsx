@@ -18,7 +18,11 @@ class Dashboard extends React.Component {
           </div>
           <div className="container-fluid p-0">
             <div className="row align-items-center">
-              <ProjectBoard />
+              <ProjectBoard
+                bkImg=""
+                name="Drama Project"
+                url="/login"
+              />
             </div>
           </div>
         </div>
