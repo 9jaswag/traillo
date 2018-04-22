@@ -48,7 +48,9 @@ export default () => (
               name='Badass Project'
             />
           </ul>
-          <div className="col-12"></div>
+          <div className="">
+            <button className="btn btn-light btn-sm btn-block text-left">Create new board...</button>
+          </div>
         </div>
       </div>
     </div>
