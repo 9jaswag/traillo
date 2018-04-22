@@ -233,7 +233,6 @@ input[type=text].header-search-input:focus {
 .dropdown-project-background {
   background-size: cover;
   background-position: 50%;
-  background-image: url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x480/56d4e601aae022ee7d2c0ce4d04dd372/photo-1519552928909-67ca7aef9265.jpg);
   background-color: rgb(0, 121, 191);
   border-radius: 3px;
   position: absolute;
@@ -269,9 +268,12 @@ input[type=text].header-search-input:focus {
   display: inline-block;
   height: 36px;
   opacity: .7;
-  background-image: url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x480/56d4e601aae022ee7d2c0ce4d04dd372/photo-1519552928909-67ca7aef9265.jpg);
   background-color: rgb(0, 121, 191);
   width: 36px;
+}
+
+.dropdown-project-link-thumbnail:hover {
+  opacity: 1;
 }
 
 .dropdown-project-link-text-detail {
