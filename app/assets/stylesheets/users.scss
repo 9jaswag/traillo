@@ -357,3 +357,16 @@ input[type=text].header-search-input:focus {
   width: 270px;
   height: 235px;
 }
+
+#notification-dropdown {
+  right: 0;
+  position: fixed;
+  border-radius: 3px;
+  width: 450px;
+  border: 1px solid #d6dadc;
+  border-bottom-color: #c4c9cc;
+  background-color: #edeff0;
+  -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.15);
+  box-shadow: 0 1px 6px rgba(0,0,0,.15);
+  font-size: 14px;
+}
