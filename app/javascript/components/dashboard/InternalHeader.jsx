@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import HeaderDropdown from './HeaderDropdown'
 import HeaderCreateDropdown from './HeaderCreateDropdown'
 import HeaderInfoDropdown from './HeaderInfoDropdown'
+import NotificationDropdown from './NotificationDropdown'
 
 class InternalHeader extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class InternalHeader extends React.Component {
     this.toggleInfoDropdown = this.toggleInfoDropdown.bind(this);
     this.toggleBoardDropdown = this.toggleBoardDropdown.bind(this);
     this.toggleCreateDropdown = this.toggleCreateDropdown.bind(this);
+    this.toggleNotificationDropdown = this.toggleNotificationDropdown.bind(this);
     this.closeOpenDropdowns = this.closeOpenDropdowns.bind(this);
   }
 
@@ -43,6 +45,12 @@ class InternalHeader extends React.Component {
     dropdown.classList.toggle('show')
   }
 
+  toggleNotificationDropdown() {
+    const dropdown = document.querySelector('#notification-dropdown');
+    this.closeOpenDropdowns('#notification-dropdown')
+    dropdown.classList.toggle('show')
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -64,7 +72,7 @@ class InternalHeader extends React.Component {
               <div className="">
                 <button className="btn btn-sm btn__internal" onClick={this.toggleCreateDropdown}><i className="fas fa-plus"></i></button>
                 <button className="btn ml-2 btn-sm btn__internal" onClick={this.toggleInfoDropdown}><i className="fas fa-info-circle"></i></button>
-                <button className="btn ml-2 btn-sm btn__internal"><i className="far fa-bell"></i></button>
+                <button className="btn ml-2 btn-sm btn__internal" onClick={this.toggleNotificationDropdown}><i className="far fa-bell"></i></button>
                 <button className="btn ml-2 btn-sm btn__internal profile-pic p-0">
                   <img className='profile-pic-image' src="https://avatars2.githubusercontent.com/u/8125356?s=460&v=4" alt="Profile Picture" />
                 </button>
@@ -72,10 +80,10 @@ class InternalHeader extends React.Component {
             </div>
           </nav>
         </header>
-        <div className="collapse" id="notification-dropdown" className='s'></div>
         <HeaderDropdown />
         <HeaderCreateDropdown />
         <HeaderInfoDropdown />
+        <NotificationDropdown />
       </React.Fragment>
     );
   }
