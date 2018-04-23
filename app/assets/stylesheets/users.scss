@@ -309,7 +309,7 @@ input[type=text].header-search-input:focus {
   height: 100%;
 }
 
-#create-dropdown, #info-dropdown {
+#create-dropdown, #info-dropdown, #profile-dropdown {
   width: 300px;
   z-index: 70;
   position: fixed;
@@ -369,4 +369,8 @@ input[type=text].header-search-input:focus {
   -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.15);
   box-shadow: 0 1px 6px rgba(0,0,0,.15);
   font-size: 14px;
+}
+
+.profile-link:hover {
+  text-decoration: none;
 }
