@@ -2,34 +2,83 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import HeaderDropdown from './HeaderDropdown'
+import HeaderCreateDropdown from './HeaderCreateDropdown'
+import HeaderInfoDropdown from './HeaderInfoDropdown'
 
-export default () => (
-  <React.Fragment>
-    <header>
-      <nav className="navbar navbar-expand navbar-light sticky-top" style={{ backgroundColor: '#026aa7' }}>
-        <button className="btn btn-sm btn__internal" type="button" data-toggle="collapse" data-target="#board-dropdown" aria-controls="board-dropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <i className="fas fa-bullseye"></i>
-          <span className="ml-1 d-none d-xl-inline-block d-lg-inline-block d-md-inline-block">Board</span>
-        </button>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav" aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="mobile-nav">
-          <ul className="navbar-nav mr-auto">
-            <form className="form-inline my-2 my-md-0 ml-1">
-              <input className="form-control form-control-sm header-search-input" type="text" placeholder="" />
-            </form>
-          </ul>
-          <div className="">
-            <button className="btn btn-sm btn__internal"><i className="fas fa-plus"></i></button>
-            <button className="btn ml-2 btn-sm btn__internal"><i className="fas fa-info-circle"></i></button>
-            <button className="btn ml-2 btn-sm btn__internal"><i className="far fa-bell"></i></button>
-            <button className="btn ml-2 btn-sm btn__internal profile-pic"><i className="far fa-bell"></i></button>
-          </div>
-        </div>
-      </nav>
+class InternalHeader extends React.Component {
+  constructor(props) {
+    super(props);
 
-    </header>
-    <HeaderDropdown />
-  </React.Fragment>
-);
+    this.toggleInfoDropdown = this.toggleInfoDropdown.bind(this);
+    this.toggleBoardDropdown = this.toggleBoardDropdown.bind(this);
+    this.toggleCreateDropdown = this.toggleCreateDropdown.bind(this);
+    this.closeOpenDropdowns = this.closeOpenDropdowns.bind(this);
+  }
+
+  closeOpenDropdowns(currentDropdown) {
+    const dropdowns = ['#board-dropdown', '#create-dropdown', '#info-dropdown', '#notification-dropdown'];
+    const toClose = dropdowns.filter(dropdown => dropdown != currentDropdown);
+    toClose.forEach(dropdown => {
+      if (document.querySelector(dropdown).classList.contains('show')) {
+        document.querySelector(dropdown).classList.remove('show');
+      }
+    });
+  }
+
+  toggleBoardDropdown() {
+    const dropdown = document.querySelector('#board-dropdown');
+    this.closeOpenDropdowns('#board-dropdown')
+    dropdown.classList.toggle('show')
+  }
+
+  toggleCreateDropdown() {
+    const dropdown = document.querySelector('#create-dropdown');
+    this.closeOpenDropdowns('#create-dropdown')
+    dropdown.classList.toggle('show')
+  }
+
+  toggleInfoDropdown() {
+    const dropdown = document.querySelector('#info-dropdown');
+    this.closeOpenDropdowns('#info-dropdown')
+    dropdown.classList.toggle('show')
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <header>
+          <nav className="navbar navbar-expand navbar-light sticky-top" style={{ backgroundColor: '#026aa7' }}>
+            <button className="btn btn-sm btn__internal" onClick={this.toggleBoardDropdown}>
+              <i className="fas fa-bullseye"></i>
+              <span className="ml-1 d-none d-xl-inline-block d-lg-inline-block d-md-inline-block">Board</span>
+            </button>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav" aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse" id="mobile-nav">
+              <ul className="navbar-nav mr-auto">
+                <form className="form-inline my-2 my-md-0 ml-1">
+                  <input className="form-control form-control-sm header-search-input" type="text" placeholder="" />
+                </form>
+              </ul>
+              <div className="">
+                <button className="btn btn-sm btn__internal" onClick={this.toggleCreateDropdown}><i className="fas fa-plus"></i></button>
+                <button className="btn ml-2 btn-sm btn__internal" onClick={this.toggleInfoDropdown}><i className="fas fa-info-circle"></i></button>
+                <button className="btn ml-2 btn-sm btn__internal"><i className="far fa-bell"></i></button>
+                <button className="btn ml-2 btn-sm btn__internal profile-pic p-0">
+                  <img className='profile-pic-image' src="https://avatars2.githubusercontent.com/u/8125356?s=460&v=4" alt="Profile Picture" />
+                </button>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <div className="collapse" id="notification-dropdown" className='s'></div>
+        <HeaderDropdown />
+        <HeaderCreateDropdown />
+        <HeaderInfoDropdown />
+      </React.Fragment>
+    );
+  }
+}
+
+export default InternalHeader;
