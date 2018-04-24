@@ -9,7 +9,7 @@ export default () => (
       <div className='mt-1'>
         <ul className="create-dropdown-list">
           <li>
-            <div className='create-dropdown-list-item p-2'>
+            <div className='create-dropdown-list-item p-2' data-toggle="modal" data-target="#createBoardModal">
               <span className='d-block sub-name'>Create Board...</span>
               <small className="sub-desc d-inline-block">A board is made up of cards ordered on lists. Use it to manage projects, track information, or organize anything.</small>
             </div>

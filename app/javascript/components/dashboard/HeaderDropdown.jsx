@@ -23,7 +23,7 @@ export default () => (
           />
         </ul>
         <div className="">
-          <button className="btn btn-light btn-sm btn-block text-left">Create new board...</button>
+          <button className="btn btn-light btn-sm btn-block text-left" data-toggle="modal" data-target="#createBoardModal">Create new board...</button>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import HeaderCreateDropdown from './HeaderCreateDropdown'
 import HeaderInfoDropdown from './HeaderInfoDropdown'
 import NotificationDropdown from './NotificationDropdown'
 import ProfileDropdown from "./ProfileDropdown";
+import CreateBoardModal from "./CreateBoardModal";
 
 class InternalHeader extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class InternalHeader extends React.Component {
   }
 
   closeOpenDropdowns(currentDropdown) {
-    const dropdowns = ['#board-dropdown', '#create-dropdown', '#info-dropdown', '#notification-dropdown'];
+    const dropdowns = ['#board-dropdown', '#create-dropdown', '#info-dropdown', '#notification-dropdown', '#profile-dropdown'];
     const toClose = dropdowns.filter(dropdown => dropdown != currentDropdown);
     toClose.forEach(dropdown => {
       if (document.querySelector(dropdown).classList.contains('show')) {
@@ -93,6 +94,7 @@ class InternalHeader extends React.Component {
         <HeaderInfoDropdown />
         <NotificationDropdown />
         <ProfileDropdown />
+        <CreateBoardModal />
       </React.Fragment>
     );
   }
