@@ -142,6 +142,12 @@ input[type=text].header-search-input:focus {
   padding: 20px 16px 0;
 }
 
+@media (min-width: 768px) {
+  .custom-container {
+    max-width: 1250px !important;
+  }
+}
+
 .dashboard-header {
   font-weight: 900;
 }
@@ -387,12 +393,6 @@ input[type=text].header-search-input:focus {
 .create-modal-background {
   border: 1px solid blue;
   border-radius: 3px !important;
-}
-
-.board-name {
-  // border: 0 !important;
-  // background: transparent !important;
-  // background-color: #deeaf000;
 }
 
 input[type=text].board-name:focus {

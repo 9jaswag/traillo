@@ -9,14 +9,14 @@ class Dashboard extends React.Component {
     return (
       <React.Fragment>
         <InternalHeader />
-        <div className="container-fluid dashboard-wrapper">
+        <div className="container dashboard-wrapper custom-container">
           <div className="row">
             <div className="col-12">
               <i className="far fa-user"></i>
               <h6 className="d-inline-block ml-2 dashboard-header">Personal Boards</h6>
             </div>
           </div>
-          <div className="container-fluid p-0">
+          <div className="container p-0 custom-container">
             <div className="row align-items-center">
               <ProjectBoard
                 bkImg=""
