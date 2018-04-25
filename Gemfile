@@ -73,3 +73,5 @@ gem 'jquery-rails'
 gem "paperclip", "~> 6.0.0"
 # For sending email using Sendgrid
 gem 'sendgrid-ruby'
+
+gem 'mini_racer', platforms: :ruby
