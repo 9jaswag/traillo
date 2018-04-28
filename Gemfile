@@ -64,7 +64,7 @@ gem "figaro"
 # Pry for debugging
 gem "pry"
 # For react
-gem 'react_on_rails', '11.0.0'
+gem "react-rails"
 # Bootstrap
 gem 'bootstrap', '~> 4.0.0'
 # jQuery
