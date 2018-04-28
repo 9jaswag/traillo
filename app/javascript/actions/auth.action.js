@@ -1,14 +1,27 @@
 import axios from 'axios';
-import setAuthToken from '../helpers/setAuthToken'
+import setAuthToken from '../helpers/setAuthToken';
 
-export default (userData) => {
-  return axios.post('/api/signup', userData)
-    .then((response) => {
-      return response
-    }, ({ response }) => {
-      return response
-    });
+export default class TrailloAPI {
+  loginAction(userData) {
+    return axios.post('/api/login', userData)
+      .then(response => {
+        setAuthToken(response.data.token);
+        return response;
+      }, ({ response }) => {
+        setAuthToken(response.data.token);
+        return response;
+      });
+  }
 }
+
+// export default (userData) => {
+//   return axios.post('/api/signup', userData)
+//     .then((response) => {
+//       return response
+//     }, ({ response }) => {
+//       return response
+//     });
+// }
 
 export const loginAction = (userData) => {
   return axios.post('/api/login', userData)

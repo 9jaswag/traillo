@@ -5,8 +5,10 @@ import TextInput from '../common/TextInput';
 import Button from '../common/Button';
 import { loginAction } from '../../actions/auth.action';
 import NotificationToast from '../common/NotificationToast';
+import { inject, observer } from "mobx-react";
 
-class Login extends React.Component {
+@inject('TrailloStore')
+@observer class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,15 +42,16 @@ class Login extends React.Component {
       })
     }
 
-    loginAction({ email, password })
-      .then(response => {
-        let responseStatus = Number(response.status) < 300 ? "success" : 'error';
-        this.setState({
-          showNotification: true,
-          responseMessage: response.data,
-          responseStatus
-        });
-      });
+    // loginAction({ email, password })
+    //   .then(response => {
+    //     let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+    //     this.setState({
+    //       showNotification: true,
+    //       responseMessage: response.data,
+    //       responseStatus
+    //     });
+    //   });
+    this.props.TrailloStore.login({ email, password })
     this.clearErrors();
   }
 
@@ -61,16 +64,18 @@ class Login extends React.Component {
   }
 
   render() {
-    const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />
+    const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />;
+    const { TrailloStore } = this.props;
     return (
       <React.Fragment>
         {this.state.showNotification && notification}
         <section className="container wrapper__external">
           <div className="container">
             <div className="signup-container">
-              <h1 className="">Log in to Traillo</h1>
+              <h1 className="" >Log in to Traillo</h1>
               <span> <span>or </span>
                 <Link to="/signup" className="auth-link">create an account</Link>
+                <p>{TrailloStore.auth.status}</p>
               </span>
               <div className="signup-form-container">
                 <form action="" className="mt-4" onSubmit={this.onSubmit}>
