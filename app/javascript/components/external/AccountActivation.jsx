@@ -1,10 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
+import { inject, observer } from "mobx-react";
 import NotificationToast from "../common/NotificationToast";
-import { accountActivateAction } from '../../actions/auth.action';
+import jwt from 'jsonwebtoken';
 
-class AccountActivation extends React.Component {
+@inject('TrailloStore')
+@observer class AccountActivation extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,9 +36,15 @@ class AccountActivation extends React.Component {
       const token = location.pathname.split('/')[2];
       const email = location.search.split('=')[1];
 
-      accountActivateAction({ token, email })
+      this.props.TrailloStore.activate({ token, email })
         .then(response => {
           let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+          if (responseStatus == "success") {
+            const token = localStorage.getItem('jwtToken');
+            this.props.TrailloStore.auth.isLoggedIn = true;
+            this.props.TrailloStore.auth.user = jwt.decode(response.data.token);
+            return this.props.history.push('/dashboard')
+          }
           this.setState({
             showNotification: true,
             responseMessage: response.data,
@@ -64,7 +72,8 @@ class AccountActivation extends React.Component {
     const validState = <div className="text-center">
       <i className="far fa-smile fa-spin fa-10x"></i>
       <h1 className="mt-3">Activating your account!</h1>
-      {this.state.responseStatus == 'success' && <h3>You can now <Link to='/login'>log in.</Link></h3>}
+      {this.state.responseStatus == 'success' && <h4>You can now <Link to='/login'>log in.</Link></h4>}
+      {this.state.responseStatus == 'error' && <h4>You can try the link again!</h4>}
     </div>;
     const displayState = this.state.validUrl ? validState : invalidState;
     return (

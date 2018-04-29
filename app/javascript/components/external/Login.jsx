@@ -5,7 +5,6 @@ import TextInput from '../common/TextInput';
 import Button from '../common/Button';
 import NotificationToast from '../common/NotificationToast';
 import { inject, observer } from "mobx-react";
-import DevTools from 'mobx-react-devtools';
 import jwt from 'jsonwebtoken';
 
 @inject('TrailloStore')
@@ -73,7 +72,6 @@ import jwt from 'jsonwebtoken';
     const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />;
     return (
       <React.Fragment>
-        <DevTools />
         {this.state.showNotification && notification}
         <section className="container wrapper__external">
           <div className="container">
