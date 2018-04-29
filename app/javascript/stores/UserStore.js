@@ -29,5 +29,4 @@ decorate(UserStore, {
   activate: action,
 })
 
-// const store = new UserStore();
 export default UserStore;

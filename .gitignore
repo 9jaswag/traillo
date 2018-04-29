@@ -25,3 +25,4 @@ yarn-debug.log*
 
 # Ignore env files
 /config/application.yml
+.DS_Store
