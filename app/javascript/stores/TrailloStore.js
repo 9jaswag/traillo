@@ -16,6 +16,7 @@ class TrailloStore {
 
   login = (userData) => this.Api.loginAction(userData)
   signup = (userData) => this.Api.signupAction(userData)
+  activate = (userData) => this.Api.accountActivateAction(userData)
 
 }
 

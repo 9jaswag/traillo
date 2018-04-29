@@ -21,6 +21,15 @@ export default class TrailloAPI {
         return response
       });
   }
+
+  accountActivateAction(userData) {
+    return axios.get(`/api/activate/${userData.token}?email=${userData.email}`)
+      .then((response) => {
+        return response
+      }, ({ response }) => {
+        return response
+      });
+  }
 }
 
 // export default (userData) => {
@@ -32,25 +41,25 @@ export default class TrailloAPI {
 //     });
 // }
 
-export const loginAction = (userData) => {
-  return axios.post('/api/login', userData)
-    .then((response) => {
-      setAuthToken(response.data.token);
-      return response
-    }, ({ response }) => {
-      setAuthToken(response.data.token);
-      return response
-    });
-}
+// export const loginAction = (userData) => {
+//   return axios.post('/api/login', userData)
+//     .then((response) => {
+//       setAuthToken(response.data.token);
+//       return response
+//     }, ({ response }) => {
+//       setAuthToken(response.data.token);
+//       return response
+//     });
+// }
 
-export const accountActivateAction = (userData) => {
-  return axios.get(`/api/activate/${userData.token}?email=${userData.email}`)
-    .then((response) => {
-      return response
-    }, ({ response }) => {
-      return response
-    });
-}
+// export const accountActivateAction = (userData) => {
+//   return axios.get(`/api/activate/${userData.token}?email=${userData.email}`)
+//     .then((response) => {
+//       return response
+//     }, ({ response }) => {
+//       return response
+//     });
+// }
 
 export const passwordResetRequest = (userData) => {
   return axios.post('/api/password-reset', userData)
