@@ -7,7 +7,7 @@ import Button from '../common/Button';
 import NotificationToast from '../common/NotificationToast'
 import SecondaryHeader from "./SecondaryHeader";
 
-@inject('userStore')
+@inject('store')
 @observer class PasswordResetRequest extends React.Component {
   constructor(props) {
     super(props)
@@ -35,6 +35,7 @@ import SecondaryHeader from "./SecondaryHeader";
     event.preventDefault();
     this.clearErrors();
     const { email } = this.state;
+    const { UserStore } = this.props.store;
     if (!email || email.length < 1) {
       return this.setState({
         showNotification: true,
@@ -42,7 +43,7 @@ import SecondaryHeader from "./SecondaryHeader";
       })
     }
 
-    this.props.userStore.passwordResetRequest({ email: this.state.email })
+    UserStore.passwordResetRequest({ email: this.state.email })
       .then(response => {
         let responseStatus = Number(response.status) < 300 ? "success" : 'error';
         this.setState({
