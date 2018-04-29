@@ -6,6 +6,8 @@ import Button from '../common/Button';
 import { loginAction } from '../../actions/auth.action';
 import NotificationToast from '../common/NotificationToast';
 import { inject, observer } from "mobx-react";
+import DevTools from 'mobx-react-devtools';
+import jwt from 'jsonwebtoken';
 
 @inject('TrailloStore')
 @observer class Login extends React.Component {
@@ -42,16 +44,21 @@ import { inject, observer } from "mobx-react";
       })
     }
 
-    // loginAction({ email, password })
-    //   .then(response => {
-    //     let responseStatus = Number(response.status) < 300 ? "success" : 'error';
-    //     this.setState({
-    //       showNotification: true,
-    //       responseMessage: response.data,
-    //       responseStatus
-    //     });
-    //   });
     this.props.TrailloStore.login({ email, password })
+      .then(response => {
+        let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+        if (responseStatus == 'success') {
+          const token = localStorage.getItem('jwtToken');
+          this.props.TrailloStore.auth.isLoggedIn = true;
+          this.props.TrailloStore.auth.user = jwt.decode(response.data.token);
+          return this.props.history.push('/dashboard');
+        }
+        this.setState({
+          showNotification: true,
+          responseMessage: response.data,
+          responseStatus
+        });
+      });
     this.clearErrors();
   }
 
@@ -68,6 +75,7 @@ import { inject, observer } from "mobx-react";
     const { TrailloStore } = this.props;
     return (
       <React.Fragment>
+        <DevTools />
         {this.state.showNotification && notification}
         <section className="container wrapper__external">
           <div className="container">
@@ -75,7 +83,6 @@ import { inject, observer } from "mobx-react";
               <h1 className="" >Log in to Traillo</h1>
               <span> <span>or </span>
                 <Link to="/signup" className="auth-link">create an account</Link>
-                <p>{TrailloStore.auth.status}</p>
               </span>
               <div className="signup-form-container">
                 <form action="" className="mt-4" onSubmit={this.onSubmit}>
