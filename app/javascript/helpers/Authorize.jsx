@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react';
 
 export default (ComposedComponent) => {
 
-  @inject('TrailloStore')
+  @inject('userStore')
   @observer class Authenticate extends Component {
 
     isExpired(token) {
@@ -17,22 +17,16 @@ export default (ComposedComponent) => {
     componentWillMount() {
       console.log(this.props)
       const token = localStorage.getItem('jwtToken');
-      if (!this.props.TrailloStore.auth.isLoggedIn) {
+      if (!this.props.userStore.auth.isLoggedIn) {
         console.log('log out');
         this.props.history.push('/login');
       }
-      // if (this.props.TrailloStore.auth.isLoggedIn && token && this.isExpired(token)) {
+      // if (this.props.userStore.auth.isLoggedIn && token && this.isExpired(token)) {
       //   localStorage.removeItem('jwtToken');
       //   console.log('Session has expired. Please log in again');
       //   this.props.history.push('/login');
       // }
     }
-
-    // componentWillUpdate(nextProps) {
-    //   if (!nextProps.isAuthenticated) {
-    //     this.props.history.push('/');
-    //   }
-    // }
 
     render() {
       return (

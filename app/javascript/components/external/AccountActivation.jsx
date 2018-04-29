@@ -5,7 +5,7 @@ import { inject, observer } from "mobx-react";
 import NotificationToast from "../common/NotificationToast";
 import jwt from 'jsonwebtoken';
 
-@inject('TrailloStore')
+@inject('userStore')
 @observer class AccountActivation extends React.Component {
   constructor(props) {
     super(props);
@@ -36,13 +36,13 @@ import jwt from 'jsonwebtoken';
       const token = location.pathname.split('/')[2];
       const email = location.search.split('=')[1];
 
-      this.props.TrailloStore.activate({ token, email })
+      this.props.userStore.activate({ token, email })
         .then(response => {
           let responseStatus = Number(response.status) < 300 ? "success" : 'error';
           if (responseStatus == "success") {
             const token = localStorage.getItem('jwtToken');
-            this.props.TrailloStore.auth.isLoggedIn = true;
-            this.props.TrailloStore.auth.user = jwt.decode(response.data.token);
+            this.props.userStore.auth.isLoggedIn = true;
+            this.props.userStore.auth.user = jwt.decode(response.data.token);
             return this.props.history.push('/dashboard')
           }
           this.setState({

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import setAuthToken from '../helpers/setAuthToken';
 
-export default class TrailloAPI {
+export default class AuthAPI {
   loginAction(userData) {
     return axios.post('/api/login', userData)
       .then(response => {

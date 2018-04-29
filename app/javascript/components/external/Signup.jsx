@@ -7,7 +7,7 @@ import Button from '../common/Button';
 import { Consumer } from '../TrailloContext';
 import NotificationToast from '../common/NotificationToast';
 
-@inject('TrailloStore')
+@inject('userStore')
 @observer class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +45,7 @@ import NotificationToast from '../common/NotificationToast';
       });
     }
 
-    this.props.TrailloStore.signup({
+    this.props.userStore.signup({
       username,
       email,
       password,

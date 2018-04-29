@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "mobx-react";
 import routes from '../routes/routes';
-import TrailloStore from '../stores/TrailloStore';
+import UserStore from '../stores/UserStore';
 
 export default (props, _railsContext) => {
 
   return (
-    <Provider TrailloStore={TrailloStore}>
+    <Provider userStore={UserStore}>
       <BrowserRouter>
         {routes}
       </BrowserRouter>
