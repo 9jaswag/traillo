@@ -7,7 +7,7 @@ import Button from '../common/Button';
 import { Consumer } from '../TrailloContext';
 import NotificationToast from '../common/NotificationToast';
 
-@inject('userStore')
+@inject('store')
 @observer class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +31,7 @@ import NotificationToast from '../common/NotificationToast';
     event.preventDefault();
     this.clearErrors()
     const { username, email, password, name } = this.state;
+    const { UserStore } = this.props.store;
     if (!username || !email || !password || !name) {
       return this.setState({
         showNotification: true,
@@ -45,7 +46,7 @@ import NotificationToast from '../common/NotificationToast';
       });
     }
 
-    this.props.userStore.signup({
+    UserStore.signup({
       username,
       email,
       password,

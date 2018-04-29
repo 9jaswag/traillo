@@ -3,7 +3,7 @@ import ReactOnRails from 'react-on-rails'
 // import jwt from 'jsonwebtoken';
 import AuthAPI from "../actions/auth.action";
 
-class TrailloStore {
+class UserStore {
   auth = {
     isLoggedIn: false,
     user: {},
@@ -22,12 +22,12 @@ class TrailloStore {
 
 }
 
-decorate(TrailloStore, {
+decorate(UserStore, {
   auth: observable,
   login: action,
   signup: action,
   activate: action,
 })
 
-const store = new TrailloStore();
-export default store;
+// const store = new UserStore();
+export default UserStore;

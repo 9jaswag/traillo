@@ -5,7 +5,7 @@ import { inject, observer } from "mobx-react";
 import NotificationToast from "../common/NotificationToast";
 import jwt from 'jsonwebtoken';
 
-@inject('userStore')
+@inject('store')
 @observer class AccountActivation extends React.Component {
   constructor(props) {
     super(props);
@@ -32,19 +32,14 @@ import jwt from 'jsonwebtoken';
   }
 
   componentDidMount() {
+    const { UserStore } = this.props.store;
     if (this.state.validUrl) {
       const token = location.pathname.split('/')[2];
       const email = location.search.split('=')[1];
 
-      this.props.userStore.activate({ token, email })
+      UserStore.activate({ token, email })
         .then(response => {
           let responseStatus = Number(response.status) < 300 ? "success" : 'error';
-          if (responseStatus == "success") {
-            const token = localStorage.getItem('jwtToken');
-            this.props.userStore.auth.isLoggedIn = true;
-            this.props.userStore.auth.user = jwt.decode(response.data.token);
-            return this.props.history.push('/dashboard')
-          }
           this.setState({
             showNotification: true,
             responseMessage: response.data,
