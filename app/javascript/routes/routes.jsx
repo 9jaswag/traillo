@@ -10,6 +10,7 @@ import AccountActivation from '../components/external/AccountActivation';
 import PasswordResetRequest from '../components/external/PasswordResetRequest';
 import PasswordReset from '../components/external/PasswordReset';
 import Dashboard from '../components/dashboard/Dashboard';
+import Authorize from '../helpers/Authorize';
 
 export default (
   <Switch>
@@ -20,7 +21,7 @@ export default (
       <Route path="/activate/:token" exact component={AccountActivation} />
       <Route path="/password-reset" exact component={PasswordResetRequest} />
       <Route path="/reset/:token" exact component={PasswordReset} />
-      <Route path="/dashboard" exact component={Dashboard} />
+      <Route path="/dashboard" exact component={Authorize(Dashboard)} />
     </TrailloContext>
   </Switch>
 );
