@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
-import { loginAction } from '../../actions/auth.action';
 import NotificationToast from '../common/NotificationToast';
 import { inject, observer } from "mobx-react";
 import DevTools from 'mobx-react-devtools';
@@ -72,7 +71,6 @@ import jwt from 'jsonwebtoken';
 
   render() {
     const notification = <NotificationToast type={this.state.responseStatus} message={this.state.responseMessage.message} />;
-    const { TrailloStore } = this.props;
     return (
       <React.Fragment>
         <DevTools />

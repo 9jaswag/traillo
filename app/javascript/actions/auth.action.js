@@ -12,6 +12,15 @@ export default class TrailloAPI {
         return response;
       });
   }
+
+  signupAction(userData) {
+    return axios.post('/api/signup', userData)
+      .then((response) => {
+        return response
+      }, ({ response }) => {
+        return response
+      });
+  }
 }
 
 // export default (userData) => {

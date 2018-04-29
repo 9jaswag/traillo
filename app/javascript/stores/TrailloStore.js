@@ -1,25 +1,29 @@
 import { observable, decorate, action } from "mobx";
-import jwt from 'jsonwebtoken';
+import ReactOnRails from 'react-on-rails'
+// import jwt from 'jsonwebtoken';
 import TrailloAPI from "../actions/auth.action";
 
 class TrailloStore {
-  auth = {
+  @observable auth = {
     isLoggedIn: false,
-    user: {}
+    user: {},
+    status: 'fasle'
   };
 
   constructor() {
     this.Api = new TrailloAPI;
   }
 
-  login = (userData) => this.Api.loginAction(userData)
+  @action login = (userData) => this.Api.loginAction(userData)
+  @action signup = (userData) => this.Api.signupAction(userData)
 
 }
 
-decorate(TrailloStore, {
-  auth: observable,
-  login: action
-})
+// decorate(TrailloStore, {
+//   auth: observable,
+//   login: action,
+//   signup: action
+// })
 
 const store = new TrailloStore();
 export default store;
