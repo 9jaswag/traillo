@@ -15,7 +15,6 @@ export default (ComposedComponent) => {
     }
 
     componentWillMount() {
-      console.log(this.props)
       const { UserStore } = this.props.store;
       const token = localStorage.getItem('jwtToken');
       if (!UserStore.auth.isLoggedIn) {
