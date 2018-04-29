@@ -1,13 +1,14 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
+import { inject, observer } from "mobx-react";
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
 import { Consumer } from '../TrailloContext';
 import NotificationToast from '../common/NotificationToast';
-import signupAction from '../../actions/auth.action';
 
-class Signup extends React.Component {
+@inject('TrailloStore')
+@observer class Signup extends React.Component {
   constructor(props) {
     super(props);
 
@@ -44,20 +45,19 @@ class Signup extends React.Component {
       });
     }
 
-    signupAction({
+    this.props.TrailloStore.signup({
       username,
       email,
       password,
       name
-    })
-      .then(response => {
-        let responseStatus = Number(response.status) < 300 ? "success" : 'error';
-        this.setState({
-          showNotification: true,
-          responseMessage: response.data,
-          responseStatus
-        });
+    }).then(response => {
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      this.setState({
+        showNotification: true,
+        responseMessage: response.data,
+        responseStatus
       });
+    })
     this.clearErrors()
   }
 
