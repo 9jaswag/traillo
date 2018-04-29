@@ -381,7 +381,9 @@ input[type=text].header-search-input:focus {
 
 .create-modal-form {
   border-radius: 3px;
-  background-color: rgb(0, 121, 191);
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: 50%;
 }
 
 .create-modal-background {
