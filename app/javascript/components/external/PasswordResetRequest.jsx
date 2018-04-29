@@ -1,13 +1,14 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
+import { inject, observer } from "mobx-react";
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
 import NotificationToast from '../common/NotificationToast'
 import SecondaryHeader from "./SecondaryHeader";
-import { passwordResetRequest } from "../../actions/auth.action";
 
-class PasswordResetRequest extends React.Component {
+@inject('TrailloStore')
+@observer class PasswordResetRequest extends React.Component {
   constructor(props) {
     super(props)
 
@@ -41,7 +42,7 @@ class PasswordResetRequest extends React.Component {
       })
     }
 
-    passwordResetRequest({ email: this.state.email })
+    this.props.TrailloStore.passwordResetRequest({ email: this.state.email })
       .then(response => {
         let responseStatus = Number(response.status) < 300 ? "success" : 'error';
         this.setState({
