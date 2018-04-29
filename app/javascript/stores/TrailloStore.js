@@ -17,13 +17,18 @@ class TrailloStore {
   login = (userData) => this.Api.loginAction(userData)
   signup = (userData) => this.Api.signupAction(userData)
   activate = (userData) => this.Api.accountActivateAction(userData)
+  passwordResetRequest = (userData) => this.Api.passwordResetRequestAction(userData)
+  passwordReset = (userData) => this.Api.passwordResetAction(userData)
 
 }
 
 decorate(TrailloStore, {
   auth: observable,
   login: action,
-  signup: action
+  signup: action,
+  activate: action,
+  passwordResetRequest: action,
+  passwordReset: action
 })
 
 const store = new TrailloStore();
