@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { observer, inject } from "mobx-react";
 import { action } from "mobx";
 import BackgroundGrid from './BackgroundGrid';
+import CreateBoardAccessList from './CreateBoardAccessList';
 
 
 @inject('store')
@@ -96,19 +97,19 @@ import BackgroundGrid from './BackgroundGrid';
                       <div className="collapse position-absolute access-popover-div bg-light">
                         <div className="p-0 access-popover py-2 border">
                           <ul className="access-ul">
-                            <li className="access-lists p-2" onClick={this.setPrivateAccess}>
-                              <span className='d-block'>Private {createBoardAccess == 'Private' && <i className="fas fa-check"></i>}</span>
-                              <small className='d-inline-block'>
-                                The board is private. Only people added to the board can view and edit it.
-                              </small>
-                            </li>
-                            <li className="access-lists p-2" onClick={this.setPublicAccess}>
-                              <span className='d-block'>Public {createBoardAccess == 'Public' && <i className="fas fa-check"></i>}</span>
-                              <small className='d-inline-block'>
-                                The board is public. It's visible to anyone with the link and will show up in search engines like Google.
-                                 Only people added to the board can edit it.
-                              </small>
-                            </li>
+                            <CreateBoardAccessList
+                              access='Private'
+                              text='The board is private. Only people added to the board can view and edit it.'
+                              setAccess={this.setPrivateAccess}
+                              createBoardAccess={createBoardAccess}
+                            />
+                            <CreateBoardAccessList
+                              access='Public'
+                              text="The board is public. It's visible to anyone with the link and will show up in search engines like Google.
+                              Only people added to the board can edit it."
+                              setAccess={this.setPublicAccess}
+                              createBoardAccess={createBoardAccess}
+                            />
                           </ul>
                         </div>
                       </div>
