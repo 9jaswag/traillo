@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { observer, inject } from "mobx-react";
+import { action } from "mobx";
 import BackgroundGrid from './BackgroundGrid';
 
 
@@ -17,6 +18,8 @@ import BackgroundGrid from './BackgroundGrid';
     this.onChange = this.onChange.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
     this.toggleAccessDropdown = this.toggleAccessDropdown.bind(this);
+    this.setPrivateAccess = this.setPrivateAccess.bind(this);
+    this.setPublicAccess = this.setPublicAccess.bind(this);
   }
 
   onChange(event) {
@@ -45,11 +48,24 @@ import BackgroundGrid from './BackgroundGrid';
 
   toggleAccessDropdown() {
     const dropdown = document.querySelector('.access-popover-div');
+    // const dropdown = document.querySelector('#createBoardModal');
     dropdown.classList.toggle('show');
   }
 
+  setPrivateAccess() {
+    const { setPrivateAccess } = this.props.store.Dashboard;
+    setPrivateAccess();
+    this.toggleAccessDropdown();
+  }
+
+  setPublicAccess() {
+    const { setPublicAccess } = this.props.store.Dashboard;
+    setPublicAccess();
+    this.toggleAccessDropdown();
+  }
+
   render() {
-    const { backgroundProp } = this.props.store.Dashboard;
+    const { backgroundProp, createBoardAccess } = this.props.store.Dashboard;
     return (
       <div className="modal fade" id="createBoardModal" tabIndex={-1} role="dialog" aria-labelledby="createBoardModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
@@ -74,20 +90,20 @@ import BackgroundGrid from './BackgroundGrid';
                         type="button"
                         className="btn btn-sm bg-transparent board-access-popover mt-1 text-white"
                         onClick={this.toggleAccessDropdown}>
-                        <small className='access type'>Private</small>
+                        <small className='access type'>{createBoardAccess}</small>
                         <i className="fas fa-caret-down d-inline-block pl-1"></i>
                       </button>
                       <div className="collapse position-absolute access-popover-div bg-light">
                         <div className="p-0 access-popover py-2 border">
                           <ul className="access-ul">
-                            <li className="access-lists p-2">
-                              <span className='d-block'>Private</span>
+                            <li className="access-lists p-2" onClick={this.setPrivateAccess}>
+                              <span className='d-block'>Private {createBoardAccess == 'Private' && <i className="fas fa-check"></i>}</span>
                               <small className='d-inline-block'>
                                 The board is private. Only people added to the board can view and edit it.
                               </small>
                             </li>
-                            <li className="access-lists p-2">
-                              <span className='d-block'>Public</span>
+                            <li className="access-lists p-2" onClick={this.setPublicAccess}>
+                              <span className='d-block'>Public {createBoardAccess == 'Public' && <i className="fas fa-check"></i>}</span>
                               <small className='d-inline-block'>
                                 The board is public. It's visible to anyone with the link and will show up in search engines like Google.
                                  Only people added to the board can edit it.
