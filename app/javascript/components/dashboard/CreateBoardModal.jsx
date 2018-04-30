@@ -33,18 +33,21 @@ import CreateBoardAccessList from './CreateBoardAccessList';
   }
 
   onSubmit(event) {
-    const { backgroundProp, createBoardAccess } = this.props.store.Dashboard;
+    const { backgroundProp, createBoardAccess, createBoard } = this.props.store.Dashboard;
     event.preventDefault();
     if (this.state.title.trim().length < 1) {
       return console.log('error')
     }
     const bg_img = backgroundProp['bgImg'];
     const bg_color = backgroundProp['bgColor'];
-    console.log({
-      title: this.state.title.trim(),
+    createBoard({
+      name: this.state.title.trim(),
       bg_img,
       bg_color,
-      access: createBoardAccess
+      is_private: createBoardAccess
+    })
+    .then(response => {
+      console.log(response)
     })
   }
 
@@ -87,6 +90,7 @@ import CreateBoardAccessList from './CreateBoardAccessList';
                         placeholder="Add board title"
                         onChange={this.onChange}
                         onKeyUp={this.onKeyUp}
+                        autoComplete="off"
                         required />
                       <button
                         type="button"

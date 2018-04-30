@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post '/login', to: 'users#login'
     post '/password-reset', to: 'users#reset', as: 'password_reset'
     patch '/reset/:token', to: 'users#update', as: 'reset'
+    resources :boards
   end
 
   get 'users/show'
