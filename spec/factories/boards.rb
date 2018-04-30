@@ -5,5 +5,6 @@ FactoryBot.define do
     is_archived false
     bg_img "MyString"
     bg_color "MyString"
+    uid "MyString"
   end
 end
