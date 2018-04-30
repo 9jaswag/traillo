@@ -1,6 +1,8 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$default-blue: rgb(0, 121, 191);
+
 .wrapper__external {
   padding: 4em 1em;
 }
@@ -154,7 +156,7 @@ input[type=text].header-search-input:focus {
 
 .project-board {
   display: inline-block;
-  background: rgb(0, 121, 191);
+  background: $default-blue;
   min-height: 6rem !important;
   border-radius: 3px;
   color: #fff;
@@ -205,7 +207,7 @@ input[type=text].header-search-input:focus {
 .board-dropdown-search-input:focus, .board-dropdown-search-input:active {
   background: #FFF !important;
   box-shadow: unset !important;
-  border-color: rgb(0, 121, 191) !important;
+  border-color: $default-blue !important;
 }
 
 .board-dropdown-section {
@@ -240,7 +242,7 @@ input[type=text].header-search-input:focus {
 .dropdown-project-background {
   background-size: cover;
   background-position: 50%;
-  background-color: rgb(0, 121, 191);
+  background-color: $default-blue;
   border-radius: 3px;
   position: absolute;
   width: 100%;
@@ -275,7 +277,7 @@ input[type=text].header-search-input:focus {
   display: inline-block;
   height: 36px;
   opacity: .7;
-  background-color: rgb(0, 121, 191);
+  background-color: $default-blue;
   width: 36px;
 }
 
@@ -343,7 +345,7 @@ input[type=text].header-search-input:focus {
 }
 
 .create-dropdown-list-item:hover {
-  background-color: rgb(0, 121, 191);
+  background-color: $default-blue;
   color: #FFF !important;
   cursor: pointer;
 
@@ -443,4 +445,68 @@ input[type=text].board-name:focus {
   cursor: pointer;
   background-image: url(https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/d84b3c6b1f07d701acb1a153002f7e6a/usecases-bg.jpg);
   border: 0;
+}
+
+.btn-success:disabled {
+  color: #6c757d !important;
+  background-color: #f8f9fa !important;
+  border-color: none;
+}
+
+.board-access-popover{
+  display: flex !important;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  min-height: 0;
+  padding: 2px 8px !important;
+  text-align: left !important;
+}
+
+.board-access-popover:hover {
+  background: hsla(0,0%,100%,.15) !important;
+}
+
+.access-popover {
+  border-radius: 3px !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.access-ul {
+  list-style: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.access-lists {
+  cursor: pointer;
+
+  span {
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  small {
+    color: #838c91;
+    line-height: 1.1;
+    font-size: 0.7rem;
+  }
+}
+
+.access-lists:hover {
+  background-color: $default-blue;
+  color: #FFF !important;
+  cursor: pointer;
+
+  small {
+    color: inherit;
+  }
+}
+
+.access-popover-div {
+  border-radius: 3px !important;
+  top: 4.4rem;
+  z-index: 1;
 }
