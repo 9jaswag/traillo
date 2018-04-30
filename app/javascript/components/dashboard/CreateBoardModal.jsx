@@ -33,7 +33,7 @@ import CreateBoardAccessList from './CreateBoardAccessList';
   }
 
   onSubmit(event) {
-    const { backgroundProp } = this.props.store.Dashboard;
+    const { backgroundProp, createBoardAccess } = this.props.store.Dashboard;
     event.preventDefault();
     if (this.state.title.trim().length < 1) {
       return console.log('error')
@@ -43,7 +43,8 @@ import CreateBoardAccessList from './CreateBoardAccessList';
     console.log({
       title: this.state.title.trim(),
       bg_img,
-      bg_color
+      bg_color,
+      access: createBoardAccess
     })
   }
 
@@ -91,6 +92,8 @@ import CreateBoardAccessList from './CreateBoardAccessList';
                         type="button"
                         className="btn btn-sm bg-transparent board-access-popover mt-1 text-white"
                         onClick={this.toggleAccessDropdown}>
+                        {createBoardAccess == 'Public' && <i className="fas fa-globe pr-1 fa-xs"></i>}
+                        {createBoardAccess == 'Private' && <i className="fas fa-lock pr-1 fa-xs"></i>}
                         <small className='access type'>{createBoardAccess}</small>
                         <i className="fas fa-caret-down d-inline-block pl-1"></i>
                       </button>
