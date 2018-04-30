@@ -310,9 +310,33 @@ input[type=text].header-search-input:focus {
   border-radius: 3px !important;
 }
 
+.board-name {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+}
+
 input[type=text].board-name:focus {
   box-shadow: unset !important;
-  background: #FFF;
+  background: #e2e4e659 !important;
+}
+
+input[type=text].board-name:hover {
+  box-shadow: unset !important;
+  background: #e2e4e659 !important;
+}
+
+input[type=text].board-name::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+input[type=text].board-name:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+input[type=text].board-name::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
 }
 
 .background-grid {
