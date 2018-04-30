@@ -161,7 +161,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    react_on_rails (11.0.0)
+    react_on_rails (11.0.3)
       addressable
       connection_pool
       execjs (~> 2.5)
@@ -258,7 +258,7 @@ DEPENDENCIES
   pry
   puma (~> 3.7)
   rails (~> 5.1.6)
-  react_on_rails (= 11.0.0)
+  react_on_rails (= 11.0.3)
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   sendgrid-ruby
