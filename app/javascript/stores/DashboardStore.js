@@ -6,10 +6,21 @@ class DashboardStore {
     bgImg: '',
     bgColor: 'rgb(0, 121, 191)'
   }
+  createBoardAccess = 'Private'
+  setPrivateAccess = () => {
+    this.createBoardAccess = 'Private';
+  }
+
+  setPublicAccess = () => {
+    this.createBoardAccess = 'Public';
+  }
 }
 
 decorate(DashboardStore, {
-  backgroundProp: observable
+  backgroundProp: observable,
+  createBoardAccess: observable,
+  setPrivateAccess: action,
+  setPublicAccess: action,
 })
 
 export default DashboardStore;
