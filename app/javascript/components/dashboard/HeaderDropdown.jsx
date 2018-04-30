@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import HeaderDropdownBoard from './HeaderDropdownBoard';
 
-export default () => (
+export default ({ focus }) => (
   <div className="collapse" id="board-dropdown">
     <div className="p-1 col-7 col-sm-4 col-md-3 col-lg-3">
       <form className="form-inline my-2 my-md-0 ml-1">
-        <input className="form-control form-control-sm board-dropdown-search-input col-12" type="text" placeholder="Find boards by name..." autoFocus />
+        <input className="form-control form-control-sm board-dropdown-search-input col-12" type="text" placeholder="Find boards by name..." ref={focus} />
       </form>
       <div className=''>
         <div className="col-12 board-dropdown-section position-relative p-3">
