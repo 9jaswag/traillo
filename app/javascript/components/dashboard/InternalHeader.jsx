@@ -12,6 +12,8 @@ class InternalHeader extends React.Component {
   constructor(props) {
     super(props);
 
+    this.textInput = React.createRef();
+
     this.toggleInfoDropdown = this.toggleInfoDropdown.bind(this);
     this.toggleBoardDropdown = this.toggleBoardDropdown.bind(this);
     this.toggleCreateDropdown = this.toggleCreateDropdown.bind(this);
@@ -34,6 +36,7 @@ class InternalHeader extends React.Component {
     const dropdown = document.querySelector('#board-dropdown');
     this.closeOpenDropdowns('#board-dropdown')
     dropdown.classList.toggle('show')
+    this.textInput.current.focus();
   }
 
   toggleCreateDropdown() {
@@ -89,7 +92,7 @@ class InternalHeader extends React.Component {
             </div>
           </nav>
         </header>
-        <HeaderDropdown />
+        <HeaderDropdown focus={this.textInput} />
         <HeaderCreateDropdown />
         <HeaderInfoDropdown />
         <NotificationDropdown />
