@@ -11,7 +11,6 @@ class DashboardStore {
   userBoards = [];
 
   constructor() {
-    console.log(ReactOnRails)
     this.Api = new DashboardAPI();
   }
 
