@@ -9,4 +9,13 @@ export default class DashboardAPI {
         return response;
       });
   }
+
+  getUserBoardsAction() {
+    return axios.get('/api/boards')
+      .then(response => {
+        return response;
+      }, ({ response }) => {
+        return response;
+      });
+  }
 }

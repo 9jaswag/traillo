@@ -1,11 +1,32 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 import InternalHeader from './InternalHeader';
 import ProjectBoard from './ProjectBoard';
 
-class Dashboard extends React.Component {
+@inject('store')
+@observer class Dashboard extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentWillMount() {
+    const { getUserBoards } = this.props.store.Dashboard;
+    getUserBoards();
+  }
+
   render() {
+    const { userBoards } = this.props.store.Dashboard;
+    const boards = userBoards.map(board =>
+      (<ProjectBoard
+        key={board.id}
+        bgImg={board.bg_img}
+        bgColor={board.bg_color}
+        name={board.name}
+        url={`/api/boards/${board.id}`}
+      />)
+    );
     return (
       <React.Fragment>
         <InternalHeader />
@@ -18,11 +39,7 @@ class Dashboard extends React.Component {
           </div>
           <div className="container-fluid p-0">
             <div className="row align-items-center">
-              <ProjectBoard
-                bkImg=""
-                name="Drama Project"
-                url="/login"
-              />
+              {userBoards.length > 0 && boards}
             </div>
           </div>
         </div>
@@ -32,3 +49,4 @@ class Dashboard extends React.Component {
 }
 
 export default Dashboard
+// chuks24ng@yahoo.co.uk

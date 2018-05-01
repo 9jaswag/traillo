@@ -1,7 +1,10 @@
 class BoardsController < ApplicationController
   before_action :set_board_access, only: :create
 
-  def index; end
+  def index
+    boards = @current_user.boards
+    render json: { boards: boards }
+  end
 
   def new
     @board = Board.new

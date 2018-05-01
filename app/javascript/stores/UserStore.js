@@ -5,7 +5,7 @@ import AuthAPI from "../actions/auth.action";
 
 class UserStore {
   auth = {
-    isLoggedIn: true,
+    isLoggedIn: false,
     user: {},
     status: 'false'
   };
