@@ -84,11 +84,13 @@ input[type=text].header-search-input:focus {
   line-height: 20px;
   text-decoration: none;
   padding: 8px;
+  opacity: .9;
 }
 
 .project-board:hover {
   text-decoration: none;
   color: #FFF;
+  opacity: 1;
 }
 
 #board-dropdown > div {
@@ -449,4 +451,22 @@ input[type=text].board-name::-ms-input-placeholder { /* Microsoft Edge */
 .access-list-header {
   display: flex !important;
   align-items: center;
+}
+
+.create-board-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.create-board-card:focus {
+  outline: none;
+}
+
+.create-board-card .project-name {
+  font-size: 0.8rem;
+  color: #4d4d4d;
+  font-weight: 900;
 }

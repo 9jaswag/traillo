@@ -8,7 +8,7 @@ import ProjectBoard from './ProjectBoard';
 @inject('store')
 @observer class Dashboard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentWillMount() {
@@ -40,6 +40,14 @@ import ProjectBoard from './ProjectBoard';
           <div className="container-fluid p-0">
             <div className="row align-items-center">
               {userBoards.length > 0 && boards}
+              <div className="col-12 col-sm-4 col-md-3 p-3">
+                <button
+                  className="col-12 project-board create-board-card"
+                  style={{ backgroundColor: "#d6dadc" }}
+                  data-toggle="modal" data-target="#createBoardModal">
+                  <h6 className="d-inline project-name">Create new board...</h6>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -48,5 +56,6 @@ import ProjectBoard from './ProjectBoard';
   }
 }
 
-export default Dashboard
+export default Dashboard;
+
 // chuks24ng@yahoo.co.uk
