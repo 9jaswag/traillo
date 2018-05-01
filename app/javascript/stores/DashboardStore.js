@@ -8,6 +8,7 @@ class DashboardStore {
     bgColor: 'rgb(0, 121, 191)'
   };
   createBoardAccess = 'Private';
+  userBoards = [];
 
   constructor() {
     console.log(ReactOnRails)
@@ -23,13 +24,24 @@ class DashboardStore {
   }
 
   createBoard = (boardData) => this.Api.createBoardAction(boardData);
+  getUserBoards = () => this.Api.getUserBoardsAction()
+    .then(response => {
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        this.userBoards = response.data.boards
+      } else {
+
+      }
+    });
 }
 
 decorate(DashboardStore, {
   backgroundProp: observable,
   createBoardAccess: observable,
+  userBoards: observable,
   setPrivateAccess: action,
   setPublicAccess: action,
+  getUserBoards: action,
 })
 
 export default DashboardStore;
