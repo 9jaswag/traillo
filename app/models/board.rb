@@ -1,9 +1,10 @@
 class Board < ApplicationRecord
   before_create :set_uid
-
   validates :name, presence: true
   validates :is_private, presence: true
-  validates_presence_of :bg_img, :unless => :bg_color?
+  validates_presence_of :bg_img, { :unless => :bg_color?, message: 'Background image or colour must be provided' }
+  has_many :user_boards
+  has_many :users, through: :user_boards
 
   private
   def set_uid

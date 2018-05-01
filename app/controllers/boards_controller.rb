@@ -8,7 +8,8 @@ class BoardsController < ApplicationController
   end
 
   def create
-    board = Board.create!(board_params)
+    board = Board.new(board_params)
+    board.user_boards.build(user_id: @current_user[:id])
     raise(ActiveRecord::RecordInvalid) unless board.save
     render json: { message: 'Board created!' }, status: :created
   end
