@@ -5,7 +5,7 @@ export default (token) => {
     localStorage.setItem('jwt', token)
     axios.defaults.headers.common['Authorization'] = token;
   } else {
-    localStorage.removeItem('jwt', token)
+    localStorage.removeItem('jwt')
     delete axios.defaults.headers.common['Authorization'];
   }
 };

@@ -58,4 +58,3 @@ import ProjectBoard from './ProjectBoard';
 
 export default Dashboard;
 
-// chuks24ng@yahoo.co.uk
