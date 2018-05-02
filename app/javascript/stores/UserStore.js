@@ -14,12 +14,11 @@ class UserStore {
     this.Api = new AuthAPI;
   }
 
-  login = (userData) => this.Api.loginAction(userData)
-  signup = (userData) => this.Api.signupAction(userData)
-  activate = (userData) => this.Api.accountActivateAction(userData)
-  passwordResetRequest = (userData) => this.Api.passwordResetRequestAction(userData)
-  passwordReset = (userData) => this.Api.passwordResetAction(userData)
-
+  login = (userData) => this.Api.loginAction(userData);
+  signup = (userData) => this.Api.signupAction(userData);
+  activate = (userData) => this.Api.accountActivateAction(userData);
+  passwordResetRequest = (userData) => this.Api.passwordResetRequestAction(userData);
+  passwordReset = (userData) => this.Api.passwordResetAction(userData);
 }
 
 decorate(UserStore, {
@@ -27,6 +26,6 @@ decorate(UserStore, {
   login: action,
   signup: action,
   activate: action,
-})
+});
 
 export default UserStore;

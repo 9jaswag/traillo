@@ -41,6 +41,6 @@ decorate(DashboardStore, {
   setPrivateAccess: action,
   setPublicAccess: action,
   getUserBoards: action,
-})
+});
 
 export default DashboardStore;
