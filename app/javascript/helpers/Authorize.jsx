@@ -26,7 +26,7 @@ export default (ComposedComponent) => {
       }
 
       if (!UserStore.auth.isLoggedIn) {
-        localStorage.removeItem('jwt', token)
+        localStorage.removeItem('jwt')
         this.props.history.push('/login');
       }
     }
