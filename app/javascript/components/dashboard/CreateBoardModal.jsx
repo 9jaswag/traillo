@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { observer, inject } from "mobx-react";
 import { action } from "mobx";
 import BackgroundGrid from './BackgroundGrid';
@@ -7,9 +6,10 @@ import CreateBoardAccessList from './CreateBoardAccessList';
 
 
 @inject('store')
-@observer export default class CreateBoardModal extends React.Component {
+@observer class CreateBoardModal extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       title: '',
       canSubmit: false
@@ -40,16 +40,23 @@ import CreateBoardAccessList from './CreateBoardAccessList';
     }
     const bg_img = backgroundProp['bgImg'];
     const bg_color = backgroundProp['bgColor'];
+    const is_private = createBoardAccess == 'Private'? true : false;
     createBoard({
       name: this.state.title.trim(),
       bg_img,
       bg_color,
-      is_private: createBoardAccess
+      is_private
     })
     .then(response => {
-      const board = response.data.board;
-      this.props.store.Board.boardDetails = board;
-      this.props.history.push(`/board/${board.uid}/${board.name.replace(/ /g, '-').toLocaleLowerCase()}`)
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        const board = response.data.board;
+        this.props.store.Board.boardDetails = board;
+        const boardPath = board.name.replace(/ /g, '-').toLocaleLowerCase();
+        this.props.history.push(`/board/${board.uid}/${boardPath}`)
+      } else {
+        console.log('error')
+      }
     })
   }
 
@@ -151,3 +158,5 @@ import CreateBoardAccessList from './CreateBoardAccessList';
     );
   }
 }
+
+export default CreateBoardModal;

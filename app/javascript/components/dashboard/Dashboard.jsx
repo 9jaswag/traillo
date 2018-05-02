@@ -1,5 +1,4 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
 import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import InternalHeader from './InternalHeader';
@@ -12,25 +11,25 @@ import ProjectBoard from './ProjectBoard';
   }
 
   componentWillMount() {
-    const { getUserBoards } = this.props.store.Dashboard;
+    const { getUserBoards, userBoards } = this.props.store.Dashboard;
     getUserBoards();
   }
 
   render() {
     const { userBoards } = this.props.store.Dashboard;
-    // replace(/ /g, '-')
     const boards = userBoards.map(board =>
       (<ProjectBoard
         key={board.id}
         bgImg={board.bg_img}
         bgColor={board.bg_color}
         name={board.name}
+        board={board}
         url={`/board/${board.uid}/${board.name.replace(/ /g, '-').toLocaleLowerCase()}`}
       />)
     );
     return (
       <React.Fragment>
-        <InternalHeader />
+        <InternalHeader bgColor='#026aa7' />
         <div className="container-fluid dashboard-wrapper">
           <div className="row">
             <div className="col-12">

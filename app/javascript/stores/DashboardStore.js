@@ -1,5 +1,5 @@
 import { observable, decorate, action } from "mobx";
-import ReactOnRails from 'react-on-rails'
+import ReactOnRails from 'react-on-rails';
 import DashboardAPI from '../actions/dashboard.action';
 
 class DashboardStore {
@@ -29,7 +29,10 @@ class DashboardStore {
       if (responseStatus == 'success') {
         this.userBoards = response.data.boards
       } else {
-
+        if (localStorage.jwt) {
+          localStorage.removeItem('jwt');
+        }
+        window.location.pathname = '/login';
       }
     });
 }

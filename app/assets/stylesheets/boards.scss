@@ -5,6 +5,7 @@
 // internal header
 
 $default-blue: rgb(0, 121, 191);
+$white: #FFF;
 
 .btn__internal {
   background: hsla(0,0%,100%,.3) !important;
@@ -78,7 +79,7 @@ input[type=text].header-search-input:focus {
   background: $default-blue;
   min-height: 6rem !important;
   border-radius: 3px;
-  color: #fff;
+  color: $white;
   background-size: cover;
   background-position: 50%;
   line-height: 20px;
@@ -89,7 +90,7 @@ input[type=text].header-search-input:focus {
 
 .project-board:hover {
   text-decoration: none;
-  color: #FFF;
+  color: $white;
   opacity: 1;
 }
 
@@ -98,7 +99,7 @@ input[type=text].header-search-input:focus {
   top: 40px;
   overflow: scroll !important;
   z-index: 1;
-  background: #fff;
+  background: $white;
   -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.4);
   box-shadow: 0 3px 6px rgba(0,0,0,.4);
   border-radius: 0 3px 3px 0;
@@ -125,7 +126,7 @@ input[type=text].header-search-input:focus {
 }
 
 .board-dropdown-search-input:focus, .board-dropdown-search-input:active {
-  background: #FFF !important;
+  background: $white !important;
   box-shadow: unset !important;
   border-color: $default-blue !important;
 }
@@ -236,7 +237,7 @@ input[type=text].header-search-input:focus {
   z-index: 70;
   position: fixed;
   right: 3px;
-  background: #fff;
+  background: $white;
   border-radius: 3px;
   border: 1px solid #d6dadc;
   border-bottom-color: #c4c9cc;
@@ -266,7 +267,7 @@ input[type=text].header-search-input:focus {
 
 .create-dropdown-list-item:hover {
   background-color: $default-blue;
-  color: #FFF !important;
+  color: $white !important;
   cursor: pointer;
 
   .sub-desc {
@@ -360,7 +361,7 @@ input[type=text].board-name::-ms-input-placeholder { /* Microsoft Edge */
 
 .background-grid-trigger {
   background: none;
-  background-color: #fff;
+  background-color: $white;
   background-position: 50%;
   background-size: cover;
   -webkit-box-align: center;
@@ -434,7 +435,7 @@ input[type=text].board-name::-ms-input-placeholder { /* Microsoft Edge */
 
 .access-lists:hover {
   background-color: $default-blue;
-  color: #FFF !important;
+  color: $white !important;
   cursor: pointer;
 
   small {
@@ -469,4 +470,25 @@ input[type=text].board-name::-ms-input-placeholder { /* Microsoft Edge */
   font-size: 0.8rem;
   color: #4d4d4d;
   font-weight: 900;
+}
+
+.project-page {
+  height: 100vh !important;
+  position: relative;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.project-page__board-name {
+  font-weight: 900;
+  color: $white;
+}
+
+.project-page__fav-icon {
+  cursor: pointer;
+}
+
+.board-header-btn-divider {
+  border-left: 1px solid hsla(0,0%,100%,.2);
+  margin: 0 1rem;
 }
