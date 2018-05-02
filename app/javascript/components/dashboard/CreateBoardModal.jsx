@@ -133,15 +133,15 @@ import CreateBoardAccessList from './CreateBoardAccessList';
                   </div>
                   <div className="col-4 col-sm-3 create-modal-background-grid mb-0 pr-1">
                     <ul className='background-grid mb-0'>
-                      <BackgroundGrid bgImg='assets/bg-1.jpg' />
-                      <BackgroundGrid bgImg='assets/bg-2.jpg' />
-                      <BackgroundGrid bgImg='assets/bg-3.jpg' />
-                      <BackgroundGrid bgImg='assets/bg-4.jpg' />
+                      <BackgroundGrid bgImg='/assets/bg-1.jpg' />
+                      <BackgroundGrid bgImg='/assets/bg-2.jpg' />
+                      <BackgroundGrid bgImg='/assets/bg-3.jpg' />
+                      <BackgroundGrid bgImg='/assets/bg-4.jpg' />
+                      <BackgroundGrid bgImg='/assets/bg-5.jpg' />
                       <BackgroundGrid bgColor='rgb(0, 121, 191)' />
                       <BackgroundGrid bgColor='rgb(210, 144, 52)' />
                       <BackgroundGrid bgColor='rgb(81, 152, 57)' />
                       <BackgroundGrid bgColor='rgb(176, 70, 50)' />
-                      <BackgroundGrid bgColor='rgb(25, 8, 4)' />
                     </ul>
                   </div>
                   <button
