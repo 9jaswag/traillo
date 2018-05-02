@@ -11,6 +11,7 @@ import PasswordResetRequest from '../components/external/PasswordResetRequest';
 import PasswordReset from '../components/external/PasswordReset';
 import Dashboard from '../components/dashboard/Dashboard';
 import Authorize from '../helpers/Authorize';
+import ProjectPage from '../components/board/ProjectPage';
 
 export default (
   <Switch>
@@ -22,6 +23,7 @@ export default (
       <Route path="/password-reset" exact component={PasswordResetRequest} />
       <Route path="/reset/:token" exact component={PasswordReset} />
       <Route path="/dashboard" exact component={Authorize(Dashboard)} />
+      <Route path="/board/:uid/:name" exact component={Authorize(ProjectPage)} />
     </TrailloContext>
   </Switch>
 );

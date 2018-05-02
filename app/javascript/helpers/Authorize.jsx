@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import jwt from 'jsonwebtoken';
 import { inject, observer } from 'mobx-react';
 import setAuthToken from '../helpers/setAuthToken';
@@ -38,10 +37,5 @@ export default (ComposedComponent) => {
     }
   }
 
-  // Authenticate.propTypes = {
-  //   isAuthenticated: PropTypes.bool.isRequired,
-  // };
-
   return Authenticate;
-  // return connect(mapStateToProps, { logout })(withRouter(Authenticate));
 };

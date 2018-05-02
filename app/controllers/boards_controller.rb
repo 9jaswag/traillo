@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
     board = Board.new(board_params)
     board.user_boards.build(user_id: @current_user[:id])
     raise(ActiveRecord::RecordInvalid) unless board.save
-    render json: { message: 'Board created!' }, status: :created
+    render json: { board: board }, status: :created
   end
 
   private

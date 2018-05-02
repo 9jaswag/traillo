@@ -47,7 +47,9 @@ import CreateBoardAccessList from './CreateBoardAccessList';
       is_private: createBoardAccess
     })
     .then(response => {
-      console.log(response)
+      const board = response.data.board;
+      this.props.store.Board.boardDetails = board;
+      this.props.history.push(`/board/${board.uid}/${board.name.replace(/ /g, '-').toLocaleLowerCase()}`)
     })
   }
 

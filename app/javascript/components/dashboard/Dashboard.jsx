@@ -18,13 +18,14 @@ import ProjectBoard from './ProjectBoard';
 
   render() {
     const { userBoards } = this.props.store.Dashboard;
+    // replace(/ /g, '-')
     const boards = userBoards.map(board =>
       (<ProjectBoard
         key={board.id}
         bgImg={board.bg_img}
         bgColor={board.bg_color}
         name={board.name}
-        url={`/api/boards/${board.id}`}
+        url={`/board/${board.uid}/${board.name.replace(/ /g, '-').toLocaleLowerCase()}`}
       />)
     );
     return (
