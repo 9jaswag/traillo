@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import jwt from 'jsonwebtoken';
 import { inject, observer } from 'mobx-react';
+import setAuthToken from '../helpers/setAuthToken';
 // import { logout } from '../actions/signinAction';
 
 export default (ComposedComponent) => {
@@ -16,16 +17,18 @@ export default (ComposedComponent) => {
 
     componentWillMount() {
       const { UserStore } = this.props.store;
-      const token = localStorage.getItem('jwtToken');
+      const token = localStorage.getItem('jwt');
+
+      if (localStorage.jwt && !this.isExpired(token)) {
+        setAuthToken(localStorage.jwt);
+        UserStore.auth.isLoggedIn = true;
+        UserStore.auth.user = jwt.decode(localStorage.jwt);
+      }
+
       if (!UserStore.auth.isLoggedIn) {
-        console.log('log out');
+        localStorage.removeItem('jwt', token)
         this.props.history.push('/login');
       }
-      // if (UserStore.auth.isLoggedIn && token && this.isExpired(token)) {
-      //   localStorage.removeItem('jwtToken');
-      //   console.log('Session has expired. Please log in again');
-      //   this.props.history.push('/login');
-      // }
     }
 
     render() {
