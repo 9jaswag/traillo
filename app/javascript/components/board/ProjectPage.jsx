@@ -13,6 +13,8 @@ import InternalHeader from '../dashboard/InternalHeader';
     }
 
     this.toggleAccessDropdown = this.toggleAccessDropdown.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   componentWillMount() {
@@ -40,6 +42,20 @@ import InternalHeader from '../dashboard/InternalHeader';
   toggleAccessDropdown() {
     const dropdown = document.querySelector('.access-popover-div');
     dropdown.classList.toggle('show');
+  }
+
+  onFocus() {
+    const formWrapper = document.querySelector('#add-list-wrapper');
+    const submitButton = document.querySelector('.add-list-submit');
+    formWrapper.classList.add('focused');
+    submitButton.classList.add('show');
+  }
+
+  onBlur() {
+    const formWrapper = document.querySelector('#add-list-wrapper');
+    const submitButton = document.querySelector('.add-list-submit');
+    formWrapper.classList.remove('focused');
+    submitButton.classList.remove('show');
   }
 
   render() {
@@ -115,7 +131,19 @@ import InternalHeader from '../dashboard/InternalHeader';
                   <Link to='#' className="open-card-composer">Add a card...</Link>
                 </div>
               </div>
-
+              <div id='add-list-wrapper' className="list-wrapper p-2">
+                <form className="form-inline">
+                  <input
+                    className="form-control col-12 add-list-input"
+                    type="text"
+                    placeholder="Add a list..."
+                    onFocus={this.onFocus}
+                    onBlur={this.onBlur}
+                    required />
+                  <button className='btn btn-success btn-sm mt-2 add-list-submit collapse' type='submit'>Save</button>
+                  {/* <i className="fas fa-times ml-3"></i> */}
+                </form>
+              </div>
             </div>
           </div>
         </div>
