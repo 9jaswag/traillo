@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import HeaderDropdown from './HeaderDropdown'
 import HeaderCreateDropdown from './HeaderCreateDropdown'
@@ -67,7 +66,7 @@ class InternalHeader extends React.Component {
     return (
       <React.Fragment>
         <header>
-          <nav className="navbar navbar-expand navbar-light sticky-top" style={{ backgroundColor: '#026aa7' }}>
+          <nav className="navbar navbar-expand navbar-light sticky-top" style={{ backgroundColor: this.props.bgColor }}>
             <button className="btn btn-sm btn__internal" onClick={this.toggleBoardDropdown}>
               <i className="fas fa-bullseye"></i>
               <span className="ml-1 d-none d-xl-inline-block d-lg-inline-block d-md-inline-block">Board</span>
