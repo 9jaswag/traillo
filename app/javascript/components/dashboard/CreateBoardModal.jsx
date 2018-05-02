@@ -53,10 +53,8 @@ import CreateBoardAccessList from './CreateBoardAccessList';
         const board = response.data.board;
         this.props.store.Board.boardDetails = board;
         userBoards.push(board);
-        this.setState({ title: '', canSubmit: false })
-        $('#createBoardModal').modal('hide')
-        // const boardPath = board.name.replace(/ /g, '-').toLocaleLowerCase();
-        // this.props.history.push(`/board/${board.uid}/${boardPath}`)
+        this.setState({ title: '', canSubmit: false });
+        $('#createBoardModal').modal('hide');
       } else {
         console.log('error')
       }
