@@ -617,9 +617,13 @@ input[type=text].board-name::-ms-input-placeholder { /* Microsoft Edge */
   font-size: 0.85rem;
 }
 
+.badge {
+  border-radius: 3px;
+  color: #999;
+}
+
 .badge.is-complete {
   background-color: #61bd4f;
-  border-radius: 3px;
   color: #fff;
 }
 
