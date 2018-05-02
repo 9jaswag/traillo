@@ -33,7 +33,7 @@ import CreateBoardAccessList from './CreateBoardAccessList';
   }
 
   onSubmit(event) {
-    const { backgroundProp, createBoardAccess, createBoard } = this.props.store.Dashboard;
+    const { backgroundProp, createBoardAccess, createBoard, userBoards } = this.props.store.Dashboard;
     event.preventDefault();
     if (this.state.title.trim().length < 1) {
       return console.log('error')
@@ -52,8 +52,11 @@ import CreateBoardAccessList from './CreateBoardAccessList';
       if (responseStatus == 'success') {
         const board = response.data.board;
         this.props.store.Board.boardDetails = board;
-        const boardPath = board.name.replace(/ /g, '-').toLocaleLowerCase();
-        this.props.history.push(`/board/${board.uid}/${boardPath}`)
+        userBoards.push(board);
+        this.setState({ title: '', canSubmit: false })
+        $('#createBoardModal').modal('hide')
+        // const boardPath = board.name.replace(/ /g, '-').toLocaleLowerCase();
+        // this.props.history.push(`/board/${board.uid}/${boardPath}`)
       } else {
         console.log('error')
       }
