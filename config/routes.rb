@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :boards do
       resources :lists, only: [:create]
     end
+
+    resources :lists, except: [:create] do
+      resources :cards, only: [:create]
+    end
   end
 
   get 'users/show'
