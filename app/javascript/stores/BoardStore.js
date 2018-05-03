@@ -16,14 +16,19 @@ class BoardStore {
       if (responseStatus == 'success') {
         this.boardDetails = response.data
       } else {
-        console.log('error')
+        console.log('error to 404 page')
       }
     });
 
   createList = (listData) => this.Api.createListAction(listData)
     .then(response => {
-      console.log(response)
-    })
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        this.boardDetails = response.data
+      } else {
+        console.log('error to 404 page')
+      }
+    });
 }
 
 decorate(BoardStore, {
