@@ -18,7 +18,7 @@ class BoardsController < ApplicationController
 
   def show
     board = Board.find_by!(uid: params[:id])
-    render json: { board: board }
+    render json: board
   end
 
   private
