@@ -71,3 +71,5 @@ gem "paperclip", "~> 6.0.0"
 gem 'sendgrid-ruby'
 
 gem 'mini_racer', platforms: :ruby
+# active model serializer
+gem 'active_model_serializers'
