@@ -16,6 +16,11 @@ class BoardsController < ApplicationController
     render json: { board: board }, status: :created
   end
 
+  def show
+    board = Board.find_by!(uid: params[:id])
+    render json: { board: board }
+  end
+
   private
   def board_params
     params.permit(:name, :is_private, :bg_img, :bg_color)
