@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
 
   def index
     boards = @current_user.boards
-    render json: { boards: boards }
+    render json: boards
   end
 
   def new
@@ -13,7 +13,7 @@ class BoardsController < ApplicationController
     board = Board.new(board_params)
     board.user_boards.build(user_id: @current_user[:id])
     raise(ActiveRecord::RecordInvalid) unless board.save!
-    render json: { board: board }, status: :created
+    render json: board, status: :created
   end
 
   def show
