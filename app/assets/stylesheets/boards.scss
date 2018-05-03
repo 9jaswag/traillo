@@ -718,3 +718,44 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
   color: #999;
   cursor: pointer;
 }
+
+.card-compose-textarea {
+  border: none;
+  border-radius: 3px;
+  overflow: hidden;
+  word-wrap: break-word;
+  height: 54px;
+  max-height: 162px;
+  min-height: 54px;
+  background: none;
+  resize: vertical;
+  width: 100%;
+  color: #333;
+  line-height: 18px;
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+.card-compose-textarea:hover, .card-compose-textarea:focus {
+  outline: none;
+}
+
+.card-composer {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 6px;
+  max-width: 300px;
+  min-height: 20px;
+  position: relative;
+  text-decoration: none;
+  z-index: 0;
+}
+
+.add-card-close-icon {
+  color: #999;
+  cursor: pointer;
+  bottom: 0.6rem;
+}
