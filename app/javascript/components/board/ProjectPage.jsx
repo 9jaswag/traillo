@@ -18,24 +18,10 @@ import InternalHeader from '../dashboard/InternalHeader';
   }
 
   componentWillMount() {
-    const { boardDetails } = this.props.store.Board;
-
-    if (this.props.location.state && this.props.location.state.hasOwnProperty('board')) {
-      return this.setState({ boardDetails: this.props.location.state.board })
-    }
-
-    if (boardDetails.length > 0) {
-      return this.setState({ boardDetails })
-    }
-
-    if (boardDetails.length < 1 || !this.props.location.state || !this.props.location.state.hasOwnProperty('board')) {
-      this.props.history.push('/dashboard');
-    }
-  }
-
-  componentDidMount() {
-    if (Object.keys(this.state.boardDetails).length < 1) {
-      this.props.history.push('/dashboard');
+    const { getBoardDetails } = this.props.store.Board;
+    const params = Object.keys(this.props.match.params);
+    if (params.includes('uid')) {
+      getBoardDetails(this.props.match.params.uid)
     }
   }
 
@@ -59,7 +45,7 @@ import InternalHeader from '../dashboard/InternalHeader';
   }
 
   render() {
-    const { boardDetails } = this.state;
+    const { boardDetails } = this.props.store.Board;
     const hostUrl = `${window.location.protocol}//${window.location.host}`
     return (
       <React.Fragment>
