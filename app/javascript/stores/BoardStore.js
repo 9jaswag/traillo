@@ -2,7 +2,9 @@ import { observable, decorate, action } from "mobx";
 import BoardAPI from '../actions/board.action';
 
 class BoardStore {
-  boardDetails = []
+  boardDetails = {
+    lists: []
+  }
 
   constructor() {
     this.Api = new BoardAPI();
@@ -12,7 +14,7 @@ class BoardStore {
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
-        this.boardDetails = response.data.board
+        this.boardDetails = response.data
       } else {
         console.log('error')
       }
