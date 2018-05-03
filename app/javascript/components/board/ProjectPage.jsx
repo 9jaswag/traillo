@@ -9,12 +9,15 @@ import InternalHeader from '../dashboard/InternalHeader';
     super(props);
 
     this.state = {
-      boardDetails: {}
+      boardDetails: {},
+      newListName: ''
     }
 
     this.toggleAccessDropdown = this.toggleAccessDropdown.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   componentWillMount() {
@@ -23,6 +26,19 @@ import InternalHeader from '../dashboard/InternalHeader';
     if (params.includes('uid')) {
       getBoardDetails(this.props.match.params.uid)
     }
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    const { createList } = this.props.store.Board;
+    createList({
+      name: this.state.newListName,
+      board_id: this.props.match.params.uid
+    })
+  }
+
+  onChange(event) {
+    this.setState({ newListName: event.target.value })
   }
 
   toggleAccessDropdown() {
@@ -118,11 +134,13 @@ import InternalHeader from '../dashboard/InternalHeader';
                 </div>
               </div>
               <div id='add-list-wrapper' className="list-wrapper p-2">
-                <form className="form-inline">
+                <form className="form-inline" onSubmit={this.onSubmit}>
                   <input
                     className="form-control col-12 add-list-input"
                     type="text"
                     placeholder="Add a list..."
+                    value={this.state.newListName}
+                    onChange={this.onChange}
                     onFocus={this.onFocus}
                     onBlur={this.onBlur}
                     required />

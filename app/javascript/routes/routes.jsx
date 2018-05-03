@@ -25,7 +25,7 @@ export default (
       <Route path="/reset/:token" exact component={PasswordReset} />
       <Route path="/dashboard" exact component={Authorize(Dashboard)} />
       <Route path="/board/:uid/:name" exact component={Authorize(ProjectPage)} />
-      <Route render={() => <NotFound />} />
+      {/* <Route render={() => <NotFound />} /> */}
     </TrailloContext>
   </Switch>
 );
