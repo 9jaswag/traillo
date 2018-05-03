@@ -5,6 +5,7 @@ class Board < ApplicationRecord
   validates_presence_of :bg_img, { :unless => :bg_color?, message: 'Background image or colour must be provided' }
   has_many :user_boards
   has_many :users, through: :user_boards
+  has_many :lists, dependent: :destroy
 
   private
   def set_uid
