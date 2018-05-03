@@ -14,8 +14,7 @@ import BoardList from './BoardList';
     }
 
     this.toggleAccessDropdown = this.toggleAccessDropdown.bind(this);
-    this.onFocus = this.onFocus.bind(this);
-    this.onBlur = this.onBlur.bind(this);
+    this.toggleAddListDropdown = this.toggleAddListDropdown.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
@@ -35,7 +34,8 @@ import BoardList from './BoardList';
       name: this.state.newListName,
       board_id: this.props.match.params.uid
     })
-    this.setState({ newListName: '' })
+    this.setState({ newListName: '' });
+    this.toggleAddListDropdown();
   }
 
   onChange(event) {
@@ -47,18 +47,13 @@ import BoardList from './BoardList';
     dropdown.classList.toggle('show');
   }
 
-  onFocus() {
+  toggleAddListDropdown() {
     const formWrapper = document.querySelector('#add-list-wrapper');
     const submitButton = document.querySelector('.add-list-submit');
-    formWrapper.classList.add('focused');
-    submitButton.classList.add('show');
-  }
-
-  onBlur() {
-    const formWrapper = document.querySelector('#add-list-wrapper');
-    const submitButton = document.querySelector('.add-list-submit');
-    formWrapper.classList.remove('focused');
-    submitButton.classList.remove('show');
+    const closeButton = document.querySelector('.add-list-close-icon');
+    formWrapper.classList.toggle('focused');
+    submitButton.classList.toggle('show');
+    closeButton.classList.toggle('show');
   }
 
   render() {
@@ -115,18 +110,17 @@ import BoardList from './BoardList';
             <div id="board">
               {lists.length > 0 && boardLists}
               <div id='add-list-wrapper' className="list-wrapper p-2">
-                <form className="form-inline" onSubmit={this.onSubmit}>
+                <form className="form-inline position-relative" onSubmit={this.onSubmit}>
                   <input
                     className="form-control col-12 add-list-input"
                     type="text"
                     placeholder="Add a list..."
                     value={this.state.newListName}
                     onChange={this.onChange}
-                    onFocus={this.onFocus}
-                    onBlur={this.onBlur}
+                    onFocus={this.toggleAddListDropdown}
                     required />
                   <button className='btn btn-success btn-sm mt-2 add-list-submit collapse' type='submit'>Save</button>
-                  {/* <i className="fas fa-times ml-3"></i> */}
+                  <i className="ion-close-round position-absolute ml-3 add-list-close-icon collapse" onClick={this.toggleAddListDropdown}></i>
                 </form>
               </div>
             </div>
