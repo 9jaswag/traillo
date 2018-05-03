@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180503113859) do
+ActiveRecord::Schema.define(version: 20180503194511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20180503113859) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_boards_on_uid", unique: true
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "name"
+    t.datetime "due_date"
+    t.boolean "is_archived", default: false
+    t.bigint "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_cards_on_list_id"
+    t.index ["name"], name: "index_cards_on_name"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -67,6 +78,7 @@ ActiveRecord::Schema.define(version: 20180503113859) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "cards", "lists"
   add_foreign_key "lists", "boards"
   add_foreign_key "user_boards", "boards"
   add_foreign_key "user_boards", "users"
