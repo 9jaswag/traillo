@@ -26,7 +26,18 @@ class BoardStore {
       if (responseStatus == 'success') {
         this.boardDetails = response.data
       } else {
-        console.log('error to 404 page')
+        console.log('error list n ot created')
+      }
+    });
+
+  createCard = (listData) => this.Api.createCardAction(listData)
+    .then(response => {
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        console.log(response.data)
+        // this.boardDetails = response.data
+      } else {
+        console.log('error list not created')
       }
     });
 }
@@ -35,6 +46,7 @@ decorate(BoardStore, {
   boardDetails: observable,
   getBoardDetails: action,
   createList: action,
+  createCard: action,
 });
 
 export default BoardStore;

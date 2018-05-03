@@ -18,4 +18,13 @@ export default class BoardAPI {
         return response;
       });
   }
+
+  createCardAction(cardData) {
+    return axios.post(`/api/lists/${cardData.list_id}/cards`, cardData)
+      .then(response => {
+        return response;
+      }, ({ response }) => {
+        return response;
+      });
+  }
 }
