@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post '/password-reset', to: 'users#reset', as: 'password_reset'
     patch '/reset/:token', to: 'users#update', as: 'reset'
     resources :boards
+    resources :lists
   end
 
   get 'users/show'
