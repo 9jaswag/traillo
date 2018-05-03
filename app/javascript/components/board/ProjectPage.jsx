@@ -14,7 +14,8 @@ import BoardList from './BoardList';
     }
 
     this.toggleAccessDropdown = this.toggleAccessDropdown.bind(this);
-    this.toggleAddListDropdown = this.toggleAddListDropdown.bind(this);
+    this.hideAddListDropdown = this.hideAddListDropdown.bind(this);
+    this.showAddListDropdown = this.showAddListDropdown.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
@@ -30,12 +31,16 @@ import BoardList from './BoardList';
   onSubmit(event) {
     event.preventDefault();
     const { createList } = this.props.store.Board;
+    if (this.state.newListName.length < 1) {
+      console.log('enter a list name');
+      return;
+    }
     createList({
       name: this.state.newListName,
       board_id: this.props.match.params.uid
     })
     this.setState({ newListName: '' });
-    this.toggleAddListDropdown();
+    this.hideAddListDropdown();
   }
 
   onChange(event) {
@@ -47,13 +52,22 @@ import BoardList from './BoardList';
     dropdown.classList.toggle('show');
   }
 
-  toggleAddListDropdown() {
+  showAddListDropdown() {
     const formWrapper = document.querySelector('#add-list-wrapper');
     const submitButton = document.querySelector('.add-list-submit');
     const closeButton = document.querySelector('.add-list-close-icon');
-    formWrapper.classList.toggle('focused');
-    submitButton.classList.toggle('show');
-    closeButton.classList.toggle('show');
+    formWrapper.classList.add('focused');
+    submitButton.classList.add('show');
+    closeButton.classList.add('show');
+  }
+
+  hideAddListDropdown() {
+    const formWrapper = document.querySelector('#add-list-wrapper');
+    const submitButton = document.querySelector('.add-list-submit');
+    const closeButton = document.querySelector('.add-list-close-icon');
+    formWrapper.classList.remove('focused');
+    submitButton.classList.remove('show');
+    closeButton.classList.remove('show');
   }
 
   render() {
@@ -117,10 +131,10 @@ import BoardList from './BoardList';
                     placeholder="Add a list..."
                     value={this.state.newListName}
                     onChange={this.onChange}
-                    onFocus={this.toggleAddListDropdown}
+                    onFocus={this.showAddListDropdown}
                     required />
                   <button className='btn btn-success btn-sm mt-2 add-list-submit collapse' type='submit'>Save</button>
-                  <i className="ion-close-round position-absolute ml-3 add-list-close-icon collapse" onClick={this.toggleAddListDropdown}></i>
+                  <i className="ion-close-round position-absolute ml-3 add-list-close-icon collapse" onClick={this.hideAddListDropdown}></i>
                 </form>
               </div>
             </div>

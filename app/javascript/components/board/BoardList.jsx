@@ -15,7 +15,7 @@ export default ({ list }) => (
               <span className="js-badges">
                 <div className="badge is-complete">
                   <span className="badge-icon">
-                    <i className="far fa-check-square pr-1"></i>
+                    <i className="ion-android-checkbox-outline fa-lg pr-1"></i>
                   </span>
                   <span className="badge-text">7/7</span>
                 </div>
