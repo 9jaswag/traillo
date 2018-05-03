@@ -17,11 +17,17 @@ class BoardStore {
         console.log('error')
       }
     });
+
+  createList = (listData) => this.Api.createListAction(listData)
+    .then(response => {
+      console.log(response)
+    })
 }
 
 decorate(BoardStore, {
   boardDetails: observable,
   getBoardDetails: action,
+  createList: action,
 });
 
 export default BoardStore;
