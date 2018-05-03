@@ -50,7 +50,7 @@ import CreateBoardAccessList from './CreateBoardAccessList';
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
-        const board = response.data.board;
+        const board = response.data;
         this.props.store.Board.boardDetails = board;
         userBoards.push(board);
         this.setState({ title: '', canSubmit: false });
