@@ -10,7 +10,6 @@ import BoardList from './BoardList';
     super(props);
 
     this.state = {
-      boardDetails: {},
       newListName: ''
     }
 
@@ -36,6 +35,7 @@ import BoardList from './BoardList';
       name: this.state.newListName,
       board_id: this.props.match.params.uid
     })
+    this.setState({ newListName: '' })
   }
 
   onChange(event) {

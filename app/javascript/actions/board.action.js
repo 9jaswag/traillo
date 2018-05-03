@@ -11,7 +11,6 @@ export default class BoardAPI {
   }
 
   createListAction(listData) {
-    console.log(listData)
     return axios.post(`/api/boards/${listData.board_id}/lists`, listData)
       .then(response => {
         return response;
