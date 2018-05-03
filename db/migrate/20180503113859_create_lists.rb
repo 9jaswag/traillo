@@ -2,9 +2,8 @@ class CreateLists < ActiveRecord::Migration[5.1]
   def change
     create_table :lists do |t|
       t.string :name
-      t.datetime :due_date
       t.references :board, foreign_key: true
-      t.boolean :is_archived
+      t.boolean :is_archived, default: false
 
       t.timestamps
     end
