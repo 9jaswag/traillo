@@ -27,7 +27,7 @@ class DashboardStore {
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
-        this.userBoards = response.data.boards
+        this.userBoards = response.data
       } else {
         if (localStorage.jwt) {
           localStorage.removeItem('jwt');
