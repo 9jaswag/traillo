@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501094315) do
+ActiveRecord::Schema.define(version: 20180503112701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20180501094315) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_boards_on_uid", unique: true
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "due_date"
+    t.bigint "board_id"
+    t.boolean "is_archived"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_lists_on_board_id"
+    t.index ["name"], name: "index_lists_on_name"
   end
 
   create_table "user_boards", force: :cascade do |t|
@@ -57,6 +68,7 @@ ActiveRecord::Schema.define(version: 20180501094315) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "lists", "boards"
   add_foreign_key "user_boards", "boards"
   add_foreign_key "user_boards", "users"
 end
