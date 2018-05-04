@@ -34,8 +34,11 @@ class BoardStore {
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
-        console.log(response.data)
-        // this.boardDetails = response.data
+        this.boardDetails.lists.forEach(list => {
+          if (list.id == response.data.list.id) {
+            list.cards.push(response.data)
+          }
+        });
       } else {
         console.log('error list not created')
       }
