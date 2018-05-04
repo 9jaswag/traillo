@@ -182,11 +182,13 @@ input[type=text].header-search-input:focus {
   text-decoration: none;
   color: #444;
   background-color: transparent;
+  opacity: .7;
 }
 
 .dropdown-project-link:hover {
   text-decoration: none;
   color: #444;
+  opacity: 1;
 }
 
 .dropdown-project-link-thumbnail {
@@ -197,13 +199,8 @@ input[type=text].header-search-input:focus {
   border-radius: 3px 0 0 3px;
   display: inline-block;
   height: 36px;
-  opacity: .7;
   background-color: $default-blue;
   width: 36px;
-}
-
-.dropdown-project-link-thumbnail:hover {
-  opacity: 1;
 }
 
 .dropdown-project-link-text-detail {
