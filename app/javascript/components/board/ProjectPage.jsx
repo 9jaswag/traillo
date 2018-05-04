@@ -28,6 +28,16 @@ import BoardList from './BoardList';
     }
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.location.pathname != this.props.location.pathname) {
+      const { getBoardDetails } = this.props.store.Board;
+      const params = Object.keys(this.props.match.params);
+      if (params.includes('uid')) {
+        getBoardDetails(this.props.match.params.uid)
+      }
+    }
+  }
+
   onSubmit(event) {
     event.preventDefault();
     const { createList } = this.props.store.Board;
