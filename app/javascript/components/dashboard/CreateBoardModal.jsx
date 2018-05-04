@@ -50,11 +50,19 @@ import CreateBoardAccessList from './CreateBoardAccessList';
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
+        const createDropdown = document.querySelector('#create-dropdown');
+        const boardDropdown = document.querySelector('#board-dropdown');
         const board = response.data;
         this.props.store.Board.boardDetails = board;
         userBoards.push(board);
         this.setState({ title: '', canSubmit: false });
         $('#createBoardModal').modal('hide');
+        if (createDropdown.classList.contains('show')) {
+          createDropdown.classList.remove('show')
+        }
+        if (boardDropdown.classList.contains('show')) {
+          boardDropdown.classList.remove('show')
+        }
         this.props.history.push(`/board/${board.uid}/${board.name.replace(/ /g, '-').toLocaleLowerCase()}`)
       } else {
         console.log('error')

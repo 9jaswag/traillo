@@ -8,7 +8,7 @@ export default ({ url, bgImg, bgColor, name, onClick }) => (
       <span className="dropdown-project-background" style={{ backgroundImage: `url(${bgImg})`, backgroundColor: `${bgColor}` }}></span>
       <span className="compact-board-tile-fade"></span>
       <Link to={url} className="dropdown-project-link" onClick={onClick}>
-        <span className="dropdown-project-link-thumbnail" style={{ backgroundImage: `url(${bgImg})` }}></span>
+        <span className="dropdown-project-link-thumbnail" style={{ backgroundImage: `url(${bgImg})`, backgroundColor: `${bgColor}` }}></span>
         <span className="dropdown-project-link-text-detail">
           <span className="dropdown-project-link-text-detail-name">{name}</span>
         </span>
