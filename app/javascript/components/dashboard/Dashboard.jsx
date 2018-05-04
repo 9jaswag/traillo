@@ -29,7 +29,7 @@ import ProjectBoard from './ProjectBoard';
     );
     return (
       <React.Fragment>
-        <InternalHeader bgColor='#026aa7' />
+        <InternalHeader bgColor='#026aa7' history={this.props.history} />
         <div className="container-fluid dashboard-wrapper">
           <div className="row">
             <div className="col-12">

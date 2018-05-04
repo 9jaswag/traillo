@@ -55,6 +55,7 @@ import CreateBoardAccessList from './CreateBoardAccessList';
         userBoards.push(board);
         this.setState({ title: '', canSubmit: false });
         $('#createBoardModal').modal('hide');
+        this.props.history.push(`/board/${board.uid}/${board.name.replace(/ /g, '-').toLocaleLowerCase()}`)
       } else {
         console.log('error')
       }
