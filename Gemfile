@@ -73,3 +73,5 @@ gem 'sendgrid-ruby'
 gem 'mini_racer', platforms: :ruby
 # active model serializer
 gem 'active_model_serializers'
+
+ruby "2.4.1"
