@@ -8,6 +8,13 @@ import { inject, observer } from "mobx-react";
 @observer class HeaderDropdown extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      filteredBoards: [],
+      filterInput: ''
+    }
+
+    this.onChange = this.onChange.bind(this);
+    this.onKeyUp = this.onKeyUp.bind(this);
   }
 
   componentWillMount() {
@@ -15,10 +22,28 @@ import { inject, observer } from "mobx-react";
     getUserBoards();
   }
 
+  onChange(event) {
+    this.setState({ filterInput: event.target.value })
+  }
+
+  onKeyUp(event) {
+    // filter boards
+    const { userBoards } = this.props.store.Dashboard;
+    const { filterInput } = this.state;
+    const filteredBoards = userBoards.filter(board => {
+      if (board.name.toLocaleLowerCase().includes(filterInput.toLocaleLowerCase())) {
+        return board;
+      }
+    });
+    this.setState({ filteredBoards: filteredBoards });
+  }
+
   render() {
     const { focus } = this.props
     const { userBoards } = this.props.store.Dashboard;
-    const boards = userBoards.map(board => (
+    const { filteredBoards } = this.state;
+    const displayedBoards = filteredBoards.length < 1 ? userBoards : filteredBoards;
+    const boards = displayedBoards.map(board => (
       <HeaderDropdownBoard
         key={board.id}
         url={`/board/${board.uid}/${board.name.replace(/ /g, '-').toLocaleLowerCase()}`}
@@ -31,7 +56,14 @@ import { inject, observer } from "mobx-react";
       <div className="collapse" id="board-dropdown">
         <div className="p-1 col-7 col-sm-4 col-md-3 col-lg-3">
           <form className="form-inline my-2 my-md-0 ml-1">
-            <input className="form-control form-control-sm board-dropdown-search-input col-12" type="text" placeholder="Find boards by name..." ref={focus} />
+            <input
+              className="form-control form-control-sm board-dropdown-search-input col-12"
+              type="text"
+              placeholder="Find boards by name..."
+              value={this.state.filterInput}
+              onKeyUp={this.onKeyUp}
+              onChange={this.onChange}
+              ref={focus} />
           </form>
           <div className=''>
             <div className="col-12 board-dropdown-section position-relative p-3">
