@@ -76,7 +76,9 @@ import ListCard from './ListCard';
           <div className="list-header">
             <h6 className="list-header-name">{this.props.list.name}</h6>
           </div>
-          {cards.length > 0 && listCards}
+          <div className="list-cards">
+            {cards.length > 0 && listCards}
+          </div>
           <Link to='#' className="open-card-composer" onClick={this.showCreateCardForm}>Add a card...</Link>
           <div className='add-card-wrapper collapse'>
             <form id='add-card-form position-relative' action="" onSubmit={this.onSubmit}>
