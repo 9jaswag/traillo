@@ -15,6 +15,7 @@ import { inject, observer } from "mobx-react";
 
     this.onChange = this.onChange.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   componentWillMount() {
@@ -24,6 +25,11 @@ import { inject, observer } from "mobx-react";
 
   onChange(event) {
     this.setState({ filterInput: event.target.value })
+  }
+
+  onClick(event) {
+    const dropdown = document.querySelector('#board-dropdown');
+    dropdown.classList.remove('show')
   }
 
   onKeyUp(event) {
@@ -50,6 +56,7 @@ import { inject, observer } from "mobx-react";
         bgImg={board.bg_img}
         bgColor={board.bg_color}
         name={board.name}
+        onClick={this.onClick}
       />
     ));
     return (
