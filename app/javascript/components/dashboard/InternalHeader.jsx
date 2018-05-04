@@ -63,6 +63,7 @@ class InternalHeader extends React.Component {
   }
 
   render() {
+    // console.log(this.props)
     return (
       <React.Fragment>
         <header>
@@ -96,7 +97,7 @@ class InternalHeader extends React.Component {
         <HeaderInfoDropdown />
         <NotificationDropdown />
         <ProfileDropdown />
-        <CreateBoardModal />
+        <CreateBoardModal history={this.props.history} />
       </React.Fragment>
     );
   }

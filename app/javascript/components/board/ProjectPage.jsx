@@ -92,7 +92,7 @@ import BoardList from './BoardList';
         <div
           className='project-page'
           style={{ backgroundColor: `${boardDetails.bg_color}`, backgroundImage: `url(${hostUrl}/${boardDetails.bg_img})` }}>
-          <InternalHeader bgColor='rgba(0,0,0,.15)' />
+          <InternalHeader bgColor='rgba(0,0,0,.15)' history={this.props.history} />
           <div className="container-fluid">
             <div className='py-3'>
               <span className="project-page__board-name d-inline-block">{boardDetails.name}</span>
