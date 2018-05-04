@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
+import ListCard from './ListCard';
 
 @inject('store')
 @observer class BoardList extends Component {
@@ -25,11 +26,11 @@ import { inject, observer } from "mobx-react";
       console.log('please enter card name')
       return;
     }
-    createCard({ 
+    createCard({
       name,
       list_id: this.props.list.id
-     })
-     this.setState({ newCardName: '' });
+    })
+    this.setState({ newCardName: '' });
   }
 
   onChange(event) {
@@ -64,29 +65,18 @@ import { inject, observer } from "mobx-react";
   }
 
   render() {
+    const { cards } = this.props.list;
+    const listCards = cards.map(card => (
+      <ListCard key={card.id} card={card} />
+    ));
+
     return (
       <div className="list-wrapper">
         <div className="list-content">
           <div className="list-header">
             <h6 className="list-header-name">{this.props.list.name}</h6>
           </div>
-          <div className="list-cards">
-            <Link to='#' className='list-card'>
-              <div className="list-card-details">
-                <span className="list-card-title">Setup</span>
-                <div className="badges">
-                  <span className="js-badges">
-                    <div className="badge is-complete">
-                      <span className="badge-icon">
-                        <i className="ion-android-checkbox-outline fa-lg pr-1"></i>
-                      </span>
-                      <span className="badge-text">7/7</span>
-                    </div>
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </div>
+          {cards.length > 0 && listCards}
           <Link to='#' className="open-card-composer" onClick={this.showCreateCardForm}>Add a card...</Link>
           <div className='add-card-wrapper collapse'>
             <form id='add-card-form position-relative' action="" onSubmit={this.onSubmit}>
