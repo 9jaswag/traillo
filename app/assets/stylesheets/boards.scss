@@ -775,11 +775,11 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
   }
 
   small.current-list-name {
-    position: absolute;
+    position: fixed;
     display: block;
     width: 100vw;
-    left: -4rem;
-    top: 0.6rem;
+    left: 2.7rem;
+    top: 2.3rem;
     color: #838c91;
     font-size: 0.85rem;
 
@@ -960,5 +960,13 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
 @media (max-width: 767px) {
   #listCardModal .modal-body {
     // overflow-y: scroll; not working
+  }
+}
+
+///// refix modal widths
+@media (min-width: 576px){
+  .modal-dialog {
+    max-width: 805px;
+    margin: 1.75rem auto;
   }
 }
