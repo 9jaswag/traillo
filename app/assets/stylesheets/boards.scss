@@ -718,7 +718,7 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
 
 #listCardModal .left {
   overflow-y: auto;
-  height: 100vh;
+  max-height: 100vh;
 }
 
 .card-compose-textarea {
@@ -882,3 +882,57 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
   font-size: 0.85rem;
 }
 
+.add-btn {
+  border-radius: 3px !important;
+  font-weight: 700 !important;
+  background: #e2e4e6 !important;
+  -webkit-box-shadow: 0 1px 0 0 #c4c9cc !important;
+  box-shadow: 0 1px 0 0 #c4c9cc !important;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  height: 32px;
+  margin-top: 8px;
+  max-width: 300px;
+  overflow: hidden;
+  padding: 7px 7px 7px 11px;
+  position: relative;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  color: #444 !important;
+  border: none !important;
+  text-align: left !important;
+}
+
+.task-modal-title {
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.quiet-button {
+  border-radius: 3px;
+  color: #838c91;
+  display: block;
+  margin: 2px 0;
+  padding: 7px 16px;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  background-color: transparent;
+  user-select: none;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.quiet-button:hover {
+  background: #b1b6b845;
+}
