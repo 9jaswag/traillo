@@ -1,0 +1,156 @@
+import React from 'react';
+import { Link } from "react-router-dom";
+
+class ListCardModal extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.toggleDescriptionEditForm = this.toggleDescriptionEditForm.bind(this);
+  }
+
+  toggleDescriptionEditForm() {
+    const button = document.querySelector('.show-desc-edit');
+    const editForm = document.querySelector('.card-detail-edit');
+    button.classList.toggle('collapse');
+    editForm.classList.toggle('show');
+  }
+
+  render() {
+    const { modalCard } = this.props;
+    return (
+      <div className="modal" id="listCardModal" tabIndex={-1} role="dialog" aria-labelledby="listCardModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-lg " role="document">
+          <div className="modal-content">
+            <div className="modal-header pb-0">
+              <i className="far fa-credit-card text-muted pr-2"></i>
+              <h6 className="modal-title task-modal-title" id="exampleModalLongTitle">{modalCard.name}</h6>
+              <div className="current-list position-relative">
+                <small className='current-list-name'>in list <Link to='#'>List Name</Link></small>
+              </div>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="container-fluid p-0">
+                <div className="row">
+                  <div className="col-12 col-sm-8 col-lg-9 left">
+                    <p className='mb-0'>
+                      <button className="show-desc-edit quiet-button btn-block text-left" onClick={this.toggleDescriptionEditForm}>
+                        <i className="far fa-edit pr-1"></i>
+                        Edit description...
+                        </button>
+                    </p>
+                    <section className="card-detail-edit position-relative collapse">
+                      <form action="" className="inline">
+                        <textarea name="" id="card-details-textarea" className='col-12 p-2' placeholder="Add a more detailed description…" required></textarea>
+                        <button className="btn btn-success btn-sm" type='submit'>Save</button>
+                        <i className="ion-close-round position-absolute ml-3 card-detail-close-icon" onClick={this.toggleDescriptionEditForm}></i>
+                      </form>
+                    </section>
+                    <section className="card-comment-section mt-3">
+                      <div>
+                        <i className="far fa-comment text-muted d-inline-block"></i>
+                        <h6 className='d-inline-block pl-2 task-modal-title'>Add Comments</h6>
+                      </div>
+                      <div className="new-comment position-relative">
+                        <div className="member">
+                          <button className="btn btn-sm btn__internal profile-pic p-0"><img className="profile-pic-image" src="https://avatars2.githubusercontent.com/u/8125356?s=460&amp;v=4" alt="Profile Picture" /></button>
+                        </div>
+                        <form action="">
+                          <div className="comment-frame">
+                            <div className="comment-box">
+                              <textarea name="" id="" className="comment-box-input"></textarea>
+                              <div className="comment-box-options">
+                                <Link to='#' className='comment-box-options-item'>
+                                  <span className="fas fa-paperclip add-comment-icon"></span>
+                                </Link>
+                                <Link to='#' className='comment-box-options-item'>
+                                  <span className="fas fa-at add-comment-icon"></span>
+                                </Link>
+                                <Link to='#' className='comment-box-options-item'>
+                                  <span className="far fa-smile add-comment-icon"></span>
+                                </Link>
+                                <Link to='#' className='comment-box-options-item'>
+                                  <span className="far fa-credit-card add-comment-icon"></span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="comment-controls">
+                            <button className="btn btn-success btn-sm btn-disabled">Save</button>
+                          </div>
+                        </form>
+                      </div>
+                    </section>
+                    <section className="card-comment-section activity-section mt-3">
+                      <div>
+                        <i className="fas fa-list text-muted d-inline-block"></i>
+                        <h6 className='d-inline-block pl-2 task-modal-title'>Activity</h6>
+                      </div>
+                      <div className="new-comment position-relative">
+                        <div className="member">
+                          <button className="btn btn-sm btn__internal profile-pic p-0"><img className="profile-pic-image" src="https://avatars2.githubusercontent.com/u/8125356?s=460&amp;v=4" alt="Profile Picture" /></button>
+                        </div>
+                        <div className="activity-desc">
+                          <span className="activity-owner">Chuks Opia</span>
+                          <div className="comment-container">
+                            <div className="action-comment">
+                              <p>lorem ipsum bs lorem ipsum bs  lorem ipsum bs lorem ipsum bs lorem ipsum bslorem ipsum bs lorem ipsum bs lorem ipsum bs lorem ipsum bs</p>
+                              <p>lorem ipsum bs</p>
+                              <p>lorem ipsum bs</p>
+                              <p>lorem ipsum bs</p>
+                              <p>lorem ipsum bs</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                  <div className="col-12 col-sm-4 col-lg-3">
+                    <h6 className='task-modal-title'>Add</h6>
+                    <div className="add-buttons">
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                        <i className="far fa-user pr-1"></i> Members
+                        </button>
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                        <i className="ion-android-checkbox-outline pr-1"></i> Checklist
+                        </button>
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                        <i className="far fa-clock pr-1"></i> Due Date
+                        </button>
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                        <i className="fas fa-paperclip pr-1"></i> Attachment
+                        </button>
+                    </div>
+                    <h6 className='task-modal-title mt-4'>Action</h6>
+                    <div className="add-buttons">
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                        <i className="fas fa-arrow-right pr-1"></i> Move
+                        </button>
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                        <i className="far fa-credit-card pr-1"></i> Copy
+                        </button>
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                        <i className="fas fa-eye pr-1"></i> Watch
+                        </button>
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                        <i className="fas fa-trash pr-1"></i> Archive
+                        </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary">Save changes</button>
+              </div> */}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default ListCardModal;

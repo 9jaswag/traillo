@@ -3,7 +3,10 @@ import BoardAPI from '../actions/board.action';
 
 class BoardStore {
   boardDetails = {
-    lists: []
+    lists: [],
+  }
+  modalCard = {
+    name: ''
   }
 
   constructor() {
@@ -43,13 +46,16 @@ class BoardStore {
         console.log('error list not created')
       }
     });
+  setModalCard = (card) => this.modalCard = card;
 }
 
 decorate(BoardStore, {
   boardDetails: observable,
+  modalCard: observable,
   getBoardDetails: action,
   createList: action,
   createCard: action,
+  setModalCard: action,
 });
 
 export default BoardStore;
