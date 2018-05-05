@@ -769,6 +769,26 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
     border-radius: 2px;
     background-color: #edeff0;
   }
+
+  .modal-header {
+    align-items: center !important;
+  }
+
+  small.current-list-name {
+    position: absolute;
+    display: block;
+    width: 100vw;
+    left: -4rem;
+    top: 0.6rem;
+    color: #838c91;
+    font-size: 0.85rem;
+
+    a {
+      text-decoration: underline;
+      color: #838c91;
+      cursor: pointer;
+    }
+  }
 }
 
 
@@ -935,4 +955,10 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
 
 .quiet-button:hover {
   background: #b1b6b845;
+}
+
+@media (max-width: 767px) {
+  #listCardModal .modal-body {
+    // overflow-y: scroll; not working
+  }
 }

@@ -164,8 +164,8 @@ import BoardList from './BoardList';
               <div className="modal-header pb-0">
                 <i className="far fa-credit-card text-muted pr-2"></i>
                 <h6 className="modal-title task-modal-title" id="exampleModalLongTitle">Card Title</h6>
-                <div className="current-list">
-                  <small>in list List Name</small>
+                <div className="current-list position-relative">
+                  <small className='current-list-name'>in list <Link to='#'>List Name</Link></small>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
