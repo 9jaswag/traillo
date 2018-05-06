@@ -49,7 +49,17 @@ class BoardStore {
   setModalCard = (card) => this.modalCard = card;
   updateCardDescription = (cardData) => this.Api.updateCardDescriptionAction(cardData)
     .then(response => {
-      console.log(response)
+      console.log(this.boardDetails.lists)
+      console.log(response.data)
+      this.boardDetails.lists.forEach(list => {
+        if (list.id == response.data.list.id) {
+          list.cards.forEach(card => {
+            if (card.id == response.data.id) {
+              card.description = response.data.description
+            }
+          });
+        }
+      });
     });
 }
 
