@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
 
     resources :lists, except: [:create] do
-      resources :cards, only: [:create]
+      resources :cards, only: %i(create update)
     end
   end
 

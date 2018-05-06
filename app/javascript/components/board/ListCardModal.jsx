@@ -1,22 +1,68 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 
-class ListCardModal extends React.Component {
+@inject('store')
+@observer class ListCardModal extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      description: ''
+    }
 
     this.toggleDescriptionEditForm = this.toggleDescriptionEditForm.bind(this);
+    this.addDesctiption = this.addDesctiption.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(event) {
+    this.setState({ description: event.target.value })
+  }
+
+  addDesctiption(event) {
+    event.preventDefault();
+    const { description } = this.state;
+    const { updateCardDescription } = this.props.store.Board;
+    if (description.length < 1) {
+      console.log(error);
+      return;
+    }
+    updateCardDescription({
+      description: this.state.description,
+      list_id: this.props.modalCard.list_id,
+      id: this.props.modalCard.id
+    })
   }
 
   toggleDescriptionEditForm() {
     const button = document.querySelector('.show-desc-edit');
+    const buttonLink = document.querySelector('.show-desc-edit-link');
     const editForm = document.querySelector('.card-detail-edit');
-    button.classList.toggle('collapse');
+    if (button) {
+      button.classList.toggle('collapse');
+    }
+    if (buttonLink) {
+      buttonLink.classList.toggle('collapse');
+    }
     editForm.classList.toggle('show');
+    this.setState({ description: '' })
   }
 
   render() {
-    const { modalCard } = this.props;
+    const { modalCard, lists } = this.props;
+    const currentList = lists.filter(list => list.id == modalCard.list_id);
+    const addDescBtn = <p className='mb-0'>
+      <button className="show-desc-edit quiet-button btn-block text-left" onClick={this.toggleDescriptionEditForm}>
+        <i className="far fa-edit pr-1"></i>
+        Edit description...
+      </button>
+    </p>;
+    const description = <div className="card-detail-section">
+      <small className="text-muted d-block">Description</small>
+      <button type="button" className="btn btn-link text-muted p-0 show-desc-edit-link" onClick={this.toggleDescriptionEditForm}>Edit</button>
+      <small className="d-block">{modalCard.description}</small>
+    </div>;
+    console.log(modalCard)
     return (
       <div className="modal" id="listCardModal" tabIndex={-1} role="dialog" aria-labelledby="listCardModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg " role="document">
@@ -25,7 +71,7 @@ class ListCardModal extends React.Component {
               <i className="far fa-credit-card text-muted pr-2"></i>
               <h6 className="modal-title task-modal-title" id="exampleModalLongTitle">{modalCard.name}</h6>
               <div className="current-list position-relative">
-                <small className='current-list-name'>in list <Link to='#'>List Name</Link></small>
+                <small className='current-list-name'>in list <Link to='#'>{currentList.length > 0 && currentList[0].name}</Link></small>
               </div>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -35,15 +81,16 @@ class ListCardModal extends React.Component {
               <div className="container-fluid p-0">
                 <div className="row">
                   <div className="col-12 col-sm-8 col-lg-9 left">
-                    <p className='mb-0'>
-                      <button className="show-desc-edit quiet-button btn-block text-left" onClick={this.toggleDescriptionEditForm}>
-                        <i className="far fa-edit pr-1"></i>
-                        Edit description...
-                        </button>
-                    </p>
-                    <section className="card-detail-edit position-relative collapse">
-                      <form action="" className="inline">
-                        <textarea name="" id="card-details-textarea" className='col-12 p-2' placeholder="Add a more detailed description…" required></textarea>
+                    {modalCard.description ? description : addDescBtn}
+                    <section className="card-detail-edit position-relative collapse mt-2">
+                      <form action="" className="inline" onSubmit={this.addDesctiption}>
+                        <textarea name=""
+                          id="card-details-textarea"
+                          className='col-12 p-2'
+                          placeholder="Add a more detailed description…"
+                          onChange={this.onChange}
+                          value={this.state.description}
+                          required></textarea>
                         <button className="btn btn-success btn-sm" type='submit'>Save</button>
                         <i className="ion-close-round position-absolute ml-3 card-detail-close-icon" onClick={this.toggleDescriptionEditForm}></i>
                       </form>

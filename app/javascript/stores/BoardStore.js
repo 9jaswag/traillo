@@ -47,6 +47,10 @@ class BoardStore {
       }
     });
   setModalCard = (card) => this.modalCard = card;
+  updateCardDescription = (cardData) => this.Api.updateCardDescriptionAction(cardData)
+    .then(response => {
+      console.log(response)
+    });
 }
 
 decorate(BoardStore, {
