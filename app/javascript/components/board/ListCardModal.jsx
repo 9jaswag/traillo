@@ -32,6 +32,7 @@ import { inject, observer } from "mobx-react";
       list_id: this.props.modalCard.list_id,
       id: this.props.modalCard.id
     })
+    this.toggleDescriptionEditForm();
   }
 
   toggleDescriptionEditForm() {
@@ -62,7 +63,6 @@ import { inject, observer } from "mobx-react";
       <button type="button" className="btn btn-link text-muted p-0 show-desc-edit-link" onClick={this.toggleDescriptionEditForm}>Edit</button>
       <small className="d-block">{modalCard.description}</small>
     </div>;
-    console.log(modalCard)
     return (
       <div className="modal" id="listCardModal" tabIndex={-1} role="dialog" aria-labelledby="listCardModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg " role="document">
