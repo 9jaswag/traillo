@@ -49,18 +49,17 @@ class BoardStore {
   setModalCard = (card) => this.modalCard = card;
   updateCardDescription = (cardData) => this.Api.updateCardDescriptionAction(cardData)
     .then(response => {
-      console.log(this.boardDetails.lists)
-      console.log(response.data)
-      this.boardDetails.lists.forEach(list => {
-        if (list.id == response.data.list.id) {
-          list.cards.forEach(card => {
-            if (card.id == response.data.id) {
-              card.description = response.data.description
-            }
-          });
-        }
-      });
+      const listIndex = this.getArray(this.boardDetails.lists, response.data.list.id, 0);
+      const cardIndex = this.getArray(this.boardDetails.lists[listIndex].cards, response.data.id, 0);
+      this.boardDetails.lists[listIndex].cards[cardIndex].description = response.data.description;
     });
+  getArray = (array, id, count) => {
+    if (array[0].id == id) {
+      return count;
+    } else {
+      return this.getArray(array.slice(1), id, count + 1)
+    }
+  }
 }
 
 decorate(BoardStore, {
