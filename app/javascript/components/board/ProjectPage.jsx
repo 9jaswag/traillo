@@ -152,7 +152,7 @@ import ListCardModal from './ListCardModal';
             </div>
           </div>
         </div>
-        <ListCardModal modalCard={modalCard} />
+        <ListCardModal modalCard={modalCard} lists={lists} />
       </React.Fragment>
     );
   }

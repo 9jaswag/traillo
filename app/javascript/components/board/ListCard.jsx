@@ -24,6 +24,11 @@ import { inject, observer } from 'mobx-react';
             <span className="list-card-title">{card.name}</span>
             <div className="badges">
               <span className="js-badges">
+                <div className="badge">
+                  {card.description && <span className="badge-icon">
+                    <i className="fas fa-list fa-lg pr-1"></i>
+                  </span>}
+                </div>
                 <div className="badge is-complete">
                   <span className="badge-icon">
                     <i className="ion-android-checkbox-outline fa-lg pr-1"></i>

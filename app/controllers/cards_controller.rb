@@ -5,8 +5,18 @@ class CardsController < ApplicationController
     render json: card, status: :created if card.save!
   end
 
+  def update
+    card = Card.find(params[:id])
+    card.update!(update_params)
+    render json: card, status: :ok
+  end
+
   private
   def card_params
     params.permit(:name, :list_id)
+  end
+
+  def update_params
+    params.permit(:description)
   end
 end

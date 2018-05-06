@@ -27,4 +27,13 @@ export default class BoardAPI {
         return response;
       });
   }
+
+  updateCardDescriptionAction(cardData) {
+    return axios.put(`/api/lists/${cardData.list_id}/cards/${cardData.id}`, cardData)
+      .then(response => {
+        return response;
+      }, ({ response }) => {
+        return response;
+      });
+  }
 }
