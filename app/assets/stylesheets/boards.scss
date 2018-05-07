@@ -987,7 +987,7 @@ section.card-detail-edit {
 
 ///// refix modal widths
 @media (min-width: 576px){
-  .modal-dialog {
+  #listCardModal .modal-dialog {
     max-width: 800px !important;
   }
 }
