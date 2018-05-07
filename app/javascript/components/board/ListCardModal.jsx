@@ -7,22 +7,39 @@ import { inject, observer } from "mobx-react";
   constructor(props) {
     super(props)
     this.state = {
-      description: ''
+      description: '',
+      newChecklistName: ''
     }
 
     this.toggleDescriptionEditForm = this.toggleDescriptionEditForm.bind(this);
     this.addDesctiption = this.addDesctiption.bind(this);
     this.onChange = this.onChange.bind(this);
     this.toggleChecklistDropdown = this.toggleChecklistDropdown.bind(this);
+    this.submitChecklist = this.submitChecklist.bind(this);
+  }
+
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  submitChecklist(event) {
+    const { addChecklist } = this.props.store.Board
+    event.preventDefault();
+    if (this.state.newChecklistName.length < 1) {
+      console.log('enter a checklist name');
+      return;
+    }
+    addChecklist({
+      name: this.state.newChecklistName,
+      card_id: this.props.modalCard.id
+    })
+    this.setState({ newChecklistName: '' })
+    this.toggleChecklistDropdown();
   }
 
   toggleChecklistDropdown(event) {
     const dropdown = document.querySelector('.checklist-dropdown');
     dropdown.classList.toggle('show')
-  }
-
-  onChange(event) {
-    this.setState({ description: event.target.value })
   }
 
   addDesctiption(event) {
@@ -105,6 +122,7 @@ import { inject, observer } from "mobx-react";
                       <form action="" className="inline" onSubmit={this.addDesctiption}>
                         <textarea name=""
                           id="card-details-textarea"
+                          name='description'
                           className='col-12 p-2'
                           placeholder="Add a more detailed description…"
                           onChange={this.onChange}
@@ -189,8 +207,16 @@ import { inject, observer } from "mobx-react";
                           <hr className="m-0 mr-3 ml-3" /><div className="mt-1">
                             <div className="container">
                               <h6 className='left-sidebar-dropdown-title'>Title</h6>
-                              <form action="">
-                                <input type="text" className='form-control form-control-sm' placeholder='Checklist' />
+                              <form action="" onSubmit={this.submitChecklist}>
+                                <input
+                                  type="text"
+                                  name="newChecklistName"
+                                  className='form-control form-control-sm'
+                                  placeholder='Checklist'
+                                  value={this.state.newChecklistName}
+                                  onChange={this.onChange}
+                                  required
+                                  autoComplete='off' />
                                 <button className='btn btn-sm btn-success my-2'>Add</button>
                               </form>
                             </div>
