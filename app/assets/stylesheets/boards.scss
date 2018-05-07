@@ -810,6 +810,19 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
   outline: none
 }
 
+.card-detail-section {
+  margin: 8px 0 2px 38px;
+
+  button {
+    font-size: 0.8rem;
+    text-decoration: underline
+  }
+}
+
+section.card-detail-edit {
+  margin: 0 0 20px 38px;
+}
+
 
 .card-detail-close-icon {
   bottom: 0.1rem;
@@ -933,6 +946,7 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
 .task-modal-title {
   font-weight: 900;
   font-size: 0.9rem;
+  margin: 0 21px;
 }
 
 .quiet-button {

@@ -81,8 +81,8 @@ import { inject, observer } from "mobx-react";
         <div className="modal-dialog modal-lg " role="document">
           <div className="modal-content">
             <div className="modal-header pb-0">
-              <i className="far fa-credit-card text-muted pr-2"></i>
-              <h6 className="modal-title task-modal-title" id="exampleModalLongTitle">{modalCard.name}</h6>
+              <i className="far fa-credit-card text-muted d-inline-block"></i>
+              <h6 className="modal-title d-inline-block task-modal-title" id="exampleModalLongTitle">{modalCard.name}</h6>
               <div className="current-list position-relative">
                 <small className='current-list-name'>in list <Link to='#'>{currentList.length > 0 && currentList[0].name}</Link></small>
               </div>
@@ -95,7 +95,7 @@ import { inject, observer } from "mobx-react";
                 <div className="row">
                   <div className="col-12 col-sm-8 col-lg-9 left">
                     {modalCard.description ? description : addDescBtn}
-                    <section className="card-detail-edit position-relative collapse mt-2">
+                    <section className="card-detail-edit position-relative collapse">
                       <form action="" className="inline" onSubmit={this.addDesctiption}>
                         <textarea name=""
                           id="card-details-textarea"
@@ -111,7 +111,7 @@ import { inject, observer } from "mobx-react";
                     <section className="card-comment-section mt-3">
                       <div>
                         <i className="far fa-comment text-muted d-inline-block"></i>
-                        <h6 className='d-inline-block pl-2 task-modal-title'>Add Comments</h6>
+                        <h6 className='d-inline-block task-modal-title'>Add Comments</h6>
                       </div>
                       <div className="new-comment position-relative">
                         <div className="member">
@@ -146,7 +146,7 @@ import { inject, observer } from "mobx-react";
                     <section className="card-comment-section activity-section mt-3">
                       <div>
                         <i className="fas fa-list text-muted d-inline-block"></i>
-                        <h6 className='d-inline-block pl-2 task-modal-title'>Activity</h6>
+                        <h6 className='d-inline-block task-modal-title'>Activity</h6>
                       </div>
                       <div className="new-comment position-relative">
                         <div className="member">
