@@ -81,7 +81,7 @@ import { inject, observer } from "mobx-react";
         <div className="modal-dialog modal-lg " role="document">
           <div className="modal-content">
             <div className="modal-header pb-0">
-              <i className="far fa-credit-card text-muted d-inline-block"></i>
+              <i className="far fa-credit-card text-muted d-inline-block fa-lg"></i>
               <h6 className="modal-title d-inline-block task-modal-title" id="exampleModalLongTitle">{modalCard.name}</h6>
               <div className="current-list position-relative">
                 <small className='current-list-name'>in list <Link to='#'>{currentList.length > 0 && currentList[0].name}</Link></small>
@@ -93,7 +93,7 @@ import { inject, observer } from "mobx-react";
             <div className="modal-body">
               <div className="container-fluid p-0">
                 <div className="row">
-                  <div className="col-12 col-sm-8 col-lg-9 left">
+                  <div className="col-12 col-sm-9 col-lg-9 left">
                     {modalCard.description ? description : addDescBtn}
                     <section className="card-detail-edit position-relative collapse">
                       <form action="" className="inline" onSubmit={this.addDesctiption}>
@@ -110,7 +110,7 @@ import { inject, observer } from "mobx-react";
                     </section>
                     <section className="card-comment-section mt-3">
                       <div>
-                        <i className="far fa-comment text-muted d-inline-block"></i>
+                        <i className="far fa-comment text-muted d-inline-block fa-lg"></i>
                         <h6 className='d-inline-block task-modal-title'>Add Comments</h6>
                       </div>
                       <div className="new-comment position-relative">
@@ -145,7 +145,7 @@ import { inject, observer } from "mobx-react";
                     </section>
                     <section className="card-comment-section activity-section mt-3">
                       <div>
-                        <i className="fas fa-list text-muted d-inline-block"></i>
+                        <i className="fas fa-list text-muted d-inline-block fa-lg"></i>
                         <h6 className='d-inline-block task-modal-title'>Activity</h6>
                       </div>
                       <div className="new-comment position-relative">
@@ -153,7 +153,7 @@ import { inject, observer } from "mobx-react";
                           <button className="btn btn-sm btn__internal profile-pic p-0"><img className="profile-pic-image" src="https://avatars2.githubusercontent.com/u/8125356?s=460&amp;v=4" alt="Profile Picture" /></button>
                         </div>
                         <div className="activity-desc">
-                          <span className="activity-owner">Chuks Opia</span>
+                          <small className="activity-owner">Chuks Opia</small>
                           <div className="comment-container">
                             <div className="action-comment">
                               <p>lorem ipsum bs lorem ipsum bs  lorem ipsum bs lorem ipsum bs lorem ipsum bslorem ipsum bs lorem ipsum bs lorem ipsum bs lorem ipsum bs</p>
@@ -167,7 +167,7 @@ import { inject, observer } from "mobx-react";
                       </div>
                     </section>
                   </div>
-                  <div className="col-12 col-sm-4 col-lg-3">
+                  <div className="col-12 col-sm-3 col-lg-3">
                     <h6 className='task-modal-title'>Add</h6>
                     <div className="add-buttons">
                       <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
@@ -202,10 +202,6 @@ import { inject, observer } from "mobx-react";
                 </div>
               </div>
             </div>
-            {/* <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary">Save changes</button>
-              </div> */}
           </div>
         </div>
       </div>
