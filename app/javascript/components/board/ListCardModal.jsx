@@ -39,14 +39,27 @@ import { inject, observer } from "mobx-react";
     const button = document.querySelector('.show-desc-edit');
     const buttonLink = document.querySelector('.show-desc-edit-link');
     const editForm = document.querySelector('.card-detail-edit');
+    const descriptionText = document.querySelector('.card-description-text');
     if (button) {
       button.classList.toggle('collapse');
     }
     if (buttonLink) {
       buttonLink.classList.toggle('collapse');
     }
+    if (!editForm.classList.contains('show')) {
+      if (descriptionText) {
+        this.setState({ description: descriptionText.innerHTML })
+        descriptionText.classList.remove('d-block');
+        descriptionText.classList.add('collapse');
+      }
+    } else {
+      if (descriptionText) {
+        descriptionText.classList.remove('collapse');
+        descriptionText.classList.add('d-block');
+      }
+      this.setState({ description: '' })
+    }
     editForm.classList.toggle('show');
-    this.setState({ description: '' })
   }
 
   render() {
@@ -61,7 +74,7 @@ import { inject, observer } from "mobx-react";
     const description = <div className="card-detail-section">
       <small className="text-muted d-block">Description</small>
       <button type="button" className="btn btn-link text-muted p-0 show-desc-edit-link" onClick={this.toggleDescriptionEditForm}>Edit</button>
-      <small className="d-block">{modalCard.description}</small>
+      <small className="d-block card-description-text">{modalCard.description}</small>
     </div>;
     return (
       <div className="modal" id="listCardModal" tabIndex={-1} role="dialog" aria-labelledby="listCardModalLabel" aria-hidden="true">
