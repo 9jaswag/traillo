@@ -778,7 +778,7 @@ input[type=text].add-list-input::-ms-input-placeholder { /* Microsoft Edge */
     position: fixed;
     display: block;
     width: 100vw;
-    left: 2.7rem;
+    left: 3.5rem;
     top: 2.5rem;
     color: #838c91;
     font-size: 0.85rem;
@@ -980,7 +980,6 @@ section.card-detail-edit {
 ///// refix modal widths
 @media (min-width: 576px){
   .modal-dialog {
-    max-width: 805px;
-    margin: 1.75rem auto;
+    max-width: 800px !important;
   }
 }
