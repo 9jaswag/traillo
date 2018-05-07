@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resources :lists, except: [:create] do
       resources :cards, only: %i(create update)
     end
+
+    resources :cards, except: %i(create update) do
+      resources :checklists, only: %i(create update)
+    end
   end
 
   get 'users/show'

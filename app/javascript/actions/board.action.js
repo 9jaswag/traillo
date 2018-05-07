@@ -36,4 +36,13 @@ export default class BoardAPI {
         return response;
       });
   }
+
+  addChecklistAction(checklistData) {
+    return axios.post(`/api/cards/${checklistData.card_id}/checklists`, checklistData)
+      .then(response => {
+        return response;
+      }, ({ response }) => {
+        return response;
+      });
+  }
 }

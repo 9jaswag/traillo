@@ -60,6 +60,15 @@ class BoardStore {
       return this.getArray(array.slice(1), id, count + 1)
     }
   }
+  addChecklist = (checklistData) => this.Api.addChecklistAction(checklistData)
+    .then(response => {
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        console.log(response)
+      } else {
+        console.log('error list not created')
+      }
+    });
 }
 
 decorate(BoardStore, {
@@ -69,6 +78,7 @@ decorate(BoardStore, {
   createList: action,
   createCard: action,
   setModalCard: action,
+  addChecklist: action,
 });
 
 export default BoardStore;
