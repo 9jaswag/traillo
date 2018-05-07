@@ -13,6 +13,12 @@ import { inject, observer } from "mobx-react";
     this.toggleDescriptionEditForm = this.toggleDescriptionEditForm.bind(this);
     this.addDesctiption = this.addDesctiption.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.toggleChecklistDropdown = this.toggleChecklistDropdown.bind(this);
+  }
+
+  toggleChecklistDropdown(event) {
+    const dropdown = document.querySelector('.checklist-dropdown');
+    dropdown.classList.toggle('show')
   }
 
   onChange(event) {
@@ -168,22 +174,38 @@ import { inject, observer } from "mobx-react";
                     </section>
                   </div>
                   <div className="col-12 col-sm-3 col-lg-3">
-                    <h6 className='task-modal-title'>Add</h6>
+                    <h6 className='task-modal-title modal-sidebar-title'>Add</h6>
                     <div className="add-buttons">
                       <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
                         <i className="far fa-user pr-1"></i> Members
-                        </button>
-                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
+                      </button>
+                      <button type="button" className="btn btn-secondary btn-block add-btn btn-sm" onClick={this.toggleChecklistDropdown}>
                         <i className="ion-android-checkbox-outline pr-1"></i> Checklist
-                        </button>
+                      </button>
+                      <div className="collapse checklist-dropdown" id="create-dropdown">
+                        <div className="p-0 col-12">
+                          <div className="col-12 text-center p-1">
+                            <span className="text-muted">Add checklist</span></div>
+                          <hr className="m-0 mr-3 ml-3" /><div className="mt-1">
+                            <div className="container">
+                              <h6 className='left-sidebar-dropdown-title'>Title</h6>
+                              <form action="">
+                                <input type="text" className='form-control form-control-sm' placeholder='Checklist' />
+                                <button className='btn btn-sm btn-success my-2'>Add</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
                         <i className="far fa-clock pr-1"></i> Due Date
-                        </button>
+                      </button>
                       <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
                         <i className="fas fa-paperclip pr-1"></i> Attachment
-                        </button>
+                      </button>
                     </div>
-                    <h6 className='task-modal-title mt-4'>Action</h6>
+                    <h6 className='task-modal-title mt-4 modal-sidebar-title'>Action</h6>
                     <div className="add-buttons">
                       <button type="button" className="btn btn-secondary btn-block add-btn btn-sm">
                         <i className="fas fa-arrow-right pr-1"></i> Move
