@@ -45,4 +45,13 @@ export default class BoardAPI {
         return response;
       });
   }
+
+  getCardAction(id) {
+    return axios.get(`/api/cards/${id}`)
+      .then(response => {
+        return response;
+      }, ({ response }) => {
+        return response;
+      });
+  }
 }

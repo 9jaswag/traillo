@@ -6,7 +6,8 @@ class BoardStore {
     lists: [],
   }
   modalCard = {
-    name: ''
+    name: '',
+    checklists: []
   }
 
   constructor() {
@@ -64,9 +65,22 @@ class BoardStore {
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
-        console.log(response)
+        console.log(response.data)
       } else {
         console.log('error list not created')
+      }
+    });
+
+  getCard = (id) => this.Api.getCardAction(id)
+    .then(response => {
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        const listIndex = this.getArray(this.boardDetails.lists, response.data.list.id, 0);
+        const cardIndex = this.getArray(this.boardDetails.lists[listIndex].cards, response.data.id, 0);
+        this.boardDetails.lists[listIndex].cards[cardIndex].checklists = response.data.checklists
+        this.setModalCard(this.boardDetails.lists[listIndex].cards[cardIndex])
+      } else {
+        console.log('error card not found')
       }
     });
 }
@@ -79,6 +93,7 @@ decorate(BoardStore, {
   createCard: action,
   setModalCard: action,
   addChecklist: action,
+  getCard: action,
 });
 
 export default BoardStore;

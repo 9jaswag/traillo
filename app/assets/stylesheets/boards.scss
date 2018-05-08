@@ -1000,3 +1000,29 @@ section.card-detail-edit {
   font-weight: 900;
   font-size: 0.85rem;
 }
+
+.checklist-item {
+  margin: 0 0 20px 38px;
+  cursor: pointer;
+  border-radius: 3px;
+
+  &:hover {
+    background: #0000001a;
+  }
+}
+
+.checklist-item-details {
+  color: #333;
+
+  div {
+    span {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.underline {
+  text-decoration: line-through;
+  font-style: italic;
+  color: #6c757d;
+}

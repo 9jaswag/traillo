@@ -4,7 +4,7 @@ class ListSerializer < ActiveModel::Serializer
   belongs_to :board
   has_many :cards
 
-  def cards
-    object.cards
-  end
+  # def cards
+  #   object.cards
+  # end
 end

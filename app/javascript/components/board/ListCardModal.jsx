@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
+import Checklist from './Checklist';
 
 @inject('store')
 @observer class ListCardModal extends React.Component {
@@ -16,6 +17,21 @@ import { inject, observer } from "mobx-react";
     this.onChange = this.onChange.bind(this);
     this.toggleChecklistDropdown = this.toggleChecklistDropdown.bind(this);
     this.submitChecklist = this.submitChecklist.bind(this);
+    this.checkCheckbox = this.checkCheckbox.bind(this);
+  }
+
+  checkCheckbox(event) {
+    const checkbox = event.target;
+    const text = checkbox.parentElement.nextElementSibling.firstElementChild.firstElementChild;
+    if (checkbox.classList.contains('fa-square')) {
+      event.target.classList.remove('fa-square')
+      event.target.classList.add('fa-check-square')
+      text.classList.add('underline')
+    } else {
+      event.target.classList.add('fa-square')
+      event.target.classList.remove('fa-check-square')
+      text.classList.remove('underline')
+    }
   }
 
   onChange(event) {
@@ -87,6 +103,10 @@ import { inject, observer } from "mobx-react";
 
   render() {
     const { modalCard, lists } = this.props;
+    const { checklists } = modalCard;
+    const cardChecklists = checklists.map(checklist => (
+      <Checklist key={checklist.id} checklist={checklist} />
+    ));
     const currentList = lists.filter(list => list.id == modalCard.list_id);
     const addDescBtn = <p className='mb-0'>
       <button className="show-desc-edit quiet-button btn-block text-left" onClick={this.toggleDescriptionEditForm}>
@@ -132,6 +152,7 @@ import { inject, observer } from "mobx-react";
                         <i className="ion-close-round position-absolute ml-3 card-detail-close-icon" onClick={this.toggleDescriptionEditForm}></i>
                       </form>
                     </section>
+                    {checklists.length > 0 && cardChecklists}
                     <section className="card-comment-section mt-3">
                       <div>
                         <i className="far fa-comment text-muted d-inline-block fa-lg"></i>

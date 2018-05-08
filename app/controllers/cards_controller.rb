@@ -5,6 +5,11 @@ class CardsController < ApplicationController
     render json: card, status: :created if card.save!
   end
 
+  def show
+    card = Card.find(params[:id])
+    render json: card
+  end
+
   def update
     card = Card.find(params[:id])
     card.update!(update_params)
