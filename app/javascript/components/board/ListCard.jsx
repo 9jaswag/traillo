@@ -12,7 +12,7 @@ import { inject, observer } from 'mobx-react';
 
   onClick(event) {
     const { Board } = this.props.store;
-    Board.setModalCard(this.props.card);
+    Board.getCard(this.props.card.id);
   }
 
   render() {
