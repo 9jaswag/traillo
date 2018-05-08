@@ -17,21 +17,6 @@ import Checklist from './Checklist';
     this.onChange = this.onChange.bind(this);
     this.toggleChecklistDropdown = this.toggleChecklistDropdown.bind(this);
     this.submitChecklist = this.submitChecklist.bind(this);
-    this.checkCheckbox = this.checkCheckbox.bind(this);
-  }
-
-  checkCheckbox(event) {
-    const checkbox = event.target;
-    const text = checkbox.parentElement.nextElementSibling.firstElementChild.firstElementChild;
-    if (checkbox.classList.contains('fa-square')) {
-      event.target.classList.remove('fa-square')
-      event.target.classList.add('fa-check-square')
-      text.classList.add('underline')
-    } else {
-      event.target.classList.add('fa-square')
-      event.target.classList.remove('fa-check-square')
-      text.classList.remove('underline')
-    }
   }
 
   onChange(event) {
