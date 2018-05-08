@@ -66,6 +66,8 @@ class BoardStore {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
         console.log(response.data)
+        this.modalCard.checklists.push(response.data)
+        console.log(this.modalCard)
       } else {
         console.log('error list not created')
       }

@@ -1,8 +1,26 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 
-class Checklist extends React.Component {
+@inject('store')
+@observer class Checklist extends React.Component {
   constructor(props) {
     super(props)
+
+    this.checkCheckbox = this.checkCheckbox.bind(this);
+  }
+
+  checkCheckbox(event) {
+    const checkbox = event.target;
+    const text = checkbox.parentElement.nextElementSibling.firstElementChild.firstElementChild;
+    if (checkbox.classList.contains('fa-square')) {
+      event.target.classList.remove('fa-square')
+      event.target.classList.add('fa-check-square')
+      text.classList.add('underline')
+    } else {
+      event.target.classList.add('fa-square')
+      event.target.classList.remove('fa-check-square')
+      text.classList.remove('underline')
+    }
   }
 
   render() {
