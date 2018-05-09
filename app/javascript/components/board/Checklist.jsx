@@ -31,6 +31,12 @@ import { inject, observer } from 'mobx-react';
           <i className="ion-android-checkbox-outline text-muted checklist-icon d-inline-block fa-lg"></i>
           <h6 className='d-inline-block task-modal-title'>{checklist.name}</h6>
         </div>
+        <div className="checklist-progress">
+          <span className="checklist-progress-percentage">100%</span>
+          <div className="checklist-progress-bar">
+            <div className="checklist-progress-bar-current" style={{ width: "10%" }}></div>
+          </div>
+        </div>
         <div className="checklist-item px-1">
           <div className="checklist-item-checkbox d-inline-block">
             <i className="far fa-square text-muted" onClick={this.checkCheckbox}></i>
