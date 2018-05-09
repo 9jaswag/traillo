@@ -47,7 +47,7 @@ class BoardStore {
         console.log('error list not created')
       }
     });
-  setModalCard = (card) => this.modalCard = card;
+
   updateCardDescription = (cardData) => this.Api.updateCardDescriptionAction(cardData)
     .then(response => {
       const listIndex = this.getArray(this.boardDetails.lists, response.data.list.id, 0);
@@ -65,9 +65,7 @@ class BoardStore {
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
-        console.log(response.data)
         this.modalCard.checklists.push(response.data)
-        console.log(this.modalCard)
       } else {
         console.log('error list not created')
       }
@@ -77,10 +75,7 @@ class BoardStore {
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
-        const listIndex = this.getArray(this.boardDetails.lists, response.data.list.id, 0);
-        const cardIndex = this.getArray(this.boardDetails.lists[listIndex].cards, response.data.id, 0);
-        this.boardDetails.lists[listIndex].cards[cardIndex].checklists = response.data.checklists
-        this.setModalCard(this.boardDetails.lists[listIndex].cards[cardIndex])
+        this.modalCard = response.data;
       } else {
         console.log('error card not found')
       }
@@ -93,7 +88,6 @@ decorate(BoardStore, {
   getBoardDetails: action,
   createList: action,
   createCard: action,
-  setModalCard: action,
   addChecklist: action,
   getCard: action,
 });

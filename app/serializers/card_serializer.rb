@@ -1,10 +1,6 @@
 class CardSerializer < ActiveModel::Serializer
-  attributes :id, :name, :due_date, :description, :checklists
+  attributes :id, :name, :due_date, :description
 
   belongs_to :list
   has_many :checklists
-
-  def checklists
-    object.checklists
-  end
 end
