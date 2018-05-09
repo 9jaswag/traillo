@@ -1026,3 +1026,44 @@ section.card-detail-edit {
   font-style: italic;
   color: #6c757d;
 }
+
+.checklist-progress {
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.checklist-progress-percentage {
+  color: #838c91;
+  font-size: 11px;
+  line-height: 10px;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  text-align: center;
+  width: 38px;
+}
+
+.checklist-progress-bar {
+  background: #d6dadc;
+  border-radius: 5px;
+  clear: both;
+  height: 8px;
+  margin: 0 0 0 38px;
+  overflow: hidden;
+  position: relative;
+}
+
+.checklist-progress-bar-current {
+  background: #5ba4cf;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transition: width .14s ease-in, background .14s ease-in;
+  transition: width .14s ease-in, background .14s ease-in;
+}
+
+.checklist-progress-bar-current.complete {
+  background: #61bd4f;
+}
+
