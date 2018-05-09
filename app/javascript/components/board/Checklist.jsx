@@ -7,6 +7,14 @@ import { inject, observer } from 'mobx-react';
     super(props)
 
     this.checkCheckbox = this.checkCheckbox.bind(this);
+    this.toggleAddItemForm = this.toggleAddItemForm.bind(this);
+  }
+
+  toggleAddItemForm() {
+    const showButton = document.querySelector('.show-add-item');
+    const form = document.querySelector('.add-item-form');
+    showButton.classList.toggle('collapse');
+    form.classList.toggle('show');
   }
 
   checkCheckbox(event) {
@@ -46,6 +54,16 @@ import { inject, observer } from 'mobx-react';
               <span>TTL needed</span>
             </div>
           </div>
+        </div>
+        <button className="quiet-button btn-block text-left show-add-item" onClick={this.toggleAddItemForm}>
+          Add an item...
+        </button>
+        <div className="add-item-form collapse">
+          <form action="" className='position-relative'>
+            <textarea className="add-item-textarea col-12" name="" id="" placeholder='Add an item'></textarea>
+            <button className='btn btn-sm btn-success'>Add</button>
+            <i className="ion-close-round position-absolute ml-3 add-item-close-icon" onClick={this.toggleAddItemForm}></i>
+          </form>
         </div>
       </section>
     )

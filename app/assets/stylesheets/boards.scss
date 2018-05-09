@@ -1067,3 +1067,43 @@ section.card-detail-edit {
   background: #61bd4f;
 }
 
+.show-add-item {
+  margin-left: 28px;
+  text-decoration: none;
+  outline: none;
+}
+
+.show-add-item:focus {
+  outline: none;
+}
+
+.add-item-form {
+  margin-left: 38px;
+}
+
+.add-item-textarea {
+  overflow: hidden;
+  word-wrap: break-word;
+  height: 36px;
+  background: #fff;
+  border-color: #298fca;
+  -webkit-box-shadow: 0 0 2px #298fca;
+  box-shadow: 0 0 2px #298fca;
+  color: #4d4d4d;
+  cursor: text;
+  max-height: none;
+  resize: vertical;
+  outline: none;
+  margin-bottom: 4px;
+  max-height: 32px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  line-height: 1.9;
+  padding-left: 0.3rem !important;
+}
+
+.add-item-close-icon {
+  bottom: 0.1rem;
+  color: #999;
+  cursor: pointer;
+}
