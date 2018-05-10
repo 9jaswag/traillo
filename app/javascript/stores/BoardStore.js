@@ -80,6 +80,16 @@ class BoardStore {
         console.log('error card not found')
       }
     });
+
+  addItem = (itemData) => this.Api.addItemAction(itemData)
+    .then(response => {
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        console.log(response.data);
+      } else {
+        console.log('error item not created')
+      }
+    });
 }
 
 decorate(BoardStore, {
@@ -90,6 +100,7 @@ decorate(BoardStore, {
   createCard: action,
   addChecklist: action,
   getCard: action,
+  addItem: action,
 });
 
 export default BoardStore;

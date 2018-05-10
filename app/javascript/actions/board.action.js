@@ -54,4 +54,13 @@ export default class BoardAPI {
         return response;
       });
   }
+
+  addItemAction(itemData) {
+    return axios.post(`/api/checklists/${itemData.checklist_id}/items`, itemData)
+      .then(response => {
+        return response;
+      }, ({ response }) => {
+        return response;
+      });
+  }
 }
