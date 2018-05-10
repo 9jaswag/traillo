@@ -88,6 +88,7 @@ import Checklist from './Checklist';
 
   render() {
     const { modalCard, lists } = this.props;
+    // console.log(modalCard)
     const { checklists } = modalCard;
     const cardChecklists = checklists.map(checklist => (
       <Checklist key={checklist.id} checklist={checklist} />
