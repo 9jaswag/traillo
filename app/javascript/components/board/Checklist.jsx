@@ -1,5 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import classnames from 'classnames';
 
 @inject('store')
 @observer class Checklist extends React.Component {
@@ -47,11 +48,11 @@ import { inject, observer } from 'mobx-react';
     const text = checkbox.parentElement.nextElementSibling.firstElementChild.firstElementChild;
     if (checkbox.classList.contains('fa-square')) {
       event.target.classList.remove('fa-square')
-      event.target.classList.add('fa-check-square')
+      event.target.classList.add('fa-check-square', 'checked')
       text.classList.add('underline')
     } else {
       event.target.classList.add('fa-square')
-      event.target.classList.remove('fa-check-square')
+      event.target.classList.remove('fa-check-square', 'checked')
       text.classList.remove('underline')
     }
   }
@@ -59,14 +60,20 @@ import { inject, observer } from 'mobx-react';
   render() {
     const { checklist } = this.props;
     const { items } = checklist;
+    console.log(items)
     const checklistItems = items.map(item => (
       <div className="checklist-item px-1" key={item.id}>
         <div className="checklist-item-checkbox d-inline-block">
-          <i className="far fa-square text-muted" onClick={this.checkCheckbox}></i>
+          <i className={classnames('far text-muted', {
+            'fa-check-square': item.is_done,
+            'fa-square': !item.is_done
+          })} onClick={this.checkCheckbox}></i>
         </div>
         <div className="checklist-item-details d-inline-block pl-2">
           <div className="checklist-item-name">
-            <span>{item.name}</span>
+            <span className={classnames({
+              'underline': item.is_done
+            })}>{item.name}</span>
           </div>
         </div>
       </div>
