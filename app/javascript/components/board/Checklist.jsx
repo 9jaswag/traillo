@@ -8,7 +8,8 @@ import classnames from 'classnames';
     super(props)
     this.state = {
       name: '',
-      item_name: ''
+      item_name: '',
+      percentage: 0,
     }
 
     this.checkCheckbox = this.checkCheckbox.bind(this);
@@ -177,6 +178,16 @@ import classnames from 'classnames';
         </div>
       </div>
     ));
+    let completeCount = 0;
+    let percentage;
+    if (items.length > 0) {
+      items.forEach(item => {
+        if (item.is_done) {
+          completeCount += 1;
+        }
+      });
+      percentage = (completeCount / items.length) * 100;
+    }
     return (
       <section className="card-comment-section mt-2">
         <div>
@@ -184,9 +195,11 @@ import classnames from 'classnames';
           <h6 className='d-inline-block task-modal-title'>{checklist.name}</h6>
         </div>
         <div className="checklist-progress">
-          <span className="checklist-progress-percentage">100%</span>
+          <span className="checklist-progress-percentage">{Math.floor(percentage)}%</span>
           <div className="checklist-progress-bar">
-            <div className="checklist-progress-bar-current" style={{ width: "10%" }}></div>
+            <div className={classnames("checklist-progress-bar-current", {
+              'complete': percentage == 100
+            })} style={{ width: `${Math.floor(percentage)}%` }}></div>
           </div>
         </div>
         {items.length > 0 && checklistItems}
