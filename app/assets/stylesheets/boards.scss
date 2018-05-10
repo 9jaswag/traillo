@@ -1013,6 +1013,8 @@ section.card-detail-edit {
 
 .checklist-item-details {
   color: #333;
+  padding-right: 0 !important;
+  display: inline-block;
 
   div {
     span {
@@ -1081,7 +1083,7 @@ section.card-detail-edit {
   margin-left: 38px;
 }
 
-.add-item-textarea {
+.add-item-textarea, .edit-item-name {
   overflow: hidden;
   word-wrap: break-word;
   height: 36px;
@@ -1106,4 +1108,27 @@ section.card-detail-edit {
   bottom: 0.1rem;
   color: #999;
   cursor: pointer;
+}
+
+.edit-item-wrapper {
+  margin-left: 1rem;
+  position: relative;
+  top: -1.4rem;
+}
+
+.edit-item-name {
+  // background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0.03);
+  font-size: 14px;
+  transition: none;
+  background: rgba(0,0,0,.03);
+  border-color: rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 0 1px 6px rgba(0,0,0,.1);
+  box-shadow: inset 0 1px 6px rgba(0,0,0,.1);
+  margin-bottom: 4px;
+}
+
+.edit-item-close-icon {
+  bottom: 0.4rem;
+  cursor: pointer;
+  color: #999;
 }

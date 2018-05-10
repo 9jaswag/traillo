@@ -7,7 +7,8 @@ import classnames from 'classnames';
   constructor(props) {
     super(props)
     this.state = {
-      name: ''
+      name: '',
+      item_name: ''
     }
 
     this.checkCheckbox = this.checkCheckbox.bind(this);
@@ -15,6 +16,61 @@ import classnames from 'classnames';
     this.hideAllAddItemForms = this.hideAllAddItemForms.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.closeEditItemForm = this.closeEditItemForm.bind(this);
+    this.closeAllEditItemForm = this.closeAllEditItemForm.bind(this);
+    this.showEditItemForm = this.showEditItemForm.bind(this);
+    this.onEditFormChange = this.onEditFormChange.bind(this);
+    this.onEditFormSubmit = this.onEditFormSubmit.bind(this);
+  }
+
+  onEditFormSubmit(event) {
+    event.preventDefault();
+    const { updateItem } = this.props.store.Board;
+    const item = event.target.parentElement.previousElementSibling.firstElementChild.firstElementChild;
+    const id = event.target.parentElement.previousElementSibling.previousElementSibling.firstElementChild.dataset;
+    const is_done = item.classList.contains('underline') ? true : false;
+
+    updateItem({
+      name: this.state.item_name,
+      checklist_id: this.props.checklist.id,
+      is_done,
+      id: id.id
+    })
+    this.closeAllEditItemForm();
+  }
+
+  onEditFormChange(event) {
+    this.setState({ item_name: event.target.value })
+  }
+
+  showEditItemForm(event) {
+    event.stopPropagation();
+    this.closeAllEditItemForm();
+    const button = event.target.closest('div .checklist-item-details');
+    button.classList.add('collapse');
+    this.setState({ item_name: button.firstElementChild.firstElementChild.textContent })
+    const form = button.nextElementSibling
+    form.classList.add('show');
+  }
+
+  closeEditItemForm(event) {
+    const button = event.target.closest('.edit-item-wrapper');
+    const form = button.previousElementSibling
+    button.classList.remove('show');
+    form.classList.remove('collapse');
+  }
+
+  closeAllEditItemForm() {
+    const forms = document.querySelectorAll('.edit-item-wrapper');
+    const buttons = document.querySelectorAll('.checklist-item-details');
+    forms.forEach((form, index) => {
+      if (form.classList.contains('show')) {
+        form.classList.remove('show')
+      }
+      if (buttons[index].classList.contains('collapse')) {
+        buttons[index].classList.remove('collapse')
+      }
+    })
   }
 
   onChange(event) {
@@ -90,7 +146,6 @@ import classnames from 'classnames';
   render() {
     const { checklist } = this.props;
     const { items } = checklist;
-    // console.log(items)
     const checklistItems = items.map(item => (
       <div className="checklist-item px-1" key={item.id}>
         <div className="checklist-item-checkbox d-inline-block">
@@ -99,12 +154,26 @@ import classnames from 'classnames';
             'fa-square': !item.is_done
           })} data-id={item.id} onClick={this.checkCheckbox}></i>
         </div>
-        <div className="checklist-item-details d-inline-block pl-2">
+        <div className="checklist-item-details pl-2 col-11">
           <div className="checklist-item-name">
-            <span className={classnames({
+            <span className={classnames('d-block', {
               'underline': item.is_done
-            })}>{item.name}</span>
+            })}
+              onClick={this.showEditItemForm}
+            >{item.name}</span>
           </div>
+        </div>
+        <div className="edit-item-wrapper collapse">
+          <form action="" className='position-relative' onSubmit={this.onEditFormSubmit} >
+            <textarea
+              className='col-12 edit-item-name' name="" id=""
+              value={this.state.item_name}
+              onChange={this.onEditFormChange}
+              required>
+            </textarea>
+            <button type="submit" className='btn btn-sm btn-success mb-1'>Save</button>
+            <i className="ion-close-round position-absolute ml-3 edit-item-close-icon" onClick={this.closeEditItemForm}></i>
+          </form>
         </div>
       </div>
     ));
