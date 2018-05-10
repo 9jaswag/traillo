@@ -31,6 +31,8 @@ import { inject, observer } from 'mobx-react';
       name,
       checklist_id: this.props.checklist.id
     })
+    this.setState({ name: '' })
+    this.toggleAddItemForm();
   }
 
   toggleAddItemForm() {
@@ -82,16 +84,6 @@ import { inject, observer } from 'mobx-react';
           </div>
         </div>
         {items.length > 0 && checklistItems}
-        {/* <div className="checklist-item px-1">
-          <div className="checklist-item-checkbox d-inline-block">
-            <i className="far fa-square text-muted" onClick={this.checkCheckbox}></i>
-          </div>
-          <div className="checklist-item-details d-inline-block pl-2">
-            <div className="checklist-item-name">
-              <span>TTL needed</span>
-            </div>
-          </div>
-        </div> */}
         <button className="quiet-button btn-block text-left show-add-item" onClick={this.toggleAddItemForm}>
           Add an item...
         </button>
