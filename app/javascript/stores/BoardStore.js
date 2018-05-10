@@ -91,6 +91,17 @@ class BoardStore {
         console.log('error item not created')
       }
     });
+
+  updateItem = (itemData) => this.Api.updateItemAction(itemData)
+    .then(response => {
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        const checklistIndex = this.getArray(this.modalCard.checklists, response.data.checklist.id, 0)
+        this.modalCard.checklists[checklistIndex].items = response.data.checklist.items
+      } else {
+        console.log('error item not updated')
+      }
+    });
 }
 
 decorate(BoardStore, {
@@ -102,6 +113,7 @@ decorate(BoardStore, {
   addChecklist: action,
   getCard: action,
   addItem: action,
+  updateItem: action,
 });
 
 export default BoardStore;

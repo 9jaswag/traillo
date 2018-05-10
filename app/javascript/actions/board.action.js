@@ -63,4 +63,13 @@ export default class BoardAPI {
         return response;
       });
   }
+
+  updateItemAction(itemData) {
+    return axios.patch(`/api/checklists/${itemData.checklist_id}/items/${itemData.id}`, itemData)
+      .then(response => {
+        return response;
+      }, ({ response }) => {
+        return response;
+      });
+  }
 }
