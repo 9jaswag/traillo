@@ -9,7 +9,6 @@ import classnames from 'classnames';
     this.state = {
       name: '',
       item_name: '',
-      percentage: 0,
     }
 
     this.checkCheckbox = this.checkCheckbox.bind(this);
@@ -194,14 +193,14 @@ import classnames from 'classnames';
           <i className="ion-android-checkbox-outline text-muted checklist-icon d-inline-block fa-lg"></i>
           <h6 className='d-inline-block task-modal-title'>{checklist.name}</h6>
         </div>
-        <div className="checklist-progress">
+        {items.length > 0 && <div className="checklist-progress">
           <span className="checklist-progress-percentage">{Math.floor(percentage)}%</span>
           <div className="checklist-progress-bar">
             <div className={classnames("checklist-progress-bar-current", {
               'complete': percentage == 100
             })} style={{ width: `${Math.floor(percentage)}%` }}></div>
           </div>
-        </div>
+        </div>}
         {items.length > 0 && checklistItems}
         <button className="quiet-button btn-block text-left show-add-item" onClick={this.showAddItemForm}>
           Add an item...
