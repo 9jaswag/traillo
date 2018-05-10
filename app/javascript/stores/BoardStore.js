@@ -85,7 +85,8 @@ class BoardStore {
     .then(response => {
       let responseStatus = Number(response.status) < 300 ? "success" : 'error';
       if (responseStatus == 'success') {
-        console.log(response.data);
+        const index = this.getArray(this.modalCard.checklists, response.data.id, 0)
+        this.modalCard.checklists[index].items = response.data.items
       } else {
         console.log('error item not created')
       }
