@@ -19,6 +19,7 @@ import ListCardModal from './ListCardModal';
     this.showAddListDropdown = this.showAddListDropdown.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.toggleAddMemberDropdown = this.toggleAddMemberDropdown.bind(this);
     // this.toggleDescriptionEditForm = this.toggleDescriptionEditForm.bind(this);
   }
 
@@ -38,6 +39,11 @@ import ListCardModal from './ListCardModal';
         getBoardDetails(this.props.match.params.uid)
       }
     }
+  }
+
+  toggleAddMemberDropdown() {
+    const dropdown = document.querySelector('#add-member-dropdown');
+    dropdown.classList.toggle('show');
   }
 
   onSubmit(event) {
@@ -145,13 +151,30 @@ import ListCardModal from './ListCardModal';
                     <img src="https://avatars2.githubusercontent.com/u/8125356?s=460&v=4" alt="" className="member-avatar" width="30" height="30" />
                   </div>
                 </div>
-                <div className="board-header-btns">
+                <div className="board-header-btns_in">
                   <button className="btn btn-sm btn__internal p-0 member-count">25</button>
                 </div>
-                <div className="board-header-btns ml-1">
-                  <button className="btn btn-sm btn__internal p-0 member-count">
+                <div className="board-header-btns_in ml-1 position-relative">
+                  <button className="btn btn-sm btn__internal p-0 member-count" onClick={this.toggleAddMemberDropdown}>
                     <i className="fas fa-user-plus"></i>
                   </button>
+                  <div className="collapse" id="add-member-dropdown">
+                    <div className="p-0 col-12">
+                      <div className="col-12 text-center p-1">
+                        <span className="text-muted">Add members</span>
+                      </div><hr className="m-0 mr-3 ml-3" />
+                      <div className="mt-1 px-3 py-1">
+                        <form action="">
+                          <input className="form-control form-control-sm add-member-search" type="text" placeholder="e.g janedoe@traillo.com" />
+                        </form>
+                        <div className="pt-3 pb-2">
+                          <p className="m-0 quiet-text">
+                            Search for a person in Traillo by name or email address, or enter an email address to invite someone new.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
