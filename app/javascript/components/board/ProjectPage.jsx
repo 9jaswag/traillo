@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import InternalHeader from '../dashboard/InternalHeader';
 import BoardList from './BoardList';
 import ListCardModal from './ListCardModal';
+import AddMember from './AddMember';
 
 @inject('store')
 @observer class ProjectPage extends Component {
@@ -163,7 +164,8 @@ import ListCardModal from './ListCardModal';
                       <div className="col-12 text-center p-1">
                         <span className="text-muted">Add members</span>
                       </div><hr className="m-0 mr-3 ml-3" />
-                      <div className="mt-1 px-3 py-1">
+                      <AddMember />
+                      {/* <div className="mt-1 px-3 py-1">
                         <form action="">
                           <input className="form-control form-control-sm add-member-search" type="text" placeholder="e.g janedoe@traillo.com" />
                         </form>
@@ -172,7 +174,7 @@ import ListCardModal from './ListCardModal';
                             Search for a person in Traillo by name or email address, or enter an email address to invite someone new.
                           </p>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
