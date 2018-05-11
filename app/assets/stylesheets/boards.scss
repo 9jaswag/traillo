@@ -1132,3 +1132,31 @@ section.card-detail-edit {
   cursor: pointer;
   color: #999;
 }
+
+.board-header-btns {
+  display: inline-block;
+}
+
+.board-header-facepile {
+  display: inline-flex;
+}
+
+.board-header-facepile .member-avatar {
+  height: 24px;
+  width: 24px;
+}
+
+.member-avatar {
+  height: 30px;
+  width: 30px;
+  border-radius: 25em;
+  cursor: pointer;
+}
+
+.member-count {
+  border-radius: 25em !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  font-size: 0.7rem !important;
+  font-weight: 900 !important;
+}

@@ -130,6 +130,30 @@ import ListCardModal from './ListCardModal';
                 </div> */}
               </div>
               <span className="board-header-btn-divider"></span>
+              <div className="board-header-btns">
+                <div className="board-header-facepile">
+                  <div className="member">
+                    <img src="https://avatars2.githubusercontent.com/u/8125356?s=460&v=4" alt="" className="member-avatar" width="30" height="30" />
+                  </div>
+                  <div className="member">
+                    <img src="https://avatars2.githubusercontent.com/u/8125356?s=460&v=4" alt="" className="member-avatar" width="30" height="30" />
+                  </div>
+                  <div className="member">
+                    <img src="https://avatars2.githubusercontent.com/u/8125356?s=460&v=4" alt="" className="member-avatar" width="30" height="30" />
+                  </div>
+                  <div className="member">
+                    <img src="https://avatars2.githubusercontent.com/u/8125356?s=460&v=4" alt="" className="member-avatar" width="30" height="30" />
+                  </div>
+                </div>
+                <div className="board-header-btns">
+                  <button className="btn btn-sm btn__internal p-0 member-count">25</button>
+                </div>
+                <div className="board-header-btns ml-1">
+                  <button className="btn btn-sm btn__internal p-0 member-count">
+                    <i className="fas fa-user-plus"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           <div className="board-canvas">
