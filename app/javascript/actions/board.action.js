@@ -72,4 +72,13 @@ export default class BoardAPI {
         return response;
       });
   }
+
+  searchUserAction(user) {
+    return axios.get(`/api/search/${user}`)
+      .then(response => {
+        return response;
+      }, ({ response }) => {
+        return response;
+      });
+  }
 }

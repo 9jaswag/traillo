@@ -9,6 +9,7 @@ class BoardStore {
     name: '',
     checklists: []
   }
+  searchedUsers = []
 
   constructor() {
     this.Api = new BoardAPI();
@@ -102,11 +103,22 @@ class BoardStore {
         console.log('error item not updated')
       }
     });
+
+  searchUser = (user) => this.Api.searchUserAction(user)
+    .then(response => {
+      let responseStatus = Number(response.status) < 300 ? "success" : 'error';
+      if (responseStatus == 'success') {
+        this.searchedUsers = response.data
+      } else {
+        console.log('no user matches input')
+      }
+    })
 }
 
 decorate(BoardStore, {
   boardDetails: observable,
   modalCard: observable,
+  searchedUsers: observable,
   getBoardDetails: action,
   createList: action,
   createCard: action,
@@ -114,6 +126,7 @@ decorate(BoardStore, {
   getCard: action,
   addItem: action,
   updateItem: action,
+  searchUser: action,
 });
 
 export default BoardStore;

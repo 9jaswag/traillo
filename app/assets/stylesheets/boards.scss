@@ -1214,3 +1214,14 @@ input[type=text].add-member-search::-ms-input-placeholder { /* Microsoft Edge */
   font-weight: 400;
   color: #838c91;
 }
+
+li.search-user {
+  border-radius: 3px;
+  padding: 0.3rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $default-blue;
+    color: $white;
+  }
+}
