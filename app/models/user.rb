@@ -1,4 +1,17 @@
+require 'elasticsearch/model'
+
 class User < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :name, analyzer: 'english'
+      indexes :username, analyzer: 'english'
+      indexes :email, analyzer: 'english'
+    end
+  end
+
   attr_accessor :activation_token, :reset_token
   before_save { self.email = email.downcase }
   before_save { self.username = username.downcase }
@@ -21,6 +34,23 @@ class User < ApplicationRecord
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
     end
+
+    def search(query)
+      __elasticsearch__.search(
+        {
+          query: {
+            multi_match: {
+              query: query,
+              fields: ['email^10', 'username', 'name']
+            }
+          }
+        }
+      )
+    end
+  end
+
+  def as_indexed_json(options={})
+    as_json(only: [:id, :name, :username, :email, :avatar])
   end
 
   def authenticated?(attribute, token)
@@ -83,3 +113,5 @@ class User < ApplicationRecord
     self.activation_digest = User.digest(self.activation_token)
   end
 end
+
+User.import force: true
